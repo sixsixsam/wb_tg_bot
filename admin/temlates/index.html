@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Admin — Price Reposter</title>
+</head>
+<body>
+  <h1>Admin — Price Reposter</h1>
+  <h2>Настройки</h2>
+  <form action="/update_deltas" method="post">
+    PRICE_PRO_DELTA: <input name="price_pro" value="{{ price_pro }}"><br>
+    PRICE_DEFAULT_DELTA: <input name="price_default" value="{{ price_default }}"><br>
+    <button type="submit">Сохранить</button>
+  </form>
+
+  <h2>Последние сообщения</h2>
+  <table border="1">
+    <tr><th>id</th><th>source_channel</th><th>source_msg</th><th>target_msg</th><th>time</th><th>summary</th></tr>
+    {% for m in messages %}
+    <tr>
+      <td>{{ m[0] }}</td>
+      <td>{{ m[1] }}</td>
+      <td>{{ m[2] }}</td>
+      <td>{{ m[3] }}</td>
+      <td>{{ m[4] }}</td>
+      <td>{{ m[5] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Ошибки</h2>
+  <table border="1">
+    <tr><th>id</th><th>source_channel</th><th>source_msg</th><th>error</th><th>time</th></tr>
+    {% for e in errors %}
+    <tr>
+      <td>{{ e[0] }}</td>
+      <td>{{ e[1] }}</td>
+      <td>{{ e[2] }}</td>
+      <td><pre>{{ e[3] }}</pre></td>
+      <td>{{ e[5] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
