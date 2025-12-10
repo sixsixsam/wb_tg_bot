@@ -1,1 +1,10 @@
-run = "python3 app/main.py"
+run = "python app/main.py"
+
+[agent]
+expertMode = true
+
+[env]
+PYTHONUNBUFFERED = "1"
+
+[packager]
+language = "python3"
