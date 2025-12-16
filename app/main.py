@@ -46,7 +46,7 @@ bot_client = Client(
     workdir="."
 )
 
-# ================= REGEX / CONST =================
+# ================= REGEX =================
 DATE_RE = re.compile(r"^\s*\d{1,2}[./-]\d{1,2}[./-]\d{4}")
 
 # ================= HELPERS =================
@@ -95,7 +95,7 @@ async def process_message(msg: Message):
 
     text = clean_text(raw)
 
-    new_text, changed = replace_prices_in_text(
+    new_text, _ = replace_prices_in_text(
         text=text,
         pro_delta=config.PRICE_PRO_DELTA,
         default_delta=config.PRICE_DEFAULT_DELTA,
@@ -103,76 +103,42 @@ async def process_message(msg: Message):
         min_ignore=config.MIN_PRICE_TO_IGNORE
     )
 
-    new_text = new_text.strip()
-    if not new_text:
-        logger.warning(f"EMPTY AFTER CLEAN {msg.id}")
+    if not new_text.strip():
         return
 
     old_target_id = await db.get_message_target(str(msg.chat.id), msg.id)
     kb = build_keyboard()
-
     media_file = None
+
     try:
         if msg.photo:
             media_file = await download_media(msg)
-            if old_target_id:
-                sent = await safe(
-                    bot_client.edit_message_caption,
-                    config.TARGET_CHANNEL,
-                    old_target_id,
-                    new_text,
-                    parse_mode=ParseMode.HTML,
-                    reply_markup=kb
-                )
-            else:
-                sent = await safe(
-                    bot_client.send_photo,
-                    config.TARGET_CHANNEL,
-                    media_file,
-                    caption=new_text,
-                    parse_mode=ParseMode.HTML,
-                    reply_markup=kb
-                )
-
+            sent = await safe(
+                bot_client.send_photo if not old_target_id else bot_client.edit_message_caption,
+                config.TARGET_CHANNEL,
+                media_file if not old_target_id else old_target_id,
+                caption=new_text,
+                parse_mode=ParseMode.HTML,
+                reply_markup=kb
+            )
         elif msg.video:
             media_file = await download_media(msg)
-            if old_target_id:
-                sent = await safe(
-                    bot_client.edit_message_caption,
-                    config.TARGET_CHANNEL,
-                    old_target_id,
-                    new_text,
-                    parse_mode=ParseMode.HTML,
-                    reply_markup=kb
-                )
-            else:
-                sent = await safe(
-                    bot_client.send_video,
-                    config.TARGET_CHANNEL,
-                    media_file,
-                    caption=new_text,
-                    parse_mode=ParseMode.HTML,
-                    reply_markup=kb
-                )
-
+            sent = await safe(
+                bot_client.send_video if not old_target_id else bot_client.edit_message_caption,
+                config.TARGET_CHANNEL,
+                media_file if not old_target_id else old_target_id,
+                caption=new_text,
+                parse_mode=ParseMode.HTML,
+                reply_markup=kb
+            )
         else:
-            if old_target_id:
-                sent = await safe(
-                    bot_client.edit_message_text,
-                    config.TARGET_CHANNEL,
-                    old_target_id,
-                    new_text,
-                    parse_mode=ParseMode.HTML,
-                    reply_markup=kb
-                )
-            else:
-                sent = await safe(
-                    bot_client.send_message,
-                    config.TARGET_CHANNEL,
-                    new_text,
-                    parse_mode=ParseMode.HTML,
-                    reply_markup=kb
-                )
+            sent = await safe(
+                bot_client.send_message if not old_target_id else bot_client.edit_message_text,
+                config.TARGET_CHANNEL,
+                new_text,
+                parse_mode=ParseMode.HTML,
+                reply_markup=kb
+            )
 
         if sent:
             await db.update_message_target(
@@ -182,7 +148,6 @@ async def process_message(msg: Message):
                 datetime.utcnow().isoformat(),
                 new_text[:800]
             )
-            logger.info(f"SENT {msg.id} → {sent.id}")
 
     except Exception:
         logger.error(traceback.format_exc())
@@ -207,12 +172,7 @@ async def main():
 
     for src in config.SOURCE_CHANNELS:
         logger.info(f"BACKFILL {src}")
-        msgs = []
         async for m in user_client.get_chat_history(src, limit=config.BACKFILL_LIMIT):
-            msgs.append(m)
-
-        msgs.reverse()
-        for m in msgs:
             await process_message(m)
             await asyncio.sleep(config.REQUEST_DELAY)
 
