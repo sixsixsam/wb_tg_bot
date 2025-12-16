@@ -48,7 +48,6 @@ bot_client = Client(
 
 # ================= REGEX / CONST =================
 DATE_RE = re.compile(r"^\s*\d{1,2}[./-]\d{1,2}[./-]\d{4}")
-JUNK = ("Аксессуар/ Фото/ Описание ⬇️", "@BSAAccessories")
 
 # ================= HELPERS =================
 def has_date_start(text: str) -> bool:
@@ -66,9 +65,7 @@ def clean_text(text: str) -> str:
     for pattern in junk_patterns:
         text = re.sub(pattern, "", text, flags=re.IGNORECASE)
 
-    # убираем лишние пустые строки
     text = re.sub(r"\n{3,}", "\n\n", text)
-
     return text.strip()
 
 def build_keyboard():
@@ -98,7 +95,6 @@ async def process_message(msg: Message):
 
     text = clean_text(raw)
 
-    # ===== PRICE REPLACE =====
     new_text, changed = replace_prices_in_text(
         text=text,
         pro_delta=config.PRICE_PRO_DELTA,
@@ -117,7 +113,6 @@ async def process_message(msg: Message):
 
     media_file = None
     try:
-        # ===== MEDIA =====
         if msg.photo:
             media_file = await download_media(msg)
             if old_target_id:
@@ -210,22 +205,21 @@ async def main():
     await user_client.start()
     await bot_client.start()
 
-    # BACKFILL
     for src in config.SOURCE_CHANNELS:
         logger.info(f"BACKFILL {src}")
         msgs = []
         async for m in user_client.get_chat_history(src, limit=config.BACKFILL_LIMIT):
             msgs.append(m)
 
-        msgs.reverse()  # старые → новые
-
+        msgs.reverse()
         for m in msgs:
             await process_message(m)
             await asyncio.sleep(config.REQUEST_DELAY)
 
-   logger.info("DONE")
-await user_client.stop()
-await bot_client.stop()
+    logger.info("DONE")
+
+    await user_client.stop()
+    await bot_client.stop()
 
 if __name__ == "__main__":
     asyncio.run(main())
