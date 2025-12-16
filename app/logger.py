@@ -6,13 +6,16 @@ from logging.handlers import RotatingFileHandler
 import os
 from . import config
 
-
 LOG_DIR = config.LOG_DIR
 os.makedirs(LOG_DIR, exist_ok=True)
 
 def setup_logger(name="price_reposter"):
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
+
+    # Если уже выставлен обработчик — вернём существующий logger
+    if logger.handlers:
+        return logger
 
     # Консольный хэндлер
     ch = logging.StreamHandler()

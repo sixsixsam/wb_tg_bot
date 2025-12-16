@@ -1,81 +1,115 @@
 # app/utils_price.py
-# Парсер/замена цен: распознает разные форматы и корректно вычитает дельту.
-
 import re
-import unicodedata
-from typing import Tuple
-from . import config
 
-# Регулярка для поиска цен с учётом разных разделителей и валютных обозначений
-PRICE_REGEX = re.compile(
-    r'(?P<full>\b(?P<number>\d{1,3}(?:[ \u00A0\.,]\d{3})*(?:[,\.\d]+)?)\s*(?P<currency>руб(?:\.|ля|лей)?|₽|rur|rub|\$|usd|грн|uah|₴|€|eur|£|gbp)\b)',
-    flags=re.IGNORECASE
+# ================== REGEX ==================
+
+# Цена:
+#  - 73.000
+#  - 104.000.0
+#  - 72500
+#  - 104000
+# ❌ НЕ ловим: "17 256"
+PRICE_RE = re.compile(
+    r"""
+    (?<!\d )           # слева не "цифра+пробел"
+    (?<!\d)            # слева не цифра
+    (
+        \d{1,3}(?:\.\d{3})+(?:\.0)?   # 73.000 | 104.000.0
+        |
+        \d{5,6}                        # 72500 | 104000
+    )
+    (?!\d)             # справа не цифра
+    """,
+    re.VERBOSE
 )
 
-# Нормализация Unicode и пробелов
-def normalize_text(s: str) -> str:
-    s = s or ""
-    s = unicodedata.normalize("NFC", s)
-    # убираем повторяющиеся пробелы, но не удаляем переводы строк
-    s = re.sub(r'[ \u00A0]+', ' ', s)
-    return s
+# строки, где цена НЕ является ценой товара
+IGNORE_LINE_KEYWORDS = [
+    "гаранти",
+    "месяц",
+    "шт",
+    "в пути",
+    "ожидаем",
+    "дополнительную",
+    "чехол",
+    "кабель",
+    "заряд",
+    "magsafe",
+    "airpods",
+    "battery",
+    "depо",
+]
 
-# Преобразование числа из формата с точками/запятыми/пробелами в float
-def parse_number(num_str: str) -> float:
-    s = num_str.strip()
-    if '.' in s and ',' in s:
-        # скорее всего точка — тысячные, запятая — дробные
-        s = s.replace('.', '').replace(',', '.')
-    else:
-        # убираем пробелы и неразрывные
-        s = s.replace('\u00A0', '').replace(' ', '')
-        # если есть запятая и нет точки — воспринимаем запятую как дробную
-        if ',' in s and '.' not in s:
-            s = s.replace(',', '.')
-        else:
-            # иначе удалим запятые как тысячные разделители
-            s = s.replace(',', '')
-    try:
-        return float(s)
-    except:
-        return 0.0
+# признаки PRO-моделей (ТОЛЬКО для строк с айфонами)
+PRO_LINE_RE = re.compile(
+    r"\b(pro max|pro)\b",
+    re.IGNORECASE
+)
 
-# Форматирование обратно: если целое — без дробной части
-def format_number(val: float) -> str:
-    if abs(val - round(val)) < 0.0001:
-        return str(int(round(val)))
-    return f"{val:.2f}"
+# ================== HELPERS ==================
 
-# Функция замены цен в тексте
-def replace_prices_in_text(text: str, has_pro: bool, pro_delta: float=None, default_delta: float=None, min_to_zero: bool=True) -> Tuple[str,int]:
-    if text is None:
-        return text, 0
-    text = normalize_text(text)
-    pro_delta = pro_delta if pro_delta is not None else config.PRICE_PRO_DELTA
-    default_delta = default_delta if default_delta is not None else config.PRICE_DEFAULT_DELTA
-    replacements = 0
+def normalize_price(raw: str) -> int:
+    return int(raw.replace(".", "").replace(" ", ""))
 
-    def repl(m):
-        nonlocal replacements
-        full = m.group("full")
-        num = m.group("number")
-        cur = m.group("currency")
-        value = parse_number(num)
-        delta = pro_delta if has_pro else default_delta
-        new_val = value - delta
-        if min_to_zero and new_val < 0:
-            new_val = 0.0
-        new_num = format_number(new_val)
-        replacements += 1
-        # Сохраняем пробел между числом и валютой если был
-        sep = " " if re.search(r'\d\s+\D', full) else ""
-        return f"{new_num}{sep}{cur}"
+def format_price(n: int) -> str:
+    return f"{n:,}".replace(",", ".")
 
-    new_text = PRICE_REGEX.sub(repl, text)
-    return new_text, replacements
+def is_price_line(line: str) -> bool:
+    l = line.lower()
+    return not any(k in l for k in IGNORE_LINE_KEYWORDS)
 
-# Функция поиска наличия слова PRO в строках (учёт Pro/PRO/Pro Max)
-def detect_pro_in_text(text: str) -> bool:
-    if not text:
-        return False
-    return bool(re.search(r'\bPRO\b', text, flags=re.IGNORECASE))
+def is_pro_line(line: str) -> bool:
+    return bool(PRO_LINE_RE.search(line))
+
+# ================== CORE ==================
+
+def replace_prices_in_text(
+    text: str,
+    pro_delta: int,
+    default_delta: int,
+    min_zero: int = 0,
+    min_ignore: int = 0
+):
+    """
+    ЛОГИКА (ВАЖНО):
+    - анализ ТОЛЬКО построчно
+    - Pro / Pro Max → pro_delta
+    - обычные / Air → default_delta
+    - "17 256" НЕ ТРОГАЕМ
+    """
+
+    changed = False
+    lines = text.splitlines()
+    new_lines = []
+
+    for line in lines:
+        original_line = line
+
+        # пропускаем строки без товарных цен
+        if not is_price_line(line):
+            new_lines.append(line)
+            continue
+
+        pro_line = is_pro_line(line)
+
+        def repl(m):
+            nonlocal changed
+            raw_price = m.group(1)
+
+            price = normalize_price(raw_price)
+
+            delta = pro_delta if pro_line else default_delta
+            new_price = price - delta
+
+            if new_price <= min_ignore:
+                return raw_price
+            if new_price < min_zero:
+                new_price = min_zero
+
+            changed = True
+            return format_price(new_price)
+
+        line = PRICE_RE.sub(repl, line)
+        new_lines.append(line)
+
+    return "\n".join(new_lines), changed

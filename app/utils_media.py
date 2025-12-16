@@ -1,42 +1,39 @@
 # app/utils_media.py
-# Функции для скачивания медиа с retry и обработки альбомов
-
 import asyncio
-import os
 from pathlib import Path
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait, RPCError
 from . import config
-from app.logger import logger
+from .logger import logger
 
 DOWNLOAD_DIR = Path(config.DOWNLOAD_DIR)
 DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-async def download_media(msg: Message, max_retries:int=None) -> Path:
-    # Скачиваем сообщение (photo/video/document/audio/voice)
-    tries = 0
-    max_retries = max_retries if max_retries is not None else config.DOWNLOAD_RETRIES
-    while tries < max_retries:
+async def download_media(msg: Message, max_retries=None) -> Path | None:
+    retries = max_retries or config.DOWNLOAD_RETRIES
+    attempt = 0
+
+    while attempt < retries:
         try:
             path = await msg.download(file_name=str(DOWNLOAD_DIR))
             if path:
                 return Path(path)
-            else:
-                return None
+            return None
         except FloodWait as fw:
-            logger.warning(f"FloodWait при скачивании: {fw.x}s")
-            await asyncio.sleep(fw.x + 1)
+            logger.warning(f"FloodWait download {fw.value}s")
+            await asyncio.sleep(fw.value + 1)
         except RPCError as e:
-            logger.warning(f"RPCError при скачивании (попытка {tries+1}): {e}")
-            tries += 1
-            await asyncio.sleep(1 + tries)
-        except Exception as e:
-            logger.exception(f"Ошибка при скачивании: {e}")
-            tries += 1
-            await asyncio.sleep(1 + tries)
+            logger.warning(f"RPCError download {e}")
+            attempt += 1
+            await asyncio.sleep(1 + attempt)
+        except Exception:
+            logger.exception("DOWNLOAD ERROR")
+            attempt += 1
+            await asyncio.sleep(1 + attempt)
+
+    logger.error("DOWNLOAD FAILED")
     return None
 
-# Очистка временных файлов
 def cleanup_files(paths):
     for p in paths:
         try:

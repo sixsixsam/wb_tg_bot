@@ -1,0 +1,7 @@
+*.session
+*.session-journal
+downloads/
+logs/
+reposter.db
+__pycache__/
+.env

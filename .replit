@@ -1,1 +1,8 @@
-run = "python3 app/main.py"
+run = "venv/bin/python -m app.main"
+
+[agent]
+expertMode = true
+
+[[ports]]
+localPort = 8000
+externalPort = 80

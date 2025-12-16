@@ -1,59 +1,55 @@
 # config.py
-# Заполните значения перед запуском
 
-# ---------- Telegram / авторизация ----------
-API_ID = int(os.getenv("API_ID"))               #  API_ID
-API_HASH = os.getenv("API_HASH")     #  API_HASH
+import os
 
-# Если используете bot token:
-USE_BOT_ACCOUNT = True
-BOT_TOKEN = os.getenv("BOT_TOKEN")  #BOT TOKEN если USE_BOT_ACCOUNT=True
+# ---------- Telegram ----------
+API_ID = int(os.getenv("API_ID", 0))
+API_HASH = os.getenv("API_HASH", "")
 
-# Если хотите использовать user-session (client без BOT_TOKEN), установите USE_BOT_ACCOUNT=False
-SESSION_NAME = "price_reposter_session"
+# USER — читает
+USER_SESSION_NAME = "price_reposter_user"
+
+# BOT — публикует
+BOT_SESSION_NAME = "price_reposter_bot"
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 
 # ---------- Каналы ----------
-# Можно указать список username или id (например: ["@source1", -1001234567890])
-SOURCE_CHANNELS = [os.getenv("SOURCE_CHANNELS")]
-TARGET_CHANNEL = os.getenv("TARGET_CHANNEL")
+SOURCE_CHANNELS = os.getenv("SOURCE_CHANNELS", "").split(",") if os.getenv("SOURCE_CHANNELS") else []
+TARGET_CHANNEL = os.getenv("TARGET_CHANNEL", "")
 
-# ---------- Параметры изменения цен ----------
-# Если в строке есть "PRO" (регистронезависимо) — вычитается PRICE_PRO_DELTA
-# Иначе — PRICE_DEFAULT_DELTA
+# ---------- Цены ----------
 PRICE_PRO_DELTA = 2000.0
 PRICE_DEFAULT_DELTA = 1000.0
-# Если после вычета получилась отрицательная цена — поставить 0
 MIN_PRICE_TO_ZERO = True
+MIN_PRICE_TO_IGNORE = float(os.getenv("MIN_PRICE_TO_IGNORE", 10000.0))
 
-# ---------- Тайминги и скачивание ----------
-REQUEST_DELAY = 0.45          # задержка между сетевыми вызовами
-DOWNLOAD_DIR = "downloads"    # папка для временных файлов
-DOWNLOAD_RETRIES = 3          # попыток загрузки медиа
-ALBUM_BUFFER_DELAY = 1.0      # время ожидания элементов альбома (сек)
+# ---------- Тайминги ----------
+REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", 0.45))
+DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR", "downloads")
+DOWNLOAD_RETRIES = int(os.getenv("DOWNLOAD_RETRIES", 3))
+ALBUM_BUFFER_DELAY = float(os.getenv("ALBUM_BUFFER_DELAY", 1.0))
 
-# ---------- Логирование ----------
-LOG_DIR = "logs"
-LOG_MAX_BYTES = 10 * 1024 * 1024  # 10 MB
+# ---------- Backfill ----------
+BACKFILL_LIMIT = int(os.getenv("BACKFILL_LIMIT", 500))
+
+# ---------- Логи ----------
+LOG_DIR = os.getenv("LOG_DIR", "logs")
+LOG_MAX_BYTES = 10 * 1024 * 1024
 LOG_BACKUP_COUNT = 5
 
-# ---------- Админ-панель ----------
-ADMIN_BIND_HOST = "127.0.0.1"
-ADMIN_BIND_PORT = 8000
-ADMIN_BASIC_USERNAME = "admin"
-ADMIN_BASIC_PASSWORD = "changeme"  # смените
+# ---------- Админ ----------
+ADMIN_BIND_HOST = os.getenv("ADMIN_BIND_HOST", "127.0.0.1")
+ADMIN_BIND_PORT = int(os.getenv("ADMIN_BIND_PORT", 8000))
+ADMIN_BASIC_USERNAME = os.getenv("ADMIN_BASIC_USERNAME", "admin")
+ADMIN_BASIC_PASSWORD = os.getenv("ADMIN_BASIC_PASSWORD", "changeme")
 
-# ---------- Фильтрация сообщений ----------
-# Обрабатывать ТОЛЬКО сообщения, начинающиеся с даты в формате:
-# D/M/YYYY, DD/MM/YYYY, D.M.YYYY, D-M-YYYY и т.д.
+# ---------- Фильтры ----------
 DATE_START_REQUIRED = True
 
-# Ключевые слова для распознавания информационных сообщений (игнорируются)
 INFO_KEYWORDS = [
     "официальный аккаунт", "отдел продаж", "оптовая торговля",
-    "гарантийный сервис", "ежедневно", "г. москва", "тц", "багратионовский",
+    "гарантийный сервис", "ежедневно", "г. москва",
     "контак", "📟", "+7", "телефон"
 ]
 
-# ---------- Прочее ----------
-# Максимальное количество сообщений, сохраняемых в БД в таблице recent_messages
-RECENT_MESSAGES_LIMIT = 500
+RECENT_MESSAGES_LIMIT = int(os.getenv("RECENT_MESSAGES_LIMIT", 500))

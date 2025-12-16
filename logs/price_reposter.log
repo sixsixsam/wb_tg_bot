@@ -1,1 +1,3007 @@
-2025-12-09 20:43:56,773 [INFO] Pyrogram client стартует...
+2025-12-15 17:53:15,327 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 33 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 33 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:16,005 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 33 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 33 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:16,681 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 32 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 32 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:17,382 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 31 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 31 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:18,057 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 31 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 31 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:18,733 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 30 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 30 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:19,403 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 29 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 29 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:20,076 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 29 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 29 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:20,751 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 28 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 28 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:21,421 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 27 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 27 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:22,103 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 27 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 27 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:22,782 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 26 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 26 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:23,447 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 25 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 25 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:24,170 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 24 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 24 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:24,844 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 24 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 24 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:25,532 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 23 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 23 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:26,224 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 22 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 22 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:26,896 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 22 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 22 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:28,057 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 21 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 21 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:29,224 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 19 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 19 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:30,364 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 18 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 18 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:31,950 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 17 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 17 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:33,176 [ERROR] Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 15 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 105, in safe_call
+    return await func(*args, **kwargs)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/messages/send_message.py", line 126, in send_message
+    r = await self.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 79, in invoke
+    r = await self.session.invoke(
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 389, in invoke
+    return await self.send(query, timeout=timeout)
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/session/session.py", line 357, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/venv/lib/python3.10/site-packages/pyrogram/errors/rpc_error.py", line 91, in raise_it
+    raise getattr(
+pyrogram.errors.exceptions.flood_420.FloodWait: Telegram says: [420 FLOOD_WAIT_X] - A wait of 15 seconds is required (caused by "messages.SendMessage")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/app/main.py", line 211, in process_and_save
+    sent = await send_message(msg)
+  File "/home/runner/workspace/app/main.py", line 195, in send_message
+    return await safe_edit_message(
+  File "/home/runner/workspace/app/main.py", line 121, in safe_edit_message
+    sent = await safe_call(send_func, channel, *args, **kwargs)
+  File "/home/runner/workspace/app/main.py", line 107, in safe_call
+    logger.warning(f"FloodWait {fw.x}s")
+AttributeError: 'FloodWait' object has no attribute 'x'
+2025-12-15 17:53:36,155 [INFO] RUNNING
+2025-12-15 18:00:11,649 [WARNING] FloodWait 36s
+2025-12-15 18:01:17,534 [WARNING] FloodWait 34s
+2025-12-15 18:32:46,088 [WARNING] FloodWait 34s
+2025-12-15 18:33:46,805 [WARNING] FloodWait 34s
+2025-12-15 18:39:40,210 [INFO] Starting backfill for @BigSaleApple
+2025-12-15 18:39:41,851 [INFO] Processing message 1 from chat -1001291236326
+2025-12-15 18:39:41,851 [INFO] Message 1 skipped: does not start with date
+2025-12-15 18:39:41,851 [INFO] Message 1 skipped (not sent)
+2025-12-15 18:39:42,301 [INFO] Processing message 5621 from chat -1001291236326
+2025-12-15 18:39:42,302 [INFO] Message 5621 skipped: does not start with date
+2025-12-15 18:39:42,302 [INFO] Message 5621 skipped (not sent)
+2025-12-15 18:39:42,752 [INFO] Processing message 5622 from chat -1001291236326
+2025-12-15 18:39:42,752 [INFO] Message 5622 skipped: does not start with date
+2025-12-15 18:39:42,752 [INFO] Message 5622 skipped (not sent)
+2025-12-15 18:39:43,204 [INFO] Processing message 10962 from chat -1001291236326
+2025-12-15 18:39:43,204 [INFO] Message 10962 skipped: does not start with date
+2025-12-15 18:39:43,204 [INFO] Message 10962 skipped (not sent)
+2025-12-15 18:39:43,655 [INFO] Processing message 10963 from chat -1001291236326
+2025-12-15 18:39:43,655 [INFO] Message 10963 skipped: does not start with date
+2025-12-15 18:39:43,655 [INFO] Message 10963 skipped (not sent)
+2025-12-15 18:39:44,106 [INFO] Processing message 10982 from chat -1001291236326
+2025-12-15 18:39:44,613 [INFO] Message 10982 processed and saved. Sent id: 315
+2025-12-15 18:39:45,064 [INFO] Processing message 10983 from chat -1001291236326
+2025-12-15 18:39:45,065 [INFO] Message 10983 skipped: does not start with date
+2025-12-15 18:39:45,065 [INFO] Message 10983 skipped (not sent)
+2025-12-15 18:39:45,516 [INFO] Processing message 10991 from chat -1001291236326
+2025-12-15 18:39:45,840 [INFO] Message 10991 processed and saved. Sent id: 316
+2025-12-15 18:39:46,291 [INFO] Processing message 11186 from chat -1001291236326
+2025-12-15 18:39:46,292 [INFO] Message 11186 skipped: does not start with date
+2025-12-15 18:39:46,292 [INFO] Message 11186 skipped (not sent)
+2025-12-15 18:39:46,743 [INFO] Processing message 11187 from chat -1001291236326
+2025-12-15 18:39:47,205 [INFO] Message 11187 processed and saved. Sent id: 317
+2025-12-15 18:39:47,656 [INFO] Processing message 11192 from chat -1001291236326
+2025-12-15 18:39:47,656 [INFO] Message 11192 skipped: does not start with date
+2025-12-15 18:39:47,657 [INFO] Message 11192 skipped (not sent)
+2025-12-15 18:39:48,110 [INFO] Processing message 11193 from chat -1001291236326
+2025-12-15 18:39:48,437 [INFO] Message 11193 processed and saved. Sent id: 318
+2025-12-15 18:39:48,888 [INFO] Processing message 11194 from chat -1001291236326
+2025-12-15 18:39:48,888 [INFO] Message 11194 skipped: does not start with date
+2025-12-15 18:39:48,889 [INFO] Message 11194 skipped (not sent)
+2025-12-15 18:39:49,340 [INFO] Processing message 11196 from chat -1001291236326
+2025-12-15 18:39:49,659 [INFO] Message 11196 processed and saved. Sent id: 319
+2025-12-15 18:39:50,110 [INFO] Processing message 11197 from chat -1001291236326
+2025-12-15 18:39:50,111 [INFO] Message 11197 skipped: does not start with date
+2025-12-15 18:39:50,111 [INFO] Message 11197 skipped (not sent)
+2025-12-15 18:39:50,561 [INFO] Processing message 11198 from chat -1001291236326
+2025-12-15 18:39:50,934 [INFO] Message 11198 processed and saved. Sent id: 320
+2025-12-15 18:39:51,386 [INFO] Processing message 11199 from chat -1001291236326
+2025-12-15 18:39:51,676 [INFO] Message 11199 processed and saved. Sent id: 321
+2025-12-15 18:39:52,127 [INFO] Processing message 11200 from chat -1001291236326
+2025-12-15 18:39:52,457 [INFO] Message 11200 processed and saved. Sent id: 322
+2025-12-15 18:39:52,908 [INFO] Processing message 11384 from chat -1001291236326
+2025-12-15 18:39:53,212 [INFO] Message 11384 processed and saved. Sent id: 323
+2025-12-15 18:39:53,663 [INFO] Processing message 11510 from chat -1001291236326
+2025-12-15 18:39:57,321 [INFO] Message 11510 processed and saved. Sent id: 324
+2025-12-15 18:39:57,776 [INFO] Processing message 12064 from chat -1001291236326
+2025-12-15 18:39:58,115 [INFO] Message 12064 processed and saved. Sent id: 325
+2025-12-15 18:39:58,566 [INFO] Processing message 12116 from chat -1001291236326
+2025-12-15 18:39:58,854 [INFO] Message 12116 processed and saved. Sent id: 326
+2025-12-15 18:39:59,306 [INFO] Processing message 12117 from chat -1001291236326
+2025-12-15 18:39:59,651 [INFO] Message 12117 processed and saved. Sent id: 327
+2025-12-15 18:40:00,102 [INFO] Processing message 12118 from chat -1001291236326
+2025-12-15 18:40:00,377 [INFO] Message 12118 processed and saved. Sent id: 328
+2025-12-15 18:40:00,828 [INFO] Processing message 12119 from chat -1001291236326
+2025-12-15 18:40:04,366 [INFO] Message 12119 processed and saved. Sent id: 329
+2025-12-15 18:40:04,817 [INFO] Processing message 12149 from chat -1001291236326
+2025-12-15 18:40:05,120 [INFO] Message 12149 processed and saved. Sent id: 330
+2025-12-15 18:40:05,572 [INFO] Processing message 12150 from chat -1001291236326
+2025-12-15 18:40:05,873 [INFO] Message 12150 processed and saved. Sent id: 331
+2025-12-15 18:40:06,324 [INFO] Processing message 12207 from chat -1001291236326
+2025-12-15 18:40:06,642 [INFO] Message 12207 processed and saved. Sent id: 332
+2025-12-15 18:40:07,093 [INFO] Processing message 12231 from chat -1001291236326
+2025-12-15 18:40:07,491 [INFO] Message 12231 processed and saved. Sent id: 333
+2025-12-15 18:40:07,943 [INFO] Processing message 12251 from chat -1001291236326
+2025-12-15 18:40:11,660 [INFO] Message 12251 processed and saved. Sent id: 334
+2025-12-15 18:40:12,111 [INFO] Processing message 12252 from chat -1001291236326
+2025-12-15 18:40:12,319 [WARNING] FloodWait 32s
+2025-12-15 18:40:44,626 [INFO] Message 12252 processed and saved. Sent id: 335
+2025-12-15 18:40:45,078 [INFO] Processing message 12253 from chat -1001291236326
+2025-12-15 18:40:45,379 [INFO] Message 12253 processed and saved. Sent id: 336
+2025-12-15 18:40:45,830 [INFO] Processing message 12254 from chat -1001291236326
+2025-12-15 18:40:46,279 [INFO] Message 12254 processed and saved. Sent id: 337
+2025-12-15 18:40:46,730 [INFO] Processing message 12255 from chat -1001291236326
+2025-12-15 18:40:47,079 [INFO] Message 12255 processed and saved. Sent id: 338
+2025-12-15 18:40:47,531 [INFO] Processing message 12266 from chat -1001291236326
+2025-12-15 18:40:47,844 [INFO] Message 12266 processed and saved. Sent id: 339
+2025-12-15 18:40:48,296 [INFO] Processing message 12304 from chat -1001291236326
+2025-12-15 18:40:51,835 [INFO] Message 12304 processed and saved. Sent id: 340
+2025-12-15 18:40:52,287 [INFO] Processing message 12328 from chat -1001291236326
+2025-12-15 18:40:52,652 [INFO] Message 12328 processed and saved. Sent id: 341
+2025-12-15 18:40:53,102 [INFO] Processing message 12455 from chat -1001291236326
+2025-12-15 18:40:53,449 [INFO] Message 12455 processed and saved. Sent id: 342
+2025-12-15 18:40:53,899 [INFO] Processing message 12456 from chat -1001291236326
+2025-12-15 18:40:54,177 [INFO] Message 12456 processed and saved. Sent id: 343
+2025-12-15 18:40:54,628 [INFO] Processing message 12457 from chat -1001291236326
+2025-12-15 18:40:55,126 [INFO] Message 12457 processed and saved. Sent id: 344
+2025-12-15 18:40:55,577 [INFO] Processing message 12458 from chat -1001291236326
+2025-12-15 18:40:59,138 [INFO] Message 12458 processed and saved. Sent id: 345
+2025-12-15 18:40:59,590 [INFO] Processing message 12459 from chat -1001291236326
+2025-12-15 18:40:59,878 [INFO] Message 12459 processed and saved. Sent id: 346
+2025-12-15 18:41:00,330 [INFO] Processing message 12460 from chat -1001291236326
+2025-12-15 18:41:00,608 [INFO] Message 12460 processed and saved. Sent id: 347
+2025-12-15 18:41:01,059 [INFO] Processing message 12461 from chat -1001291236326
+2025-12-15 18:41:01,333 [INFO] Message 12461 processed and saved. Sent id: 348
+2025-12-15 18:41:01,784 [INFO] Processing message 12462 from chat -1001291236326
+2025-12-15 18:41:02,055 [INFO] Message 12462 processed and saved. Sent id: 349
+2025-12-15 18:41:02,506 [INFO] Processing message 12463 from chat -1001291236326
+2025-12-15 18:41:06,040 [INFO] Message 12463 processed and saved. Sent id: 350
+2025-12-15 18:41:06,492 [INFO] Processing message 12464 from chat -1001291236326
+2025-12-15 18:41:06,900 [INFO] Message 12464 processed and saved. Sent id: 351
+2025-12-15 18:41:07,351 [INFO] Processing message 12465 from chat -1001291236326
+2025-12-15 18:41:07,659 [INFO] Message 12465 processed and saved. Sent id: 352
+2025-12-15 18:41:08,110 [INFO] Processing message 12466 from chat -1001291236326
+2025-12-15 18:41:08,437 [INFO] Message 12466 processed and saved. Sent id: 353
+2025-12-15 18:41:08,888 [INFO] Processing message 12467 from chat -1001291236326
+2025-12-15 18:41:08,889 [INFO] Message 12467 skipped: does not start with date
+2025-12-15 18:41:08,889 [INFO] Message 12467 skipped (not sent)
+2025-12-15 18:41:09,339 [INFO] Processing message 12468 from chat -1001291236326
+2025-12-15 18:41:09,340 [INFO] Message 12468 skipped: does not start with date
+2025-12-15 18:41:09,340 [INFO] Message 12468 skipped (not sent)
+2025-12-15 18:41:09,791 [INFO] Processing message 12469 from chat -1001291236326
+2025-12-15 18:41:10,105 [INFO] Message 12469 processed and saved. Sent id: 354
+2025-12-15 18:41:10,556 [INFO] Processing message 12470 from chat -1001291236326
+2025-12-15 18:41:10,763 [WARNING] FloodWait 34s
+2025-12-15 18:41:45,201 [INFO] Message 12470 processed and saved. Sent id: 355
+2025-12-15 18:41:45,652 [INFO] Processing message 12471 from chat -1001291236326
+2025-12-15 18:41:46,035 [INFO] Message 12471 processed and saved. Sent id: 356
+2025-12-15 18:41:46,486 [INFO] Processing message 12472 from chat -1001291236326
+2025-12-15 18:41:46,818 [INFO] Message 12472 processed and saved. Sent id: 357
+2025-12-15 18:41:47,269 [INFO] Processing message 12473 from chat -1001291236326
+2025-12-15 18:41:47,269 [INFO] Message 12473 skipped: does not start with date
+2025-12-15 18:41:47,270 [INFO] Message 12473 skipped (not sent)
+2025-12-15 18:41:47,721 [INFO] Processing message 12579 from chat -1001291236326
+2025-12-15 18:41:47,721 [INFO] Message 12579 skipped: does not start with date
+2025-12-15 18:41:47,721 [INFO] Message 12579 skipped (not sent)
+2025-12-15 18:41:48,172 [INFO] Processing message 12730 from chat -1001291236326
+2025-12-15 18:41:48,172 [INFO] Message 12730 skipped: does not start with date
+2025-12-15 18:41:48,172 [INFO] Message 12730 skipped (not sent)
+2025-12-15 18:41:48,623 [INFO] Processing message 12794 from chat -1001291236326
+2025-12-15 18:41:48,624 [INFO] Message 12794 skipped: does not start with date
+2025-12-15 18:41:48,624 [INFO] Message 12794 skipped (not sent)
+2025-12-15 18:41:49,074 [INFO] Processing message 12795 from chat -1001291236326
+2025-12-15 18:41:49,074 [INFO] Message 12795 skipped: does not start with date
+2025-12-15 18:41:49,075 [INFO] Message 12795 skipped (not sent)
+2025-12-15 18:41:49,525 [INFO] Processing message 12797 from chat -1001291236326
+2025-12-15 18:41:49,526 [INFO] Message 12797 skipped: does not start with date
+2025-12-15 18:41:49,526 [INFO] Message 12797 skipped (not sent)
+2025-12-15 18:41:49,978 [INFO] RUNNING
+2025-12-15 19:04:20,002 [INFO] Backfill @BigSaleApple
+2025-12-15 19:04:21,837 [INFO] PROCESS 1
+2025-12-15 19:04:21,837 [INFO] Found media links: []
+2025-12-15 19:10:36,838 [INFO] Backfill @BigSaleApple
+2025-12-15 19:10:38,607 [INFO] PROCESS 1
+2025-12-15 19:10:38,607 [INFO] SKIP 1: no date
+2025-12-15 19:10:39,058 [INFO] PROCESS 5621
+2025-12-15 19:10:39,059 [INFO] SKIP 5621: no date
+2025-12-15 19:10:39,510 [INFO] PROCESS 5622
+2025-12-15 19:10:39,510 [INFO] SKIP 5622: no date
+2025-12-15 19:10:39,961 [INFO] PROCESS 10962
+2025-12-15 19:10:39,961 [INFO] SKIP 10962: no date
+2025-12-15 19:10:40,412 [INFO] PROCESS 10963
+2025-12-15 19:10:40,412 [INFO] SKIP 10963: no date
+2025-12-15 19:10:40,863 [INFO] PROCESS 10982
+2025-12-15 19:15:43,861 [INFO] Backfill @BigSaleApple
+2025-12-15 19:15:45,585 [INFO] PROCESS 1
+2025-12-15 19:15:45,585 [INFO] SKIP 1: no date
+2025-12-15 19:15:46,035 [INFO] PROCESS 5621
+2025-12-15 19:15:46,036 [INFO] SKIP 5621: no date
+2025-12-15 19:15:46,486 [INFO] PROCESS 5622
+2025-12-15 19:15:46,487 [INFO] SKIP 5622: no date
+2025-12-15 19:15:46,937 [INFO] PROCESS 10962
+2025-12-15 19:15:46,937 [INFO] SKIP 10962: no date
+2025-12-15 19:15:47,388 [INFO] PROCESS 10963
+2025-12-15 19:15:47,388 [INFO] SKIP 10963: no date
+2025-12-15 19:15:47,839 [INFO] PROCESS 10982
+2025-12-15 19:15:48,341 [INFO] SENT 10982 → 358
+2025-12-15 19:15:48,792 [INFO] PROCESS 10983
+2025-12-15 19:15:48,792 [INFO] SKIP 10983: no date
+2025-12-15 19:15:49,243 [INFO] PROCESS 10991
+2025-12-15 19:15:49,539 [INFO] SENT 10991 → 359
+2025-12-15 19:15:49,990 [INFO] PROCESS 11186
+2025-12-15 19:15:49,990 [INFO] SKIP 11186: no date
+2025-12-15 19:15:50,441 [INFO] PROCESS 11187
+2025-12-15 19:15:50,747 [INFO] SENT 11187 → 360
+2025-12-15 19:15:51,198 [INFO] PROCESS 11192
+2025-12-15 19:15:51,198 [INFO] SKIP 11192: no date
+2025-12-15 19:15:51,649 [INFO] PROCESS 11193
+2025-12-15 19:15:52,080 [INFO] SENT 11193 → 361
+2025-12-15 19:15:52,531 [INFO] PROCESS 11194
+2025-12-15 19:15:52,532 [INFO] SKIP 11194: no date
+2025-12-15 19:15:52,983 [INFO] PROCESS 11196
+2025-12-15 19:15:53,296 [INFO] SENT 11196 → 362
+2025-12-15 19:15:53,748 [INFO] PROCESS 11197
+2025-12-15 19:15:53,748 [INFO] SKIP 11197: no date
+2025-12-15 19:15:54,199 [INFO] PROCESS 11198
+2025-12-15 19:15:54,551 [INFO] SENT 11198 → 363
+2025-12-15 19:15:55,001 [INFO] PROCESS 11199
+2025-12-15 19:15:55,312 [INFO] SENT 11199 → 364
+2025-12-15 19:15:55,765 [INFO] PROCESS 11200
+2025-12-15 19:15:56,109 [INFO] SENT 11200 → 365
+2025-12-15 19:15:56,561 [INFO] PROCESS 11384
+2025-12-15 19:15:56,889 [INFO] SENT 11384 → 366
+2025-12-15 19:15:57,341 [INFO] PROCESS 11510
+2025-12-15 19:15:57,668 [INFO] SENT 11510 → 367
+2025-12-15 19:15:58,120 [INFO] PROCESS 12064
+2025-12-15 19:16:01,668 [INFO] SENT 12064 → 368
+2025-12-15 19:16:02,120 [INFO] PROCESS 12116
+2025-12-15 19:16:02,541 [INFO] SENT 12116 → 369
+2025-12-15 19:16:02,992 [INFO] PROCESS 12117
+2025-12-15 19:16:03,327 [INFO] SENT 12117 → 370
+2025-12-15 19:16:03,778 [INFO] PROCESS 12118
+2025-12-15 19:16:04,051 [INFO] SENT 12118 → 371
+2025-12-15 19:16:04,502 [INFO] PROCESS 12119
+2025-12-15 19:16:04,788 [INFO] SENT 12119 → 372
+2025-12-15 19:16:05,240 [INFO] PROCESS 12149
+2025-12-15 19:16:08,741 [INFO] SENT 12149 → 373
+2025-12-15 19:16:09,192 [INFO] PROCESS 12150
+2025-12-15 19:16:09,500 [INFO] SENT 12150 → 374
+2025-12-15 19:16:09,951 [INFO] PROCESS 12207
+2025-12-15 19:16:10,242 [INFO] SENT 12207 → 375
+2025-12-15 19:16:10,693 [INFO] PROCESS 12231
+2025-12-15 19:16:11,001 [INFO] SENT 12231 → 376
+2025-12-15 19:16:11,454 [INFO] PROCESS 12251
+2025-12-15 19:16:11,796 [INFO] SENT 12251 → 377
+2025-12-15 19:16:12,247 [INFO] PROCESS 12252
+2025-12-15 19:16:12,512 [WARNING] FloodWait 36s
+2025-12-15 19:16:48,981 [INFO] SENT 12252 → 378
+2025-12-15 19:16:49,432 [INFO] PROCESS 12253
+2025-12-15 19:16:49,723 [INFO] SENT 12253 → 379
+2025-12-15 19:16:50,174 [INFO] PROCESS 12254
+2025-12-15 19:16:50,461 [INFO] SENT 12254 → 380
+2025-12-15 19:16:50,912 [INFO] PROCESS 12255
+2025-12-15 19:16:51,208 [INFO] SENT 12255 → 381
+2025-12-15 19:16:51,659 [INFO] PROCESS 12266
+2025-12-15 19:16:51,938 [INFO] SENT 12266 → 382
+2025-12-15 19:16:52,390 [INFO] PROCESS 12304
+2025-12-15 19:16:55,994 [INFO] SENT 12304 → 383
+2025-12-15 19:16:56,445 [INFO] PROCESS 12328
+2025-12-15 19:16:56,724 [INFO] SENT 12328 → 384
+2025-12-15 19:16:57,176 [INFO] PROCESS 12455
+2025-12-15 19:16:57,473 [INFO] SENT 12455 → 385
+2025-12-15 19:16:57,924 [INFO] PROCESS 12456
+2025-12-15 19:16:58,209 [INFO] SENT 12456 → 386
+2025-12-15 19:16:58,661 [INFO] PROCESS 12457
+2025-12-15 19:16:58,959 [INFO] SENT 12457 → 387
+2025-12-15 19:16:59,410 [INFO] PROCESS 12458
+2025-12-15 19:17:02,930 [INFO] SENT 12458 → 388
+2025-12-15 19:17:03,381 [INFO] PROCESS 12459
+2025-12-15 19:17:03,674 [INFO] SENT 12459 → 389
+2025-12-15 19:17:04,126 [INFO] PROCESS 12460
+2025-12-15 19:17:04,404 [INFO] SENT 12460 → 390
+2025-12-15 19:17:04,857 [INFO] PROCESS 12461
+2025-12-15 19:17:05,129 [INFO] SENT 12461 → 391
+2025-12-15 19:17:05,580 [INFO] PROCESS 12462
+2025-12-15 19:17:05,853 [INFO] SENT 12462 → 392
+2025-12-15 19:17:06,304 [INFO] PROCESS 12463
+2025-12-15 19:17:09,867 [INFO] SENT 12463 → 393
+2025-12-15 19:17:10,319 [INFO] PROCESS 12464
+2025-12-15 19:17:10,632 [INFO] SENT 12464 → 394
+2025-12-15 19:17:11,083 [INFO] PROCESS 12465
+2025-12-15 19:17:11,400 [INFO] SENT 12465 → 395
+2025-12-15 19:17:11,851 [INFO] PROCESS 12466
+2025-12-15 19:17:12,209 [INFO] SENT 12466 → 396
+2025-12-15 19:17:12,660 [INFO] PROCESS 12467
+2025-12-15 19:17:12,660 [INFO] SKIP 12467: no date
+2025-12-15 19:17:13,111 [INFO] PROCESS 12468
+2025-12-15 19:17:13,112 [INFO] SKIP 12468: no date
+2025-12-15 19:17:13,565 [INFO] PROCESS 12469
+2025-12-15 19:17:14,019 [INFO] SENT 12469 → 397
+2025-12-15 19:17:14,470 [INFO] PROCESS 12470
+2025-12-15 19:17:14,741 [WARNING] FloodWait 34s
+2025-12-15 19:17:49,038 [INFO] SENT 12470 → 398
+2025-12-15 19:17:49,490 [INFO] PROCESS 12471
+2025-12-15 19:17:49,809 [INFO] SENT 12471 → 399
+2025-12-15 19:17:50,260 [INFO] PROCESS 12472
+2025-12-15 19:17:50,542 [INFO] SENT 12472 → 400
+2025-12-15 19:17:50,993 [INFO] PROCESS 12473
+2025-12-15 19:17:50,993 [INFO] SKIP 12473: no date
+2025-12-15 19:17:51,444 [INFO] PROCESS 12579
+2025-12-15 19:17:51,444 [INFO] SKIP 12579: no date
+2025-12-15 19:17:51,895 [INFO] PROCESS 12730
+2025-12-15 19:17:51,895 [INFO] SKIP 12730: no date
+2025-12-15 19:17:52,346 [INFO] PROCESS 12794
+2025-12-15 19:17:52,346 [INFO] SKIP 12794: no date
+2025-12-15 19:17:52,797 [INFO] PROCESS 12795
+2025-12-15 19:17:52,797 [INFO] SKIP 12795: no date
+2025-12-15 19:17:53,248 [INFO] PROCESS 12797
+2025-12-15 19:17:53,248 [INFO] SKIP 12797: no date
+2025-12-15 19:17:53,699 [INFO] RUNNING
+2025-12-15 19:29:32,447 [INFO] Backfill @BigSaleApple
+2025-12-15 19:29:34,121 [INFO] PROCESS 1
+2025-12-15 19:29:34,121 [INFO] SKIP 1: no date
+2025-12-15 19:29:34,571 [INFO] PROCESS 5621
+2025-12-15 19:29:34,571 [INFO] SKIP 5621: no date
+2025-12-15 19:29:35,022 [INFO] PROCESS 5622
+2025-12-15 19:29:35,023 [INFO] SKIP 5622: no date
+2025-12-15 19:29:35,475 [INFO] PROCESS 10962
+2025-12-15 19:29:35,475 [INFO] SKIP 10962: no date
+2025-12-15 19:29:35,927 [INFO] PROCESS 10963
+2025-12-15 19:29:35,927 [INFO] SKIP 10963: no date
+2025-12-15 19:29:36,379 [INFO] PROCESS 10982
+2025-12-15 19:33:29,545 [INFO] Backfill @BigSaleApple
+2025-12-15 19:34:45,541 [INFO] Backfill @BigSaleApple
+2025-12-15 19:43:41,524 [INFO] BACKFILL @BigSaleApple
+2025-12-15 19:43:43,182 [INFO] PROCESS 1
+2025-12-15 19:43:43,182 [INFO] SKIP 1 (no date)
+2025-12-15 19:43:43,633 [INFO] PROCESS 5621
+2025-12-15 19:43:43,633 [INFO] SKIP 5621 (no date)
+2025-12-15 19:43:44,084 [INFO] PROCESS 5622
+2025-12-15 19:43:44,084 [INFO] SKIP 5622 (no date)
+2025-12-15 19:43:44,535 [INFO] PROCESS 10962
+2025-12-15 19:43:44,535 [INFO] SKIP 10962 (no date)
+2025-12-15 19:43:44,986 [INFO] PROCESS 10963
+2025-12-15 19:43:44,986 [INFO] SKIP 10963 (no date)
+2025-12-15 19:43:45,437 [INFO] PROCESS 10982
+2025-12-15 19:43:46,013 [INFO] SENT 10982 → 401
+2025-12-15 19:43:46,464 [INFO] PROCESS 10983
+2025-12-15 19:43:46,464 [INFO] SKIP 10983 (no date)
+2025-12-15 19:43:46,915 [INFO] PROCESS 10991
+2025-12-15 19:43:47,292 [INFO] SENT 10991 → 402
+2025-12-15 19:43:47,743 [INFO] PROCESS 11186
+2025-12-15 19:43:47,743 [INFO] SKIP 11186 (no date)
+2025-12-15 19:43:48,194 [INFO] PROCESS 11187
+2025-12-15 19:43:48,527 [INFO] SENT 11187 → 403
+2025-12-15 19:43:48,978 [INFO] PROCESS 11192
+2025-12-15 19:43:48,978 [INFO] SKIP 11192 (no date)
+2025-12-15 19:43:49,430 [INFO] PROCESS 11193
+2025-12-15 19:43:49,718 [INFO] SENT 11193 → 404
+2025-12-15 19:43:50,169 [INFO] PROCESS 11194
+2025-12-15 19:43:50,169 [INFO] SKIP 11194 (no date)
+2025-12-15 19:43:50,620 [INFO] PROCESS 11196
+2025-12-15 19:43:50,914 [INFO] SENT 11196 → 405
+2025-12-15 19:43:51,365 [INFO] PROCESS 11197
+2025-12-15 19:43:51,365 [INFO] SKIP 11197 (no date)
+2025-12-15 19:43:51,817 [INFO] PROCESS 11198
+2025-12-15 19:43:52,126 [INFO] SENT 11198 → 406
+2025-12-15 19:43:52,577 [INFO] PROCESS 11199
+2025-12-15 19:43:52,855 [INFO] SENT 11199 → 407
+2025-12-15 19:43:53,307 [INFO] PROCESS 11200
+2025-12-15 19:43:53,588 [INFO] SENT 11200 → 408
+2025-12-15 19:43:54,039 [INFO] PROCESS 11384
+2025-12-15 19:43:54,338 [INFO] SENT 11384 → 409
+2025-12-15 19:43:54,789 [INFO] PROCESS 11510
+2025-12-15 19:43:55,098 [INFO] SENT 11510 → 410
+2025-12-15 19:43:55,550 [INFO] PROCESS 12064
+2025-12-15 19:43:59,184 [INFO] SENT 12064 → 411
+2025-12-15 19:43:59,636 [INFO] PROCESS 12116
+2025-12-15 19:43:59,907 [INFO] SENT 12116 → 412
+2025-12-15 19:44:00,358 [INFO] PROCESS 12117
+2025-12-15 19:44:00,641 [INFO] SENT 12117 → 413
+2025-12-15 19:44:01,091 [INFO] PROCESS 12118
+2025-12-15 19:44:01,793 [INFO] SENT 12118 → 414
+2025-12-15 19:44:02,244 [INFO] PROCESS 12119
+2025-12-15 19:44:02,575 [INFO] SENT 12119 → 415
+2025-12-15 19:44:03,026 [INFO] PROCESS 12149
+2025-12-15 19:44:06,617 [INFO] SENT 12149 → 416
+2025-12-15 19:44:07,069 [INFO] PROCESS 12150
+2025-12-15 19:44:07,843 [INFO] SENT 12150 → 417
+2025-12-15 19:44:08,294 [INFO] PROCESS 12207
+2025-12-15 19:44:08,603 [INFO] SENT 12207 → 418
+2025-12-15 19:44:09,054 [INFO] PROCESS 12231
+2025-12-15 19:44:09,402 [INFO] SENT 12231 → 419
+2025-12-15 19:44:09,853 [INFO] PROCESS 12251
+2025-12-15 19:44:10,219 [INFO] SENT 12251 → 420
+2025-12-15 19:44:10,671 [INFO] PROCESS 12252
+2025-12-15 19:44:10,882 [WARNING] FloodWait 35s
+2025-12-15 19:44:46,226 [INFO] SENT 12252 → 421
+2025-12-15 19:44:46,678 [INFO] PROCESS 12253
+2025-12-15 19:44:46,978 [INFO] SENT 12253 → 422
+2025-12-15 19:44:47,429 [INFO] PROCESS 12254
+2025-12-15 19:44:47,736 [INFO] SENT 12254 → 423
+2025-12-15 19:44:48,187 [INFO] PROCESS 12255
+2025-12-15 19:44:48,567 [INFO] SENT 12255 → 424
+2025-12-15 19:44:49,018 [INFO] PROCESS 12266
+2025-12-15 19:44:49,368 [INFO] SENT 12266 → 425
+2025-12-15 19:44:49,819 [INFO] PROCESS 12304
+2025-12-15 19:44:53,426 [INFO] SENT 12304 → 426
+2025-12-15 19:44:53,877 [INFO] PROCESS 12328
+2025-12-15 19:44:54,177 [INFO] SENT 12328 → 427
+2025-12-15 19:44:54,628 [INFO] PROCESS 12455
+2025-12-15 19:44:54,925 [INFO] SENT 12455 → 428
+2025-12-15 19:44:55,376 [INFO] PROCESS 12456
+2025-12-15 19:44:55,649 [INFO] SENT 12456 → 429
+2025-12-15 19:44:56,100 [INFO] PROCESS 12457
+2025-12-15 19:44:56,566 [INFO] SENT 12457 → 430
+2025-12-15 19:44:57,017 [INFO] PROCESS 12458
+2025-12-15 19:45:00,522 [INFO] SENT 12458 → 431
+2025-12-15 19:45:00,973 [INFO] PROCESS 12459
+2025-12-15 19:45:01,408 [INFO] SENT 12459 → 432
+2025-12-15 19:45:01,859 [INFO] PROCESS 12460
+2025-12-15 19:45:02,199 [INFO] SENT 12460 → 433
+2025-12-15 19:45:02,650 [INFO] PROCESS 12461
+2025-12-15 19:45:03,017 [INFO] SENT 12461 → 434
+2025-12-15 19:45:03,469 [INFO] PROCESS 12462
+2025-12-15 19:45:03,791 [INFO] SENT 12462 → 435
+2025-12-15 19:45:04,242 [INFO] PROCESS 12463
+2025-12-15 19:45:07,818 [INFO] SENT 12463 → 436
+2025-12-15 19:45:08,269 [INFO] PROCESS 12464
+2025-12-15 19:45:08,567 [INFO] SENT 12464 → 437
+2025-12-15 19:45:09,018 [INFO] PROCESS 12465
+2025-12-15 19:45:09,325 [INFO] SENT 12465 → 438
+2025-12-15 19:45:09,777 [INFO] PROCESS 12466
+2025-12-15 19:45:10,072 [INFO] SENT 12466 → 439
+2025-12-15 19:45:10,523 [INFO] PROCESS 12467
+2025-12-15 19:45:10,523 [INFO] SKIP 12467 (no date)
+2025-12-15 19:45:10,974 [INFO] PROCESS 12468
+2025-12-15 19:45:10,974 [INFO] SKIP 12468 (no date)
+2025-12-15 19:45:11,426 [INFO] PROCESS 12469
+2025-12-15 19:45:11,714 [INFO] SENT 12469 → 440
+2025-12-15 19:45:12,165 [INFO] PROCESS 12470
+2025-12-15 19:45:12,370 [WARNING] FloodWait 34s
+2025-12-15 19:45:46,983 [INFO] SENT 12470 → 441
+2025-12-15 19:45:47,434 [INFO] PROCESS 12471
+2025-12-15 19:45:47,793 [INFO] SENT 12471 → 442
+2025-12-15 19:45:48,244 [INFO] PROCESS 12472
+2025-12-15 19:45:48,634 [INFO] SENT 12472 → 443
+2025-12-15 19:45:49,085 [INFO] PROCESS 12473
+2025-12-15 19:45:49,086 [INFO] SKIP 12473 (no date)
+2025-12-15 19:45:49,537 [INFO] PROCESS 12579
+2025-12-15 19:45:49,537 [INFO] SKIP 12579 (no date)
+2025-12-15 19:45:49,988 [INFO] PROCESS 12730
+2025-12-15 19:45:49,988 [INFO] SKIP 12730 (no date)
+2025-12-15 19:45:50,439 [INFO] PROCESS 12794
+2025-12-15 19:45:50,440 [INFO] SKIP 12794 (no date)
+2025-12-15 19:45:50,890 [INFO] PROCESS 12795
+2025-12-15 19:45:50,891 [INFO] SKIP 12795 (no date)
+2025-12-15 19:45:51,341 [INFO] PROCESS 12797
+2025-12-15 19:45:51,342 [INFO] SKIP 12797 (no date)
+2025-12-15 19:45:51,792 [INFO] RUNNING
+2025-12-15 20:11:35,578 [INFO] BACKFILL @BigSaleApple
+2025-12-15 20:11:37,137 [INFO] PROCESS 1
+2025-12-15 20:11:37,137 [INFO] SKIP 1 (no date)
+2025-12-15 20:11:37,588 [INFO] PROCESS 5621
+2025-12-15 20:11:37,588 [INFO] SKIP 5621 (no date)
+2025-12-15 20:11:38,039 [INFO] PROCESS 5622
+2025-12-15 20:11:38,039 [INFO] SKIP 5622 (no date)
+2025-12-15 20:11:38,490 [INFO] PROCESS 10962
+2025-12-15 20:11:38,490 [INFO] SKIP 10962 (no date)
+2025-12-15 20:11:38,941 [INFO] PROCESS 10963
+2025-12-15 20:11:38,942 [INFO] SKIP 10963 (no date)
+2025-12-15 20:11:39,393 [INFO] PROCESS 10982
+2025-12-15 20:11:39,897 [INFO] SENT 10982 → 444
+2025-12-15 20:11:40,348 [INFO] PROCESS 10983
+2025-12-15 20:11:40,348 [INFO] SKIP 10983 (no date)
+2025-12-15 20:11:40,800 [INFO] PROCESS 10991
+2025-12-15 20:11:41,135 [INFO] SENT 10991 → 445
+2025-12-15 20:11:41,585 [INFO] PROCESS 11186
+2025-12-15 20:11:41,586 [INFO] SKIP 11186 (no date)
+2025-12-15 20:11:42,036 [INFO] PROCESS 11187
+2025-12-15 20:11:42,359 [INFO] SENT 11187 → 446
+2025-12-15 20:11:42,810 [INFO] PROCESS 11192
+2025-12-15 20:11:42,811 [INFO] SKIP 11192 (no date)
+2025-12-15 20:11:43,261 [INFO] PROCESS 11193
+2025-12-15 20:11:43,640 [INFO] SENT 11193 → 447
+2025-12-15 20:11:44,092 [INFO] PROCESS 11194
+2025-12-15 20:11:44,092 [INFO] SKIP 11194 (no date)
+2025-12-15 20:11:44,542 [INFO] PROCESS 11196
+2025-12-15 20:11:44,839 [INFO] SENT 11196 → 448
+2025-12-15 20:11:45,290 [INFO] PROCESS 11197
+2025-12-15 20:11:45,290 [INFO] SKIP 11197 (no date)
+2025-12-15 20:11:45,742 [INFO] PROCESS 11198
+2025-12-15 20:11:46,046 [INFO] SENT 11198 → 449
+2025-12-15 20:11:46,497 [INFO] PROCESS 11199
+2025-12-15 20:11:46,808 [INFO] SENT 11199 → 450
+2025-12-15 20:11:47,259 [INFO] PROCESS 11200
+2025-12-15 20:11:47,578 [INFO] SENT 11200 → 451
+2025-12-15 20:11:48,029 [INFO] PROCESS 11384
+2025-12-15 20:11:48,373 [INFO] SENT 11384 → 452
+2025-12-15 20:11:48,825 [INFO] PROCESS 11510
+2025-12-15 20:11:49,297 [INFO] SENT 11510 → 453
+2025-12-15 20:11:49,748 [INFO] PROCESS 12064
+2025-12-15 20:11:53,246 [INFO] SENT 12064 → 454
+2025-12-15 20:11:53,697 [INFO] PROCESS 12116
+2025-12-15 20:11:54,014 [INFO] SENT 12116 → 455
+2025-12-15 20:11:54,464 [INFO] PROCESS 12117
+2025-12-15 20:11:54,750 [INFO] SENT 12117 → 456
+2025-12-15 20:11:55,201 [INFO] PROCESS 12118
+2025-12-15 20:11:55,632 [INFO] SENT 12118 → 457
+2025-12-15 20:11:56,083 [INFO] PROCESS 12119
+2025-12-15 20:11:56,379 [INFO] SENT 12119 → 458
+2025-12-15 20:11:56,830 [INFO] PROCESS 12149
+2025-12-15 20:12:00,360 [INFO] SENT 12149 → 459
+2025-12-15 20:12:00,811 [INFO] PROCESS 12150
+2025-12-15 20:12:01,168 [INFO] SENT 12150 → 460
+2025-12-15 20:12:01,619 [INFO] PROCESS 12207
+2025-12-15 20:12:01,907 [INFO] SENT 12207 → 461
+2025-12-15 20:12:02,358 [INFO] PROCESS 12231
+2025-12-15 20:12:02,710 [INFO] SENT 12231 → 462
+2025-12-15 20:12:03,161 [INFO] PROCESS 12251
+2025-12-15 20:12:03,467 [INFO] SENT 12251 → 463
+2025-12-15 20:12:03,917 [INFO] PROCESS 12252
+2025-12-15 20:12:04,134 [WARNING] FloodWait 35s
+2025-12-15 20:12:42,663 [INFO] SENT 12252 → 464
+2025-12-15 20:12:43,114 [INFO] PROCESS 12253
+2025-12-15 20:12:43,515 [INFO] SENT 12253 → 465
+2025-12-15 20:12:43,965 [INFO] PROCESS 12254
+2025-12-15 20:12:44,254 [INFO] SENT 12254 → 466
+2025-12-15 20:12:44,705 [INFO] PROCESS 12255
+2025-12-15 20:12:44,993 [INFO] SENT 12255 → 467
+2025-12-15 20:12:45,444 [INFO] PROCESS 12266
+2025-12-15 20:12:45,721 [INFO] SENT 12266 → 468
+2025-12-15 20:12:46,171 [INFO] PROCESS 12304
+2025-12-15 20:12:46,519 [INFO] SENT 12304 → 469
+2025-12-15 20:12:46,970 [INFO] PROCESS 12328
+2025-12-15 20:12:47,269 [INFO] SENT 12328 → 470
+2025-12-15 20:12:47,720 [INFO] PROCESS 12455
+2025-12-15 20:12:48,067 [INFO] SENT 12455 → 471
+2025-12-15 20:12:48,517 [INFO] PROCESS 12456
+2025-12-15 20:12:52,023 [INFO] SENT 12456 → 472
+2025-12-15 20:12:52,473 [INFO] PROCESS 12457
+2025-12-15 20:12:52,774 [INFO] SENT 12457 → 473
+2025-12-15 20:12:53,225 [INFO] PROCESS 12458
+2025-12-15 20:12:53,526 [INFO] SENT 12458 → 474
+2025-12-15 20:12:53,977 [INFO] PROCESS 12459
+2025-12-15 20:12:54,288 [INFO] SENT 12459 → 475
+2025-12-15 20:12:54,739 [INFO] PROCESS 12460
+2025-12-15 20:12:55,019 [INFO] SENT 12460 → 476
+2025-12-15 20:12:55,471 [INFO] PROCESS 12461
+2025-12-15 20:12:59,076 [INFO] SENT 12461 → 477
+2025-12-15 20:12:59,527 [INFO] PROCESS 12462
+2025-12-15 20:12:59,796 [INFO] SENT 12462 → 478
+2025-12-15 20:13:00,247 [INFO] PROCESS 12463
+2025-12-15 20:13:00,697 [INFO] SENT 12463 → 479
+2025-12-15 20:13:01,149 [INFO] PROCESS 12464
+2025-12-15 20:13:01,477 [INFO] SENT 12464 → 480
+2025-12-15 20:13:01,928 [INFO] PROCESS 12465
+2025-12-15 20:13:02,216 [INFO] SENT 12465 → 481
+2025-12-15 20:13:02,667 [INFO] PROCESS 12466
+2025-12-15 20:13:06,225 [INFO] SENT 12466 → 482
+2025-12-15 20:13:06,677 [INFO] PROCESS 12467
+2025-12-15 20:13:06,677 [INFO] SKIP 12467 (no date)
+2025-12-15 20:13:07,128 [INFO] PROCESS 12468
+2025-12-15 20:13:07,128 [INFO] SKIP 12468 (no date)
+2025-12-15 20:13:07,579 [INFO] PROCESS 12469
+2025-12-15 20:13:07,934 [INFO] SENT 12469 → 483
+2025-12-15 20:13:08,385 [INFO] PROCESS 12470
+2025-12-15 20:13:08,596 [WARNING] FloodWait 34s
+2025-12-15 20:13:42,908 [INFO] SENT 12470 → 484
+2025-12-15 20:13:43,359 [INFO] PROCESS 12471
+2025-12-15 20:13:43,669 [INFO] SENT 12471 → 485
+2025-12-15 20:13:44,120 [INFO] PROCESS 12472
+2025-12-15 20:13:44,394 [INFO] SENT 12472 → 486
+2025-12-15 20:13:44,845 [INFO] PROCESS 12473
+2025-12-15 20:13:44,845 [INFO] SKIP 12473 (no date)
+2025-12-15 20:13:45,297 [INFO] PROCESS 12579
+2025-12-15 20:13:45,297 [INFO] SKIP 12579 (no date)
+2025-12-15 20:13:45,747 [INFO] PROCESS 12730
+2025-12-15 20:13:45,748 [INFO] SKIP 12730 (no date)
+2025-12-15 20:13:46,198 [INFO] PROCESS 12794
+2025-12-15 20:13:46,198 [INFO] SKIP 12794 (no date)
+2025-12-15 20:13:46,649 [INFO] PROCESS 12795
+2025-12-15 20:13:46,649 [INFO] SKIP 12795 (no date)
+2025-12-15 20:13:47,100 [INFO] PROCESS 12797
+2025-12-15 20:13:47,100 [INFO] SKIP 12797 (no date)
+2025-12-15 20:13:47,551 [INFO] RUNNING
+2025-12-15 20:15:04,263 [INFO] BACKFILL @BigSaleApple
+2025-12-15 20:15:05,857 [INFO] PROCESS 1
+2025-12-15 20:15:05,857 [INFO] SKIP 1 (no date)
+2025-12-15 20:15:06,308 [INFO] PROCESS 5621
+2025-12-15 20:15:06,308 [INFO] SKIP 5621 (no date)
+2025-12-15 20:15:06,759 [INFO] PROCESS 5622
+2025-12-15 20:15:06,759 [INFO] SKIP 5622 (no date)
+2025-12-15 20:15:07,210 [INFO] PROCESS 10962
+2025-12-15 20:15:07,210 [INFO] SKIP 10962 (no date)
+2025-12-15 20:15:07,662 [INFO] PROCESS 10963
+2025-12-15 20:15:07,662 [INFO] SKIP 10963 (no date)
+2025-12-15 20:15:08,113 [INFO] PROCESS 10982
+2025-12-15 20:15:08,524 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:08,975 [INFO] PROCESS 10983
+2025-12-15 20:15:08,975 [INFO] SKIP 10983 (no date)
+2025-12-15 20:15:09,426 [INFO] PROCESS 10991
+2025-12-15 20:15:09,640 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:10,091 [INFO] PROCESS 11186
+2025-12-15 20:15:10,091 [INFO] SKIP 11186 (no date)
+2025-12-15 20:15:10,542 [INFO] PROCESS 11187
+2025-12-15 20:15:10,755 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:11,206 [INFO] PROCESS 11192
+2025-12-15 20:15:11,206 [INFO] SKIP 11192 (no date)
+2025-12-15 20:15:11,657 [INFO] PROCESS 11193
+2025-12-15 20:15:11,885 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:12,336 [INFO] PROCESS 11194
+2025-12-15 20:15:12,337 [INFO] SKIP 11194 (no date)
+2025-12-15 20:15:12,788 [INFO] PROCESS 11196
+2025-12-15 20:15:13,002 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:13,453 [INFO] PROCESS 11197
+2025-12-15 20:15:13,453 [INFO] SKIP 11197 (no date)
+2025-12-15 20:15:13,904 [INFO] PROCESS 11198
+2025-12-15 20:15:14,281 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:14,732 [INFO] PROCESS 11199
+2025-12-15 20:15:14,939 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:15,390 [INFO] PROCESS 11200
+2025-12-15 20:15:15,601 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:16,052 [INFO] PROCESS 11384
+2025-12-15 20:15:16,260 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:16,820 [INFO] PROCESS 11510
+2025-12-15 20:15:17,025 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:17,477 [INFO] PROCESS 12064
+2025-12-15 20:15:20,881 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:21,331 [INFO] PROCESS 12116
+2025-12-15 20:15:21,545 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:21,997 [INFO] PROCESS 12117
+2025-12-15 20:15:22,202 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:22,654 [INFO] PROCESS 12118
+2025-12-15 20:15:22,880 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:23,330 [INFO] PROCESS 12119
+2025-12-15 20:15:23,547 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:23,998 [INFO] PROCESS 12149
+2025-12-15 20:15:27,445 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:27,895 [INFO] PROCESS 12150
+2025-12-15 20:15:28,107 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:28,558 [INFO] PROCESS 12207
+2025-12-15 20:15:28,773 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:29,224 [INFO] PROCESS 12231
+2025-12-15 20:15:29,430 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:29,881 [INFO] PROCESS 12251
+2025-12-15 20:15:30,096 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:15:30,546 [INFO] PROCESS 12252
+2025-12-15 20:15:30,744 [WARNING] FloodWait 38s
+2025-12-15 20:16:08,956 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:09,407 [INFO] PROCESS 12253
+2025-12-15 20:16:09,625 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:10,076 [INFO] PROCESS 12254
+2025-12-15 20:16:10,283 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:10,735 [INFO] PROCESS 12255
+2025-12-15 20:16:10,947 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:11,398 [INFO] PROCESS 12266
+2025-12-15 20:16:11,607 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:12,058 [INFO] PROCESS 12304
+2025-12-15 20:16:15,512 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:15,963 [INFO] PROCESS 12328
+2025-12-15 20:16:16,189 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:16,640 [INFO] PROCESS 12455
+2025-12-15 20:16:16,862 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:17,313 [INFO] PROCESS 12456
+2025-12-15 20:16:17,517 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:17,967 [INFO] PROCESS 12457
+2025-12-15 20:16:18,194 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:18,645 [INFO] PROCESS 12458
+2025-12-15 20:16:22,055 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:22,507 [INFO] PROCESS 12459
+2025-12-15 20:16:22,718 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:23,169 [INFO] PROCESS 12460
+2025-12-15 20:16:23,410 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:23,861 [INFO] PROCESS 12461
+2025-12-15 20:16:24,077 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:24,528 [INFO] PROCESS 12462
+2025-12-15 20:16:24,763 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:25,214 [INFO] PROCESS 12463
+2025-12-15 20:16:28,779 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:29,230 [INFO] PROCESS 12464
+2025-12-15 20:16:29,441 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:29,892 [INFO] PROCESS 12465
+2025-12-15 20:16:30,101 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:30,552 [INFO] PROCESS 12466
+2025-12-15 20:16:30,769 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:31,220 [INFO] PROCESS 12467
+2025-12-15 20:16:31,221 [INFO] SKIP 12467 (no date)
+2025-12-15 20:16:31,671 [INFO] PROCESS 12468
+2025-12-15 20:16:31,672 [INFO] SKIP 12468 (no date)
+2025-12-15 20:16:32,122 [INFO] PROCESS 12469
+2025-12-15 20:16:32,332 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:16:32,783 [INFO] PROCESS 12470
+2025-12-15 20:16:32,980 [WARNING] FloodWait 36s
+2025-12-15 20:17:09,286 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:17:09,737 [INFO] PROCESS 12471
+2025-12-15 20:17:09,950 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:17:10,401 [INFO] PROCESS 12472
+2025-12-15 20:17:10,607 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:17:11,058 [INFO] PROCESS 12473
+2025-12-15 20:17:11,058 [INFO] SKIP 12473 (no date)
+2025-12-15 20:17:11,509 [INFO] PROCESS 12579
+2025-12-15 20:17:11,510 [INFO] SKIP 12579 (no date)
+2025-12-15 20:17:11,960 [INFO] PROCESS 12730
+2025-12-15 20:17:11,960 [INFO] SKIP 12730 (no date)
+2025-12-15 20:17:12,412 [INFO] PROCESS 12794
+2025-12-15 20:17:12,412 [INFO] SKIP 12794 (no date)
+2025-12-15 20:17:12,863 [INFO] PROCESS 12795
+2025-12-15 20:17:12,863 [INFO] SKIP 12795 (no date)
+2025-12-15 20:17:13,314 [INFO] PROCESS 12797
+2025-12-15 20:17:13,314 [INFO] SKIP 12797 (no date)
+2025-12-15 20:17:13,765 [INFO] RUNNING
+2025-12-15 20:25:57,367 [INFO] BACKFILL @BigSaleApple
+2025-12-15 20:25:59,076 [INFO] PROCESS 1
+2025-12-15 20:25:59,076 [INFO] SKIP 1 (no date)
+2025-12-15 20:25:59,527 [INFO] PROCESS 5621
+2025-12-15 20:25:59,527 [INFO] SKIP 5621 (no date)
+2025-12-15 20:25:59,978 [INFO] PROCESS 5622
+2025-12-15 20:25:59,978 [INFO] SKIP 5622 (no date)
+2025-12-15 20:26:00,428 [INFO] PROCESS 10962
+2025-12-15 20:26:00,429 [INFO] SKIP 10962 (no date)
+2025-12-15 20:26:00,880 [INFO] PROCESS 10963
+2025-12-15 20:26:00,880 [INFO] SKIP 10963 (no date)
+2025-12-15 20:26:01,331 [INFO] PROCESS 10982
+2025-12-15 20:26:01,755 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:02,206 [INFO] PROCESS 10983
+2025-12-15 20:26:02,207 [INFO] SKIP 10983 (no date)
+2025-12-15 20:26:02,658 [INFO] PROCESS 10991
+2025-12-15 20:26:02,905 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:03,356 [INFO] PROCESS 11186
+2025-12-15 20:26:03,356 [INFO] SKIP 11186 (no date)
+2025-12-15 20:26:03,807 [INFO] PROCESS 11187
+2025-12-15 20:26:04,026 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:04,477 [INFO] PROCESS 11192
+2025-12-15 20:26:04,478 [INFO] SKIP 11192 (no date)
+2025-12-15 20:26:04,929 [INFO] PROCESS 11193
+2025-12-15 20:26:05,147 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:05,598 [INFO] PROCESS 11194
+2025-12-15 20:26:05,598 [INFO] SKIP 11194 (no date)
+2025-12-15 20:26:06,049 [INFO] PROCESS 11196
+2025-12-15 20:26:06,263 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:06,714 [INFO] PROCESS 11197
+2025-12-15 20:26:06,714 [INFO] SKIP 11197 (no date)
+2025-12-15 20:26:07,165 [INFO] PROCESS 11198
+2025-12-15 20:26:07,424 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:07,875 [INFO] PROCESS 11199
+2025-12-15 20:26:08,092 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:08,542 [INFO] PROCESS 11200
+2025-12-15 20:26:08,759 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:09,211 [INFO] PROCESS 11384
+2025-12-15 20:26:09,431 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:09,881 [INFO] PROCESS 11510
+2025-12-15 20:26:10,102 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:10,552 [INFO] PROCESS 12064
+2025-12-15 20:26:13,995 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:14,445 [INFO] PROCESS 12116
+2025-12-15 20:26:14,655 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:15,105 [INFO] PROCESS 12117
+2025-12-15 20:26:15,317 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:15,769 [INFO] PROCESS 12118
+2025-12-15 20:26:15,980 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:16,431 [INFO] PROCESS 12119
+2025-12-15 20:26:16,648 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:17,099 [INFO] PROCESS 12149
+2025-12-15 20:26:20,564 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:21,015 [INFO] PROCESS 12150
+2025-12-15 20:26:21,242 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:21,693 [INFO] PROCESS 12207
+2025-12-15 20:26:21,922 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:22,372 [INFO] PROCESS 12231
+2025-12-15 20:26:22,605 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:23,056 [INFO] PROCESS 12251
+2025-12-15 20:26:23,273 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-15 20:26:23,724 [INFO] PROCESS 12252
+2025-12-15 20:26:23,929 [WARNING] FloodWait 38s
+2025-12-15 20:33:50,973 [INFO] BACKFILL @BigSaleApple
+2025-12-15 20:33:52,522 [INFO] PROCESS 1
+2025-12-15 20:33:52,522 [INFO] SKIP 1 (no date)
+2025-12-15 20:33:52,973 [INFO] PROCESS 5621
+2025-12-15 20:33:52,973 [INFO] SKIP 5621 (no date)
+2025-12-15 20:33:53,424 [INFO] PROCESS 5622
+2025-12-15 20:33:53,424 [INFO] SKIP 5622 (no date)
+2025-12-15 20:33:53,874 [INFO] PROCESS 10962
+2025-12-15 20:33:53,875 [INFO] SKIP 10962 (no date)
+2025-12-15 20:33:54,325 [INFO] PROCESS 10963
+2025-12-15 20:33:54,325 [INFO] SKIP 10963 (no date)
+2025-12-15 20:33:54,776 [INFO] PROCESS 10982
+2025-12-15 20:36:06,715 [INFO] BACKFILL @BigSaleApple
+2025-12-15 20:36:08,280 [INFO] PROCESS 1
+2025-12-15 20:36:08,280 [INFO] SKIP 1 (no date)
+2025-12-15 20:36:08,731 [INFO] PROCESS 5621
+2025-12-15 20:36:08,731 [INFO] SKIP 5621 (no date)
+2025-12-15 20:36:09,182 [INFO] PROCESS 5622
+2025-12-15 20:36:09,182 [INFO] SKIP 5622 (no date)
+2025-12-15 20:36:09,633 [INFO] PROCESS 10962
+2025-12-15 20:36:09,633 [INFO] SKIP 10962 (no date)
+2025-12-15 20:36:10,084 [INFO] PROCESS 10963
+2025-12-15 20:36:10,084 [INFO] SKIP 10963 (no date)
+2025-12-15 20:36:10,535 [INFO] PROCESS 10982
+2025-12-15 20:36:11,005 [INFO] SENT 10982 → 444
+2025-12-15 20:36:11,457 [INFO] PROCESS 10983
+2025-12-15 20:36:11,457 [INFO] SKIP 10983 (no date)
+2025-12-15 20:36:11,908 [INFO] PROCESS 10991
+2025-12-15 20:36:12,295 [INFO] SENT 10991 → 445
+2025-12-15 20:36:12,748 [INFO] PROCESS 11186
+2025-12-15 20:36:12,748 [INFO] SKIP 11186 (no date)
+2025-12-15 20:36:13,199 [INFO] PROCESS 11187
+2025-12-15 20:36:13,541 [INFO] SENT 11187 → 446
+2025-12-15 20:36:13,991 [INFO] PROCESS 11192
+2025-12-15 20:36:13,991 [INFO] SKIP 11192 (no date)
+2025-12-15 20:36:14,442 [INFO] PROCESS 11193
+2025-12-15 20:36:14,710 [INFO] SENT 11193 → 447
+2025-12-15 20:36:15,161 [INFO] PROCESS 11194
+2025-12-15 20:36:15,161 [INFO] SKIP 11194 (no date)
+2025-12-15 20:36:15,612 [INFO] PROCESS 11196
+2025-12-15 20:36:15,896 [INFO] SENT 11196 → 448
+2025-12-15 20:36:16,348 [INFO] PROCESS 11197
+2025-12-15 20:36:16,774 [INFO] SENT 11197 → 487
+2025-12-15 20:36:17,225 [INFO] PROCESS 11198
+2025-12-15 20:36:17,486 [INFO] SENT 11198 → 449
+2025-12-15 20:36:17,937 [INFO] PROCESS 11199
+2025-12-15 20:36:18,256 [INFO] SENT 11199 → 450
+2025-12-15 20:36:18,707 [INFO] PROCESS 11200
+2025-12-15 20:36:18,967 [INFO] SENT 11200 → 451
+2025-12-15 20:36:19,418 [INFO] PROCESS 11384
+2025-12-15 20:36:19,756 [INFO] SENT 11384 → 452
+2025-12-15 20:36:20,207 [INFO] PROCESS 11510
+2025-12-15 20:36:23,677 [INFO] SENT 11510 → 453
+2025-12-15 20:36:24,127 [INFO] PROCESS 12064
+2025-12-15 20:36:24,435 [INFO] SENT 12064 → 454
+2025-12-15 20:36:24,886 [INFO] PROCESS 12116
+2025-12-15 20:36:25,144 [INFO] SENT 12116 → 455
+2025-12-15 20:36:25,596 [INFO] PROCESS 12117
+2025-12-15 20:36:25,840 [INFO] SENT 12117 → 456
+2025-12-15 20:36:26,290 [INFO] PROCESS 12118
+2025-12-15 20:36:26,755 [INFO] SENT 12118 → 457
+2025-12-15 20:36:27,205 [INFO] PROCESS 12119
+2025-12-15 20:36:30,649 [INFO] SENT 12119 → 458
+2025-12-15 20:36:31,099 [INFO] PROCESS 12149
+2025-12-15 20:36:31,374 [INFO] SENT 12149 → 459
+2025-12-15 20:36:31,825 [INFO] PROCESS 12150
+2025-12-15 20:36:32,082 [INFO] SENT 12150 → 460
+2025-12-15 20:36:32,533 [INFO] PROCESS 12207
+2025-12-15 20:36:32,782 [INFO] SENT 12207 → 461
+2025-12-15 20:36:33,233 [INFO] PROCESS 12231
+2025-12-15 20:36:33,607 [INFO] SENT 12231 → 462
+2025-12-15 20:36:34,058 [INFO] PROCESS 12251
+2025-12-15 20:36:34,283 [WARNING] FloodWait 36s
+2025-12-15 20:37:13,759 [INFO] SENT 12251 → 463
+2025-12-15 20:37:14,210 [INFO] PROCESS 12252
+2025-12-15 20:37:14,460 [INFO] SENT 12252 → 464
+2025-12-15 20:37:14,912 [INFO] PROCESS 12253
+2025-12-15 20:37:15,159 [INFO] SENT 12253 → 465
+2025-12-15 20:37:15,609 [INFO] PROCESS 12254
+2025-12-15 20:37:15,846 [INFO] SENT 12254 → 466
+2025-12-15 20:37:16,297 [INFO] PROCESS 12255
+2025-12-15 20:37:16,759 [INFO] SENT 12255 → 467
+2025-12-15 20:37:17,210 [INFO] PROCESS 12266
+2025-12-15 20:37:17,444 [INFO] SENT 12266 → 468
+2025-12-15 20:37:17,895 [INFO] PROCESS 12304
+2025-12-15 20:37:18,140 [INFO] SENT 12304 → 469
+2025-12-15 20:37:18,591 [INFO] PROCESS 12328
+2025-12-15 20:37:18,842 [INFO] SENT 12328 → 470
+2025-12-15 20:37:19,293 [INFO] PROCESS 12455
+2025-12-15 20:37:22,738 [INFO] SENT 12455 → 471
+2025-12-15 20:37:23,188 [INFO] PROCESS 12456
+2025-12-15 20:37:23,464 [INFO] SENT 12456 → 472
+2025-12-15 20:37:23,915 [INFO] PROCESS 12457
+2025-12-15 20:37:24,189 [INFO] SENT 12457 → 473
+2025-12-15 20:37:24,640 [INFO] PROCESS 12458
+2025-12-15 20:37:25,004 [INFO] SENT 12458 → 474
+2025-12-15 20:37:25,454 [INFO] PROCESS 12459
+2025-12-15 20:37:25,706 [INFO] SENT 12459 → 475
+2025-12-15 20:37:26,157 [INFO] PROCESS 12460
+2025-12-15 20:37:29,682 [INFO] SENT 12460 → 476
+2025-12-15 20:37:30,133 [INFO] PROCESS 12461
+2025-12-15 20:37:30,408 [INFO] SENT 12461 → 477
+2025-12-15 20:37:30,858 [INFO] PROCESS 12462
+2025-12-15 20:37:31,136 [INFO] SENT 12462 → 478
+2025-12-15 20:37:31,588 [INFO] PROCESS 12463
+2025-12-15 20:37:31,836 [INFO] SENT 12463 → 479
+2025-12-15 20:37:32,286 [INFO] PROCESS 12464
+2025-12-15 20:37:32,526 [INFO] SENT 12464 → 480
+2025-12-15 20:37:32,977 [INFO] PROCESS 12465
+2025-12-15 20:37:36,426 [INFO] SENT 12465 → 481
+2025-12-15 20:37:36,876 [INFO] PROCESS 12466
+2025-12-15 20:37:37,129 [INFO] SENT 12466 → 482
+2025-12-15 20:37:37,580 [INFO] PROCESS 12467
+2025-12-15 20:37:37,580 [INFO] SKIP 12467 (no date)
+2025-12-15 20:37:38,031 [INFO] PROCESS 12468
+2025-12-15 20:37:38,031 [INFO] SKIP 12468 (no date)
+2025-12-15 20:37:38,482 [INFO] PROCESS 12469
+2025-12-15 20:37:38,685 [WARNING] FloodWait 35s
+2025-12-15 20:38:13,950 [INFO] SENT 12469 → 483
+2025-12-15 20:38:14,401 [INFO] PROCESS 12470
+2025-12-15 20:38:14,638 [INFO] SENT 12470 → 484
+2025-12-15 20:38:15,089 [INFO] PROCESS 12471
+2025-12-15 20:38:15,362 [INFO] SENT 12471 → 485
+2025-12-15 20:38:15,813 [INFO] PROCESS 12472
+2025-12-15 20:38:15,814 [INFO] SKIP 12472 (prices unchanged)
+2025-12-15 20:38:16,267 [INFO] PROCESS 12473
+2025-12-15 20:38:16,268 [INFO] SKIP 12473 (no date)
+2025-12-15 20:38:16,718 [INFO] PROCESS 12579
+2025-12-15 20:38:16,719 [INFO] SKIP 12579 (no date)
+2025-12-15 20:38:17,169 [INFO] PROCESS 12730
+2025-12-15 20:38:17,170 [INFO] SKIP 12730 (no date)
+2025-12-15 20:38:17,620 [INFO] PROCESS 12794
+2025-12-15 20:38:17,621 [INFO] SKIP 12794 (no date)
+2025-12-15 20:38:18,071 [INFO] PROCESS 12795
+2025-12-15 20:38:18,072 [INFO] SKIP 12795 (no date)
+2025-12-15 20:38:18,522 [INFO] PROCESS 12797
+2025-12-15 20:38:18,522 [INFO] SKIP 12797 (no date)
+2025-12-15 20:38:18,973 [INFO] RUNNING
+2025-12-15 20:41:11,595 [INFO] BACKFILL @BigSaleApple
+2025-12-15 20:41:13,209 [INFO] PROCESS 1
+2025-12-15 20:41:13,209 [INFO] SKIP 1 (no date)
+2025-12-15 20:41:13,660 [INFO] PROCESS 5621
+2025-12-15 20:41:13,660 [INFO] SKIP 5621 (no date)
+2025-12-15 20:41:14,111 [INFO] PROCESS 5622
+2025-12-15 20:41:14,111 [INFO] SKIP 5622 (no date)
+2025-12-15 20:41:14,561 [INFO] PROCESS 10962
+2025-12-15 20:41:14,561 [INFO] SKIP 10962 (no date)
+2025-12-15 20:41:15,012 [INFO] PROCESS 10963
+2025-12-15 20:41:15,012 [INFO] SKIP 10963 (no date)
+2025-12-15 20:41:15,463 [INFO] PROCESS 10982
+2025-12-15 20:41:15,984 [INFO] SENT 10982 → 488
+2025-12-15 20:41:16,435 [INFO] PROCESS 10983
+2025-12-15 20:41:16,436 [INFO] SKIP 10983 (no date)
+2025-12-15 20:41:16,886 [INFO] PROCESS 10991
+2025-12-15 20:41:17,252 [INFO] SENT 10991 → 489
+2025-12-15 20:41:17,703 [INFO] PROCESS 11186
+2025-12-15 20:41:17,704 [INFO] SKIP 11186 (no date)
+2025-12-15 20:41:18,155 [INFO] PROCESS 11187
+2025-12-15 20:41:18,496 [INFO] SENT 11187 → 490
+2025-12-15 20:41:18,947 [INFO] PROCESS 11192
+2025-12-15 20:41:18,947 [INFO] SKIP 11192 (no date)
+2025-12-15 20:41:19,397 [INFO] PROCESS 11193
+2025-12-15 20:41:19,691 [INFO] SENT 11193 → 491
+2025-12-15 20:41:20,142 [INFO] PROCESS 11194
+2025-12-15 20:41:20,142 [INFO] SKIP 11194 (no date)
+2025-12-15 20:41:20,593 [INFO] PROCESS 11196
+2025-12-15 20:41:20,887 [INFO] SENT 11196 → 492
+2025-12-15 20:41:21,340 [INFO] PROCESS 11197
+2025-12-15 20:41:21,612 [INFO] SENT 11197 → 493
+2025-12-15 20:41:22,063 [INFO] PROCESS 11198
+2025-12-15 20:41:22,356 [INFO] SENT 11198 → 494
+2025-12-15 20:41:22,807 [INFO] PROCESS 11199
+2025-12-15 20:41:23,094 [INFO] SENT 11199 → 495
+2025-12-15 20:41:23,544 [INFO] PROCESS 11200
+2025-12-15 20:41:23,833 [INFO] SENT 11200 → 496
+2025-12-15 20:41:24,284 [INFO] PROCESS 11384
+2025-12-15 20:41:24,601 [INFO] SENT 11384 → 497
+2025-12-15 20:41:25,053 [INFO] PROCESS 11510
+2025-12-15 20:41:28,559 [INFO] SENT 11510 → 498
+2025-12-15 20:41:29,010 [INFO] PROCESS 12064
+2025-12-15 20:41:29,285 [INFO] SENT 12064 → 499
+2025-12-15 20:41:29,735 [INFO] PROCESS 12116
+2025-12-15 20:41:30,010 [INFO] SENT 12116 → 500
+2025-12-15 20:41:30,460 [INFO] PROCESS 12117
+2025-12-15 20:41:30,747 [INFO] SENT 12117 → 501
+2025-12-15 20:41:31,198 [INFO] PROCESS 12118
+2025-12-15 20:41:31,625 [INFO] SENT 12118 → 502
+2025-12-15 20:41:32,076 [INFO] PROCESS 12119
+2025-12-15 20:41:35,617 [INFO] SENT 12119 → 503
+2025-12-15 20:41:36,068 [INFO] PROCESS 12149
+2025-12-15 20:41:36,426 [INFO] SENT 12149 → 504
+2025-12-15 20:41:36,878 [INFO] PROCESS 12150
+2025-12-15 20:41:37,174 [INFO] SENT 12150 → 505
+2025-12-15 20:41:37,625 [INFO] PROCESS 12207
+2025-12-15 20:41:37,909 [INFO] SENT 12207 → 506
+2025-12-15 20:41:38,360 [INFO] PROCESS 12231
+2025-12-15 20:41:38,684 [INFO] SENT 12231 → 507
+2025-12-15 20:41:39,135 [INFO] PROCESS 12251
+2025-12-15 20:41:39,400 [WARNING] FloodWait 36s
+2025-12-15 20:42:19,023 [INFO] SENT 12251 → 508
+2025-12-15 20:42:19,474 [INFO] PROCESS 12252
+2025-12-15 20:42:19,804 [INFO] SENT 12252 → 509
+2025-12-15 20:42:20,255 [INFO] PROCESS 12253
+2025-12-15 20:42:20,668 [INFO] SENT 12253 → 510
+2025-12-15 20:42:21,119 [INFO] PROCESS 12254
+2025-12-15 20:42:21,407 [INFO] SENT 12254 → 511
+2025-12-15 20:42:21,858 [INFO] PROCESS 12255
+2025-12-15 20:42:22,146 [INFO] SENT 12255 → 512
+2025-12-15 20:42:22,597 [INFO] PROCESS 12266
+2025-12-15 20:42:22,899 [INFO] SENT 12266 → 513
+2025-12-15 20:42:23,349 [INFO] PROCESS 12304
+2025-12-15 20:42:23,637 [INFO] SENT 12304 → 514
+2025-12-15 20:42:24,088 [INFO] PROCESS 12328
+2025-12-15 20:42:24,390 [INFO] SENT 12328 → 515
+2025-12-15 20:42:24,841 [INFO] PROCESS 12455
+2025-12-15 20:42:28,431 [INFO] SENT 12455 → 516
+2025-12-15 20:42:28,882 [INFO] PROCESS 12456
+2025-12-15 20:42:29,174 [INFO] SENT 12456 → 517
+2025-12-15 20:42:29,625 [INFO] PROCESS 12457
+2025-12-15 20:42:29,982 [INFO] SENT 12457 → 518
+2025-12-15 20:42:30,432 [INFO] PROCESS 12458
+2025-12-15 20:42:30,720 [INFO] SENT 12458 → 519
+2025-12-15 20:42:31,171 [INFO] PROCESS 12459
+2025-12-15 20:42:31,674 [INFO] SENT 12459 → 520
+2025-12-15 20:42:32,125 [INFO] PROCESS 12460
+2025-12-15 20:42:35,619 [INFO] SENT 12460 → 521
+2025-12-15 20:42:36,069 [INFO] PROCESS 12461
+2025-12-15 20:42:36,342 [INFO] SENT 12461 → 522
+2025-12-15 20:42:36,793 [INFO] PROCESS 12462
+2025-12-15 20:42:37,066 [INFO] SENT 12462 → 523
+2025-12-15 20:42:37,517 [INFO] PROCESS 12463
+2025-12-15 20:42:37,813 [INFO] SENT 12463 → 524
+2025-12-15 20:42:38,263 [INFO] PROCESS 12464
+2025-12-15 20:42:38,567 [INFO] SENT 12464 → 525
+2025-12-15 20:42:39,018 [INFO] PROCESS 12465
+2025-12-15 20:42:42,521 [INFO] SENT 12465 → 526
+2025-12-15 20:42:42,972 [INFO] PROCESS 12466
+2025-12-15 20:42:43,270 [INFO] SENT 12466 → 527
+2025-12-15 20:42:43,720 [INFO] PROCESS 12467
+2025-12-15 20:42:43,720 [INFO] SKIP 12467 (no date)
+2025-12-15 20:42:44,171 [INFO] PROCESS 12468
+2025-12-15 20:42:44,171 [INFO] SKIP 12468 (no date)
+2025-12-15 20:42:44,622 [INFO] PROCESS 12469
+2025-12-15 20:42:44,837 [WARNING] FloodWait 34s
+2025-12-15 20:43:19,168 [INFO] SENT 12469 → 528
+2025-12-15 20:43:19,619 [INFO] PROCESS 12470
+2025-12-15 20:43:19,906 [INFO] SENT 12470 → 529
+2025-12-15 20:43:20,357 [INFO] PROCESS 12471
+2025-12-15 20:43:20,699 [INFO] SENT 12471 → 530
+2025-12-15 20:43:21,151 [INFO] PROCESS 12472
+2025-12-15 20:43:21,151 [INFO] SKIP 12472 (prices unchanged)
+2025-12-15 20:43:21,603 [INFO] PROCESS 12473
+2025-12-15 20:43:21,603 [INFO] SKIP 12473 (no date)
+2025-12-15 20:43:22,053 [INFO] PROCESS 12579
+2025-12-15 20:43:22,053 [INFO] SKIP 12579 (no date)
+2025-12-15 20:43:22,504 [INFO] PROCESS 12730
+2025-12-15 20:43:22,504 [INFO] SKIP 12730 (no date)
+2025-12-15 20:43:22,955 [INFO] PROCESS 12794
+2025-12-15 20:43:22,955 [INFO] SKIP 12794 (no date)
+2025-12-15 20:43:23,406 [INFO] PROCESS 12795
+2025-12-15 20:43:23,406 [INFO] SKIP 12795 (no date)
+2025-12-15 20:43:23,857 [INFO] PROCESS 12797
+2025-12-15 20:43:23,857 [INFO] SKIP 12797 (no date)
+2025-12-15 20:43:24,308 [INFO] RUNNING
+2025-12-15 20:58:40,520 [INFO] BACKFILL @BigSaleApple
+2025-12-15 20:58:42,052 [INFO] PROCESS 1
+2025-12-15 20:58:42,052 [INFO] SKIP 1 (no date)
+2025-12-15 20:58:42,503 [INFO] PROCESS 5621
+2025-12-15 20:58:42,503 [INFO] SKIP 5621 (no date)
+2025-12-15 20:58:42,953 [INFO] PROCESS 5622
+2025-12-15 20:58:42,954 [INFO] SKIP 5622 (no date)
+2025-12-15 20:58:43,405 [INFO] PROCESS 10962
+2025-12-15 20:58:43,405 [INFO] SKIP 10962 (no date)
+2025-12-15 20:58:43,857 [INFO] PROCESS 10963
+2025-12-15 20:58:43,857 [INFO] SKIP 10963 (no date)
+2025-12-15 20:58:44,308 [INFO] PROCESS 10982
+2025-12-15 20:58:44,846 [INFO] SENT 10982 → 531
+2025-12-15 20:58:45,296 [INFO] PROCESS 10983
+2025-12-15 20:58:45,297 [INFO] SKIP 10983 (no date)
+2025-12-15 20:58:45,748 [INFO] PROCESS 10991
+2025-12-15 20:58:46,039 [INFO] SENT 10991 → 532
+2025-12-15 20:58:46,491 [INFO] PROCESS 11186
+2025-12-15 20:58:46,491 [INFO] SKIP 11186 (no date)
+2025-12-15 20:58:46,941 [INFO] PROCESS 11187
+2025-12-15 20:58:47,274 [INFO] SENT 11187 → 533
+2025-12-15 20:58:47,725 [INFO] PROCESS 11192
+2025-12-15 20:58:47,725 [INFO] SKIP 11192 (no date)
+2025-12-15 20:58:48,176 [INFO] PROCESS 11193
+2025-12-15 20:58:48,489 [INFO] SENT 11193 → 534
+2025-12-15 20:58:48,942 [INFO] PROCESS 11194
+2025-12-15 20:58:48,942 [INFO] SKIP 11194 (no date)
+2025-12-15 20:58:49,393 [INFO] PROCESS 11196
+2025-12-15 20:58:49,665 [INFO] SENT 11196 → 535
+2025-12-15 20:58:50,116 [INFO] PROCESS 11197
+2025-12-15 20:58:50,116 [INFO] SKIP 11197 (no date)
+2025-12-15 20:58:50,568 [INFO] PROCESS 11198
+2025-12-15 20:58:50,855 [INFO] SENT 11198 → 536
+2025-12-15 20:58:51,306 [INFO] PROCESS 11199
+2025-12-15 20:58:51,579 [INFO] SENT 11199 → 537
+2025-12-15 20:58:52,030 [INFO] PROCESS 11200
+2025-12-15 20:58:52,301 [INFO] SENT 11200 → 538
+2025-12-15 20:58:52,753 [INFO] PROCESS 11384
+2025-12-15 20:58:53,024 [INFO] SENT 11384 → 539
+2025-12-15 20:58:53,475 [INFO] PROCESS 11510
+2025-12-15 20:58:53,750 [INFO] SENT 11510 → 540
+2025-12-15 20:58:54,201 [INFO] PROCESS 12064
+2025-12-15 20:58:57,713 [INFO] SENT 12064 → 541
+2025-12-15 20:58:58,164 [INFO] PROCESS 12116
+2025-12-15 20:58:58,426 [INFO] SENT 12116 → 542
+2025-12-15 20:58:58,877 [INFO] PROCESS 12117
+2025-12-15 20:58:59,175 [INFO] SENT 12117 → 543
+2025-12-15 20:58:59,626 [INFO] PROCESS 12118
+2025-12-15 20:58:59,895 [INFO] SENT 12118 → 544
+2025-12-15 20:59:00,347 [INFO] PROCESS 12119
+2025-12-15 20:59:00,626 [INFO] SENT 12119 → 545
+2025-12-15 20:59:01,077 [INFO] PROCESS 12149
+2025-12-15 20:59:04,649 [INFO] SENT 12149 → 546
+2025-12-15 20:59:05,100 [INFO] PROCESS 12150
+2025-12-15 20:59:05,567 [INFO] SENT 12150 → 547
+2025-12-15 20:59:06,018 [INFO] PROCESS 12207
+2025-12-15 20:59:06,309 [INFO] SENT 12207 → 548
+2025-12-15 20:59:06,760 [INFO] PROCESS 12231
+2025-12-15 20:59:07,042 [INFO] SENT 12231 → 549
+2025-12-15 20:59:07,492 [INFO] PROCESS 12251
+2025-12-15 20:59:07,772 [INFO] SENT 12251 → 550
+2025-12-15 20:59:08,223 [INFO] PROCESS 12252
+2025-12-15 20:59:08,430 [WARNING] FloodWait 36s
+2025-12-15 20:59:47,957 [INFO] SENT 12252 → 551
+2025-12-15 20:59:48,408 [INFO] PROCESS 12253
+2025-12-15 20:59:48,699 [INFO] SENT 12253 → 552
+2025-12-15 20:59:49,149 [INFO] PROCESS 12254
+2025-12-15 20:59:49,418 [INFO] SENT 12254 → 553
+2025-12-15 20:59:49,868 [INFO] PROCESS 12255
+2025-12-15 20:59:50,161 [INFO] SENT 12255 → 554
+2025-12-15 20:59:50,612 [INFO] PROCESS 12266
+2025-12-15 20:59:50,888 [INFO] SENT 12266 → 555
+2025-12-15 20:59:51,339 [INFO] PROCESS 12304
+2025-12-15 20:59:51,642 [INFO] SENT 12304 → 556
+2025-12-15 20:59:52,092 [INFO] PROCESS 12328
+2025-12-15 20:59:52,367 [INFO] SENT 12328 → 557
+2025-12-15 20:59:52,817 [INFO] PROCESS 12455
+2025-12-15 20:59:53,123 [INFO] SENT 12455 → 558
+2025-12-15 20:59:53,575 [INFO] PROCESS 12456
+2025-12-15 20:59:57,331 [INFO] SENT 12456 → 559
+2025-12-15 20:59:57,782 [INFO] PROCESS 12457
+2025-12-15 20:59:58,066 [INFO] SENT 12457 → 560
+2025-12-15 20:59:58,517 [INFO] PROCESS 12458
+2025-12-15 20:59:58,791 [INFO] SENT 12458 → 561
+2025-12-15 20:59:59,241 [INFO] PROCESS 12459
+2025-12-15 20:59:59,514 [INFO] SENT 12459 → 562
+2025-12-15 20:59:59,964 [INFO] PROCESS 12460
+2025-12-15 21:00:00,240 [INFO] SENT 12460 → 563
+2025-12-15 21:00:00,691 [INFO] PROCESS 12461
+2025-12-15 21:00:04,231 [INFO] SENT 12461 → 564
+2025-12-15 21:00:04,681 [INFO] PROCESS 12462
+2025-12-15 21:00:04,972 [INFO] SENT 12462 → 565
+2025-12-15 21:00:05,424 [INFO] PROCESS 12463
+2025-12-15 21:00:05,695 [INFO] SENT 12463 → 566
+2025-12-15 21:00:06,145 [INFO] PROCESS 12464
+2025-12-15 21:00:06,431 [INFO] SENT 12464 → 567
+2025-12-15 21:00:06,882 [INFO] PROCESS 12465
+2025-12-15 21:00:07,168 [INFO] SENT 12465 → 568
+2025-12-15 21:00:07,620 [INFO] PROCESS 12466
+2025-12-15 21:00:11,152 [INFO] SENT 12466 → 569
+2025-12-15 21:00:11,603 [INFO] PROCESS 12467
+2025-12-15 21:00:11,603 [INFO] SKIP 12467 (no date)
+2025-12-15 21:00:12,054 [INFO] PROCESS 12468
+2025-12-15 21:00:12,054 [INFO] SKIP 12468 (no date)
+2025-12-15 21:00:12,505 [INFO] PROCESS 12469
+2025-12-15 21:00:12,782 [INFO] SENT 12469 → 570
+2025-12-15 21:00:13,234 [INFO] PROCESS 12470
+2025-12-15 21:00:13,438 [WARNING] FloodWait 34s
+2025-12-15 21:00:50,991 [INFO] SENT 12470 → 571
+2025-12-15 21:00:51,442 [INFO] PROCESS 12471
+2025-12-15 21:00:51,807 [INFO] SENT 12471 → 572
+2025-12-15 21:00:52,258 [INFO] PROCESS 12472
+2025-12-15 21:00:52,514 [INFO] SENT 12472 → 573
+2025-12-15 21:00:52,965 [INFO] PROCESS 12473
+2025-12-15 21:00:52,965 [INFO] SKIP 12473 (no date)
+2025-12-15 21:00:53,416 [INFO] PROCESS 12579
+2025-12-15 21:00:53,416 [INFO] SKIP 12579 (no date)
+2025-12-15 21:00:53,867 [INFO] PROCESS 12730
+2025-12-15 21:00:53,867 [INFO] SKIP 12730 (no date)
+2025-12-15 21:00:54,318 [INFO] PROCESS 12794
+2025-12-15 21:00:54,319 [INFO] SKIP 12794 (no date)
+2025-12-15 21:00:54,770 [INFO] PROCESS 12795
+2025-12-15 21:00:54,770 [INFO] SKIP 12795 (no date)
+2025-12-15 21:00:55,221 [INFO] PROCESS 12797
+2025-12-15 21:00:55,221 [INFO] SKIP 12797 (no date)
+2025-12-15 21:00:55,674 [INFO] RUNNING
+2025-12-16 05:40:54,175 [INFO] BACKFILL @BigSaleApple
+2025-12-16 05:40:55,780 [INFO] PROCESS 1
+2025-12-16 05:40:55,780 [INFO] SKIP 1 (no date)
+2025-12-16 05:40:56,232 [INFO] PROCESS 5621
+2025-12-16 05:40:56,232 [INFO] SKIP 5621 (no date)
+2025-12-16 05:40:56,684 [INFO] PROCESS 5622
+2025-12-16 05:40:56,684 [INFO] SKIP 5622 (no date)
+2025-12-16 05:40:57,135 [INFO] PROCESS 10962
+2025-12-16 05:40:57,135 [INFO] SKIP 10962 (no date)
+2025-12-16 05:40:57,586 [INFO] PROCESS 10963
+2025-12-16 05:40:57,586 [INFO] SKIP 10963 (no date)
+2025-12-16 05:40:58,037 [INFO] PROCESS 10982
+2025-12-16 05:40:58,457 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:40:58,908 [INFO] PROCESS 10983
+2025-12-16 05:40:58,908 [INFO] SKIP 10983 (no date)
+2025-12-16 05:40:59,359 [INFO] PROCESS 10991
+2025-12-16 05:40:59,613 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:00,063 [INFO] PROCESS 11186
+2025-12-16 05:41:00,064 [INFO] SKIP 11186 (no date)
+2025-12-16 05:41:00,515 [INFO] PROCESS 11187
+2025-12-16 05:41:00,790 [INFO] SENT 11187 → 533
+2025-12-16 05:41:01,241 [INFO] PROCESS 11192
+2025-12-16 05:41:01,242 [INFO] SKIP 11192 (no date)
+2025-12-16 05:41:01,692 [INFO] PROCESS 11193
+2025-12-16 05:41:01,908 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:02,359 [INFO] PROCESS 11194
+2025-12-16 05:41:02,359 [INFO] SKIP 11194 (no date)
+2025-12-16 05:41:02,810 [INFO] PROCESS 11196
+2025-12-16 05:41:03,111 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:03,562 [INFO] PROCESS 11197
+2025-12-16 05:41:03,562 [INFO] SKIP 11197 (no date)
+2025-12-16 05:41:04,013 [INFO] PROCESS 11198
+2025-12-16 05:41:04,227 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:04,678 [INFO] PROCESS 11199
+2025-12-16 05:41:04,881 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:05,331 [INFO] PROCESS 11200
+2025-12-16 05:41:05,540 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:05,990 [INFO] PROCESS 11384
+2025-12-16 05:41:06,197 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:06,647 [INFO] PROCESS 11510
+2025-12-16 05:41:06,911 [INFO] SENT 11510 → 540
+2025-12-16 05:41:07,364 [INFO] PROCESS 12064
+2025-12-16 05:41:10,820 [INFO] SENT 12064 → 541
+2025-12-16 05:41:11,271 [INFO] PROCESS 12116
+2025-12-16 05:41:11,504 [INFO] SENT 12116 → 542
+2025-12-16 05:41:11,956 [INFO] PROCESS 12117
+2025-12-16 05:41:12,189 [INFO] SENT 12117 → 543
+2025-12-16 05:41:12,640 [INFO] PROCESS 12118
+2025-12-16 05:41:12,843 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:13,293 [INFO] PROCESS 12119
+2025-12-16 05:41:13,535 [INFO] SENT 12119 → 545
+2025-12-16 05:41:13,987 [INFO] PROCESS 12149
+2025-12-16 05:41:17,397 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:17,849 [INFO] PROCESS 12150
+2025-12-16 05:41:18,085 [INFO] SENT 12150 → 547
+2025-12-16 05:41:18,535 [INFO] PROCESS 12207
+2025-12-16 05:41:18,743 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:19,194 [INFO] PROCESS 12231
+2025-12-16 05:41:19,400 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:19,851 [INFO] PROCESS 12251
+2025-12-16 05:41:20,070 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:20,521 [INFO] PROCESS 12252
+2025-12-16 05:41:20,721 [WARNING] FloodWait 38s
+2025-12-16 05:41:58,931 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:41:59,383 [INFO] PROCESS 12253
+2025-12-16 05:41:59,596 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:00,050 [INFO] PROCESS 12254
+2025-12-16 05:42:00,252 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:00,702 [INFO] PROCESS 12255
+2025-12-16 05:42:00,914 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:01,364 [INFO] PROCESS 12266
+2025-12-16 05:42:01,569 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:02,019 [INFO] PROCESS 12304
+2025-12-16 05:42:05,427 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:05,877 [INFO] PROCESS 12328
+2025-12-16 05:42:06,194 [INFO] SENT 12328 → 557
+2025-12-16 05:42:06,645 [INFO] PROCESS 12455
+2025-12-16 05:42:06,855 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:07,308 [INFO] PROCESS 12456
+2025-12-16 05:42:07,519 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:07,970 [INFO] PROCESS 12457
+2025-12-16 05:42:08,212 [INFO] SENT 12457 → 560
+2025-12-16 05:42:08,663 [INFO] PROCESS 12458
+2025-12-16 05:42:12,071 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:12,523 [INFO] PROCESS 12459
+2025-12-16 05:42:12,748 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:13,198 [INFO] PROCESS 12460
+2025-12-16 05:42:13,404 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:13,854 [INFO] PROCESS 12461
+2025-12-16 05:42:14,161 [INFO] SENT 12461 → 564
+2025-12-16 05:42:14,612 [INFO] PROCESS 12462
+2025-12-16 05:42:14,814 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:42:15,265 [INFO] PROCESS 12463
+2025-12-16 05:42:18,731 [INFO] SENT 12463 → 566
+2025-12-16 05:42:19,183 [INFO] PROCESS 12464
+2025-12-16 05:42:19,502 [INFO] SENT 12464 → 567
+2025-12-16 05:42:19,952 [INFO] PROCESS 12465
+2025-12-16 05:42:20,193 [INFO] SENT 12465 → 568
+2025-12-16 05:42:20,644 [INFO] PROCESS 12466
+2025-12-16 05:42:20,908 [INFO] SENT 12466 → 569
+2025-12-16 05:42:21,359 [INFO] PROCESS 12467
+2025-12-16 05:42:21,359 [INFO] SKIP 12467 (no date)
+2025-12-16 05:42:21,810 [INFO] PROCESS 12468
+2025-12-16 05:42:21,811 [INFO] SKIP 12468 (no date)
+2025-12-16 05:42:22,262 [INFO] PROCESS 12469
+2025-12-16 05:42:22,498 [INFO] SENT 12469 → 570
+2025-12-16 05:42:22,949 [INFO] PROCESS 12470
+2025-12-16 05:42:23,151 [WARNING] FloodWait 35s
+2025-12-16 05:43:01,616 [INFO] SENT 12470 → 571
+2025-12-16 05:43:02,067 [INFO] PROCESS 12471
+2025-12-16 05:43:02,303 [INFO] SENT 12471 → 572
+2025-12-16 05:43:02,755 [INFO] PROCESS 12472
+2025-12-16 05:43:02,956 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:43:03,407 [INFO] PROCESS 12473
+2025-12-16 05:43:03,407 [INFO] SKIP 12473 (no date)
+2025-12-16 05:43:03,857 [INFO] PROCESS 12579
+2025-12-16 05:43:03,858 [INFO] SKIP 12579 (no date)
+2025-12-16 05:43:04,309 [INFO] PROCESS 12730
+2025-12-16 05:43:04,309 [INFO] SKIP 12730 (no date)
+2025-12-16 05:43:04,760 [INFO] PROCESS 12794
+2025-12-16 05:43:04,760 [INFO] SKIP 12794 (no date)
+2025-12-16 05:43:05,211 [INFO] PROCESS 12795
+2025-12-16 05:43:05,211 [INFO] SKIP 12795 (no date)
+2025-12-16 05:43:05,661 [INFO] PROCESS 12797
+2025-12-16 05:43:05,662 [INFO] SKIP 12797 (no date)
+2025-12-16 05:43:06,112 [INFO] RUNNING
+2025-12-16 05:54:09,967 [INFO] BACKFILL @BigSaleApple
+2025-12-16 05:54:11,621 [INFO] PROCESS 1
+2025-12-16 05:54:11,621 [INFO] SKIP 1 (no date)
+2025-12-16 05:54:12,074 [INFO] PROCESS 5621
+2025-12-16 05:54:12,075 [INFO] SKIP 5621 (no date)
+2025-12-16 05:54:12,525 [INFO] PROCESS 5622
+2025-12-16 05:54:12,526 [INFO] SKIP 5622 (no date)
+2025-12-16 05:54:12,977 [INFO] PROCESS 10962
+2025-12-16 05:54:12,977 [INFO] SKIP 10962 (no date)
+2025-12-16 05:54:13,429 [INFO] PROCESS 10963
+2025-12-16 05:54:13,430 [INFO] SKIP 10963 (no date)
+2025-12-16 05:54:13,881 [INFO] PROCESS 10982
+2025-12-16 05:54:14,333 [INFO] SENT 10982 → 531
+2025-12-16 05:54:14,784 [INFO] PROCESS 10983
+2025-12-16 05:54:14,784 [INFO] SKIP 10983 (no date)
+2025-12-16 05:54:15,236 [INFO] PROCESS 10991
+2025-12-16 05:54:15,856 [INFO] SENT 10991 → 532
+2025-12-16 05:54:16,307 [INFO] PROCESS 11186
+2025-12-16 05:54:16,307 [INFO] SKIP 11186 (no date)
+2025-12-16 05:54:16,758 [INFO] PROCESS 11187
+2025-12-16 05:54:17,028 [INFO] SENT 11187 → 533
+2025-12-16 05:54:17,479 [INFO] PROCESS 11192
+2025-12-16 05:54:17,479 [INFO] SKIP 11192 (no date)
+2025-12-16 05:54:17,930 [INFO] PROCESS 11193
+2025-12-16 05:54:18,222 [INFO] SENT 11193 → 534
+2025-12-16 05:54:18,673 [INFO] PROCESS 11194
+2025-12-16 05:54:18,673 [INFO] SKIP 11194 (no date)
+2025-12-16 05:54:19,124 [INFO] PROCESS 11196
+2025-12-16 05:54:19,604 [INFO] SENT 11196 → 535
+2025-12-16 05:54:20,056 [INFO] PROCESS 11197
+2025-12-16 05:54:20,056 [INFO] SKIP 11197 (no date)
+2025-12-16 05:54:20,507 [INFO] PROCESS 11198
+2025-12-16 05:54:20,744 [INFO] SENT 11198 → 536
+2025-12-16 05:54:21,195 [INFO] PROCESS 11199
+2025-12-16 05:54:21,430 [INFO] SENT 11199 → 537
+2025-12-16 05:54:21,881 [INFO] PROCESS 11200
+2025-12-16 05:54:22,127 [INFO] SENT 11200 → 538
+2025-12-16 05:54:22,578 [INFO] PROCESS 11384
+2025-12-16 05:54:22,816 [INFO] SENT 11384 → 539
+2025-12-16 05:54:23,268 [INFO] PROCESS 11510
+2025-12-16 05:54:26,678 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:54:27,129 [INFO] PROCESS 12064
+2025-12-16 05:54:27,331 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:54:27,782 [INFO] PROCESS 12116
+2025-12-16 05:54:28,110 [INFO] SENT 12116 → 542
+2025-12-16 05:54:28,561 [INFO] PROCESS 12117
+2025-12-16 05:54:28,790 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:54:29,241 [INFO] PROCESS 12118
+2025-12-16 05:54:29,476 [INFO] SENT 12118 → 544
+2025-12-16 05:54:29,927 [INFO] PROCESS 12119
+2025-12-16 05:54:33,369 [INFO] SENT 12119 → 545
+2025-12-16 05:54:33,820 [INFO] PROCESS 12149
+2025-12-16 05:54:34,088 [INFO] SENT 12149 → 546
+2025-12-16 05:54:34,539 [INFO] PROCESS 12150
+2025-12-16 05:54:34,745 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:54:35,196 [INFO] PROCESS 12207
+2025-12-16 05:54:35,456 [INFO] SENT 12207 → 548
+2025-12-16 05:54:35,906 [INFO] PROCESS 12231
+2025-12-16 05:54:36,116 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:54:36,568 [INFO] PROCESS 12251
+2025-12-16 05:54:39,972 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:54:40,422 [INFO] PROCESS 12252
+2025-12-16 05:54:40,623 [WARNING] FloodWait 34s
+2025-12-16 05:55:15,063 [INFO] SENT 12252 → 551
+2025-12-16 05:55:15,514 [INFO] PROCESS 12253
+2025-12-16 05:55:15,778 [INFO] SENT 12253 → 552
+2025-12-16 05:55:16,229 [INFO] PROCESS 12254
+2025-12-16 05:55:16,490 [INFO] SENT 12254 → 553
+2025-12-16 05:55:16,940 [INFO] PROCESS 12255
+2025-12-16 05:55:17,158 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:55:17,610 [INFO] PROCESS 12266
+2025-12-16 05:55:17,815 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:55:18,266 [INFO] PROCESS 12304
+2025-12-16 05:55:21,772 [INFO] SENT 12304 → 556
+2025-12-16 05:55:22,222 [INFO] PROCESS 12328
+2025-12-16 05:55:22,431 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:55:22,882 [INFO] PROCESS 12455
+2025-12-16 05:55:23,142 [INFO] SENT 12455 → 558
+2025-12-16 05:55:23,595 [INFO] PROCESS 12456
+2025-12-16 05:55:23,828 [INFO] SENT 12456 → 559
+2025-12-16 05:55:24,278 [INFO] PROCESS 12457
+2025-12-16 05:55:24,493 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:55:24,945 [INFO] PROCESS 12458
+2025-12-16 05:55:28,358 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:55:28,808 [INFO] PROCESS 12459
+2025-12-16 05:55:29,053 [INFO] SENT 12459 → 562
+2025-12-16 05:55:29,505 [INFO] PROCESS 12460
+2025-12-16 05:55:29,751 [INFO] SENT 12460 → 563
+2025-12-16 05:55:30,202 [INFO] PROCESS 12461
+2025-12-16 05:55:30,428 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:55:30,879 [INFO] PROCESS 12462
+2025-12-16 05:55:31,119 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:55:31,570 [INFO] PROCESS 12463
+2025-12-16 05:55:35,143 [INFO] SENT 12463 → 566
+2025-12-16 05:55:35,595 [INFO] PROCESS 12464
+2025-12-16 05:55:35,833 [INFO] SENT 12464 → 567
+2025-12-16 05:55:36,284 [INFO] PROCESS 12465
+2025-12-16 05:55:36,585 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:55:37,036 [INFO] PROCESS 12466
+2025-12-16 05:55:37,321 [INFO] SENT 12466 → 569
+2025-12-16 05:55:37,773 [INFO] PROCESS 12467
+2025-12-16 05:55:37,774 [INFO] SKIP 12467 (no date)
+2025-12-16 05:55:38,226 [INFO] PROCESS 12468
+2025-12-16 05:55:38,226 [INFO] SKIP 12468 (no date)
+2025-12-16 05:55:38,677 [INFO] PROCESS 12469
+2025-12-16 05:55:38,911 [INFO] SENT 12469 → 570
+2025-12-16 05:55:39,362 [INFO] PROCESS 12470
+2025-12-16 05:55:39,565 [WARNING] FloodWait 35s
+2025-12-16 05:56:18,121 [INFO] SENT 12470 → 571
+2025-12-16 05:56:18,572 [INFO] PROCESS 12471
+2025-12-16 05:56:18,935 [INFO] SENT 12471 → 572
+2025-12-16 05:56:19,386 [INFO] PROCESS 12472
+2025-12-16 05:56:19,589 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 05:56:20,041 [INFO] PROCESS 12473
+2025-12-16 05:56:20,042 [INFO] SKIP 12473 (no date)
+2025-12-16 05:56:20,492 [INFO] PROCESS 12579
+2025-12-16 05:56:20,492 [INFO] SKIP 12579 (no date)
+2025-12-16 05:56:20,944 [INFO] PROCESS 12730
+2025-12-16 05:56:20,944 [INFO] SKIP 12730 (no date)
+2025-12-16 05:56:21,395 [INFO] PROCESS 12794
+2025-12-16 05:56:21,395 [INFO] SKIP 12794 (no date)
+2025-12-16 05:56:21,847 [INFO] PROCESS 12795
+2025-12-16 05:56:21,848 [INFO] SKIP 12795 (no date)
+2025-12-16 05:56:22,299 [INFO] PROCESS 12797
+2025-12-16 05:56:22,299 [INFO] SKIP 12797 (no date)
+2025-12-16 05:56:22,749 [INFO] RUNNING
+2025-12-16 06:03:11,859 [INFO] BACKFILL @BigSaleApple
+2025-12-16 06:03:13,598 [INFO] PROCESS 1
+2025-12-16 06:03:13,598 [INFO] SKIP 1 (no date)
+2025-12-16 06:03:14,049 [INFO] PROCESS 5621
+2025-12-16 06:03:14,049 [INFO] SKIP 5621 (no date)
+2025-12-16 06:03:14,499 [INFO] PROCESS 5622
+2025-12-16 06:03:14,500 [INFO] SKIP 5622 (no date)
+2025-12-16 06:03:14,951 [INFO] PROCESS 10962
+2025-12-16 06:03:14,951 [INFO] SKIP 10962 (no date)
+2025-12-16 06:03:15,401 [INFO] PROCESS 10963
+2025-12-16 06:03:15,402 [INFO] SKIP 10963 (no date)
+2025-12-16 06:03:15,852 [INFO] PROCESS 10982
+2025-12-16 06:03:16,278 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:03:16,729 [INFO] PROCESS 10983
+2025-12-16 06:03:16,730 [INFO] SKIP 10983 (no date)
+2025-12-16 06:03:17,180 [INFO] PROCESS 10991
+2025-12-16 06:03:18,278 [INFO] SENT 10991 → 532
+2025-12-16 06:03:18,728 [INFO] PROCESS 11186
+2025-12-16 06:03:18,729 [INFO] SKIP 11186 (no date)
+2025-12-16 06:03:19,179 [INFO] PROCESS 11187
+2025-12-16 06:03:19,589 [INFO] SENT 11187 → 533
+2025-12-16 06:03:20,040 [INFO] PROCESS 11192
+2025-12-16 06:03:20,040 [INFO] SKIP 11192 (no date)
+2025-12-16 06:03:20,492 [INFO] PROCESS 11193
+2025-12-16 06:03:20,736 [INFO] SENT 11193 → 534
+2025-12-16 06:03:21,186 [INFO] PROCESS 11194
+2025-12-16 06:03:21,187 [INFO] SKIP 11194 (no date)
+2025-12-16 06:03:21,637 [INFO] PROCESS 11196
+2025-12-16 06:03:21,877 [INFO] SENT 11196 → 535
+2025-12-16 06:03:22,328 [INFO] PROCESS 11197
+2025-12-16 06:03:22,329 [INFO] SKIP 11197 (no date)
+2025-12-16 06:03:22,779 [INFO] PROCESS 11198
+2025-12-16 06:03:23,020 [INFO] SENT 11198 → 536
+2025-12-16 06:03:23,471 [INFO] PROCESS 11199
+2025-12-16 06:03:23,713 [INFO] SENT 11199 → 537
+2025-12-16 06:03:24,163 [INFO] PROCESS 11200
+2025-12-16 06:03:24,378 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:03:24,828 [INFO] PROCESS 11384
+2025-12-16 06:03:25,062 [INFO] SENT 11384 → 539
+2025-12-16 06:03:25,513 [INFO] PROCESS 11510
+2025-12-16 06:03:28,997 [INFO] SENT 11510 → 540
+2025-12-16 06:03:29,448 [INFO] PROCESS 12064
+2025-12-16 06:03:29,679 [INFO] SENT 12064 → 541
+2025-12-16 06:03:30,131 [INFO] PROCESS 12116
+2025-12-16 06:03:30,378 [INFO] SENT 12116 → 542
+2025-12-16 06:03:30,829 [INFO] PROCESS 12117
+2025-12-16 06:03:31,160 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:03:31,611 [INFO] PROCESS 12118
+2025-12-16 06:03:31,854 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:03:32,304 [INFO] PROCESS 12119
+2025-12-16 06:03:35,787 [INFO] SENT 12119 → 545
+2025-12-16 06:03:36,237 [INFO] PROCESS 12149
+2025-12-16 06:03:36,476 [INFO] SENT 12149 → 546
+2025-12-16 06:03:36,928 [INFO] PROCESS 12150
+2025-12-16 06:03:37,164 [INFO] SENT 12150 → 547
+2025-12-16 06:03:37,615 [INFO] PROCESS 12207
+2025-12-16 06:03:37,854 [INFO] SENT 12207 → 548
+2025-12-16 06:03:38,305 [INFO] PROCESS 12231
+2025-12-16 06:03:38,542 [INFO] SENT 12231 → 549
+2025-12-16 06:03:38,993 [INFO] PROCESS 12251
+2025-12-16 06:03:42,442 [INFO] SENT 12251 → 550
+2025-12-16 06:03:42,893 [INFO] PROCESS 12252
+2025-12-16 06:03:43,139 [WARNING] FloodWait 33s
+2025-12-16 06:04:16,422 [INFO] SENT 12252 → 551
+2025-12-16 06:04:16,873 [INFO] PROCESS 12253
+2025-12-16 06:04:17,135 [INFO] SENT 12253 → 552
+2025-12-16 06:04:17,586 [INFO] PROCESS 12254
+2025-12-16 06:04:17,817 [INFO] SENT 12254 → 553
+2025-12-16 06:04:18,274 [INFO] PROCESS 12255
+2025-12-16 06:04:18,754 [INFO] SENT 12255 → 554
+2025-12-16 06:04:19,205 [INFO] PROCESS 12266
+2025-12-16 06:04:19,441 [INFO] SENT 12266 → 555
+2025-12-16 06:04:19,892 [INFO] PROCESS 12304
+2025-12-16 06:04:23,340 [INFO] SENT 12304 → 556
+2025-12-16 06:04:23,791 [INFO] PROCESS 12328
+2025-12-16 06:04:24,032 [INFO] SENT 12328 → 557
+2025-12-16 06:04:24,483 [INFO] PROCESS 12455
+2025-12-16 06:04:24,951 [INFO] SENT 12455 → 558
+2025-12-16 06:04:25,402 [INFO] PROCESS 12456
+2025-12-16 06:04:25,634 [INFO] SENT 12456 → 559
+2025-12-16 06:04:26,085 [INFO] PROCESS 12457
+2025-12-16 06:04:26,341 [INFO] SENT 12457 → 560
+2025-12-16 06:04:26,792 [INFO] PROCESS 12458
+2025-12-16 06:04:30,230 [INFO] SENT 12458 → 561
+2025-12-16 06:04:30,681 [INFO] PROCESS 12459
+2025-12-16 06:04:30,957 [INFO] SENT 12459 → 562
+2025-12-16 06:04:31,408 [INFO] PROCESS 12460
+2025-12-16 06:04:31,616 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:04:32,067 [INFO] PROCESS 12461
+2025-12-16 06:04:32,300 [INFO] SENT 12461 → 564
+2025-12-16 06:04:32,750 [INFO] PROCESS 12462
+2025-12-16 06:04:32,993 [INFO] SENT 12462 → 565
+2025-12-16 06:04:33,444 [INFO] PROCESS 12463
+2025-12-16 06:04:36,952 [INFO] SENT 12463 → 566
+2025-12-16 06:04:37,403 [INFO] PROCESS 12464
+2025-12-16 06:04:37,645 [INFO] SENT 12464 → 567
+2025-12-16 06:04:38,095 [INFO] PROCESS 12465
+2025-12-16 06:04:38,335 [INFO] SENT 12465 → 568
+2025-12-16 06:04:38,786 [INFO] PROCESS 12466
+2025-12-16 06:04:39,030 [INFO] SENT 12466 → 569
+2025-12-16 06:04:39,481 [INFO] PROCESS 12467
+2025-12-16 06:04:39,481 [INFO] SKIP 12467 (no date)
+2025-12-16 06:04:39,932 [INFO] PROCESS 12468
+2025-12-16 06:04:39,932 [INFO] SKIP 12468 (no date)
+2025-12-16 06:04:40,386 [INFO] PROCESS 12469
+2025-12-16 06:04:40,624 [INFO] SENT 12469 → 570
+2025-12-16 06:04:41,075 [INFO] PROCESS 12470
+2025-12-16 06:04:41,276 [WARNING] FloodWait 35s
+2025-12-16 06:05:16,550 [INFO] SENT 12470 → 571
+2025-12-16 06:05:17,001 [INFO] PROCESS 12471
+2025-12-16 06:05:17,245 [INFO] SENT 12471 → 572
+2025-12-16 06:05:17,696 [INFO] PROCESS 12472
+2025-12-16 06:05:17,904 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:05:18,354 [INFO] PROCESS 12473
+2025-12-16 06:05:18,355 [INFO] SKIP 12473 (no date)
+2025-12-16 06:05:18,806 [INFO] PROCESS 12579
+2025-12-16 06:05:18,806 [INFO] SKIP 12579 (no date)
+2025-12-16 06:05:19,256 [INFO] PROCESS 12730
+2025-12-16 06:05:19,258 [INFO] SKIP 12730 (no date)
+2025-12-16 06:05:19,708 [INFO] PROCESS 12794
+2025-12-16 06:05:19,709 [INFO] SKIP 12794 (no date)
+2025-12-16 06:05:20,160 [INFO] PROCESS 12795
+2025-12-16 06:05:20,161 [INFO] SKIP 12795 (no date)
+2025-12-16 06:05:20,612 [INFO] PROCESS 12797
+2025-12-16 06:05:20,612 [INFO] SKIP 12797 (no date)
+2025-12-16 06:05:21,062 [INFO] RUNNING
+2025-12-16 06:09:29,272 [INFO] BACKFILL @BigSaleApple
+2025-12-16 06:09:30,927 [INFO] PROCESS 1
+2025-12-16 06:09:30,927 [INFO] SKIP 1 (no date)
+2025-12-16 06:09:31,378 [INFO] PROCESS 5621
+2025-12-16 06:09:31,378 [INFO] SKIP 5621 (no date)
+2025-12-16 06:09:31,829 [INFO] PROCESS 5622
+2025-12-16 06:09:31,829 [INFO] SKIP 5622 (no date)
+2025-12-16 06:09:32,280 [INFO] PROCESS 10962
+2025-12-16 06:09:32,281 [INFO] SKIP 10962 (no date)
+2025-12-16 06:09:32,733 [INFO] PROCESS 10963
+2025-12-16 06:09:32,733 [INFO] SKIP 10963 (no date)
+2025-12-16 06:09:33,184 [INFO] PROCESS 10982
+2025-12-16 06:09:33,612 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:34,063 [INFO] PROCESS 10983
+2025-12-16 06:09:34,064 [INFO] SKIP 10983 (no date)
+2025-12-16 06:09:34,514 [INFO] PROCESS 10991
+2025-12-16 06:09:34,738 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:35,189 [INFO] PROCESS 11186
+2025-12-16 06:09:35,189 [INFO] SKIP 11186 (no date)
+2025-12-16 06:09:35,640 [INFO] PROCESS 11187
+2025-12-16 06:09:35,863 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:36,313 [INFO] PROCESS 11192
+2025-12-16 06:09:36,314 [INFO] SKIP 11192 (no date)
+2025-12-16 06:09:36,765 [INFO] PROCESS 11193
+2025-12-16 06:09:37,005 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:37,456 [INFO] PROCESS 11194
+2025-12-16 06:09:37,458 [INFO] SKIP 11194 (no date)
+2025-12-16 06:09:37,909 [INFO] PROCESS 11196
+2025-12-16 06:09:38,193 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:38,643 [INFO] PROCESS 11197
+2025-12-16 06:09:38,644 [INFO] SKIP 11197 (no date)
+2025-12-16 06:09:39,094 [INFO] PROCESS 11198
+2025-12-16 06:09:39,362 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:39,812 [INFO] PROCESS 11199
+2025-12-16 06:09:40,022 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:40,473 [INFO] PROCESS 11200
+2025-12-16 06:09:40,690 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:41,141 [INFO] PROCESS 11384
+2025-12-16 06:09:41,358 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:41,809 [INFO] PROCESS 11510
+2025-12-16 06:09:42,065 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:42,516 [INFO] PROCESS 12064
+2025-12-16 06:09:46,003 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:46,453 [INFO] PROCESS 12116
+2025-12-16 06:09:46,664 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:47,115 [INFO] PROCESS 12117
+2025-12-16 06:09:47,326 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:47,777 [INFO] PROCESS 12118
+2025-12-16 06:09:47,988 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:48,439 [INFO] PROCESS 12119
+2025-12-16 06:09:48,659 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:49,111 [INFO] PROCESS 12149
+2025-12-16 06:09:52,529 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:52,979 [INFO] PROCESS 12150
+2025-12-16 06:09:53,196 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:53,648 [INFO] PROCESS 12207
+2025-12-16 06:09:53,863 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:54,314 [INFO] PROCESS 12231
+2025-12-16 06:09:54,526 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:54,977 [INFO] PROCESS 12251
+2025-12-16 06:09:55,191 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:09:55,642 [INFO] PROCESS 12252
+2025-12-16 06:09:55,853 [WARNING] FloodWait 38s
+2025-12-16 06:10:34,202 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:34,653 [INFO] PROCESS 12253
+2025-12-16 06:10:34,881 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:35,332 [INFO] PROCESS 12254
+2025-12-16 06:10:35,543 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:35,994 [INFO] PROCESS 12255
+2025-12-16 06:10:36,209 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:36,660 [INFO] PROCESS 12266
+2025-12-16 06:10:36,868 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:37,318 [INFO] PROCESS 12304
+2025-12-16 06:10:40,740 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:41,191 [INFO] PROCESS 12328
+2025-12-16 06:10:41,417 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:41,868 [INFO] PROCESS 12455
+2025-12-16 06:10:42,085 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:42,537 [INFO] PROCESS 12456
+2025-12-16 06:10:42,748 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:43,199 [INFO] PROCESS 12457
+2025-12-16 06:10:43,417 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:43,869 [INFO] PROCESS 12458
+2025-12-16 06:10:47,413 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:47,864 [INFO] PROCESS 12459
+2025-12-16 06:10:48,128 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:48,578 [INFO] PROCESS 12460
+2025-12-16 06:10:48,791 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:49,243 [INFO] PROCESS 12461
+2025-12-16 06:10:49,465 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:49,916 [INFO] PROCESS 12462
+2025-12-16 06:10:50,146 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:50,596 [INFO] PROCESS 12463
+2025-12-16 06:10:54,265 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:54,716 [INFO] PROCESS 12464
+2025-12-16 06:10:54,947 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:55,397 [INFO] PROCESS 12465
+2025-12-16 06:10:55,644 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:56,095 [INFO] PROCESS 12466
+2025-12-16 06:10:56,379 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:56,830 [INFO] PROCESS 12467
+2025-12-16 06:10:56,830 [INFO] SKIP 12467 (no date)
+2025-12-16 06:10:57,281 [INFO] PROCESS 12468
+2025-12-16 06:10:57,281 [INFO] SKIP 12468 (no date)
+2025-12-16 06:10:57,734 [INFO] PROCESS 12469
+2025-12-16 06:10:57,978 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:10:58,428 [INFO] PROCESS 12470
+2025-12-16 06:10:58,633 [WARNING] FloodWait 36s
+2025-12-16 06:11:34,989 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:11:35,440 [INFO] PROCESS 12471
+2025-12-16 06:11:35,663 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:11:36,113 [INFO] PROCESS 12472
+2025-12-16 06:11:36,351 [ERROR] RPCError: Telegram says: [400 MESSAGE_NOT_MODIFIED] - The message was not modified because you tried to edit it using the same content (caused by "messages.EditMessage")
+2025-12-16 06:11:36,801 [INFO] PROCESS 12473
+2025-12-16 06:11:36,802 [INFO] SKIP 12473 (no date)
+2025-12-16 06:11:37,252 [INFO] PROCESS 12579
+2025-12-16 06:11:37,254 [INFO] SKIP 12579 (no date)
+2025-12-16 06:11:37,706 [INFO] PROCESS 12730
+2025-12-16 06:11:37,706 [INFO] SKIP 12730 (no date)
+2025-12-16 06:11:38,156 [INFO] PROCESS 12794
+2025-12-16 06:11:38,157 [INFO] SKIP 12794 (no date)
+2025-12-16 06:11:38,608 [INFO] PROCESS 12795
+2025-12-16 06:11:38,608 [INFO] SKIP 12795 (no date)
+2025-12-16 06:11:39,059 [INFO] PROCESS 12797
+2025-12-16 06:11:39,060 [INFO] SKIP 12797 (no date)
+2025-12-16 06:11:39,511 [INFO] RUNNING
+2025-12-16 06:14:07,052 [INFO] BACKFILL @BigSaleApple
+2025-12-16 06:14:08,757 [INFO] PROCESS 1
+2025-12-16 06:14:08,757 [INFO] SKIP 1 (no date)
+2025-12-16 06:14:09,208 [INFO] PROCESS 5621
+2025-12-16 06:14:09,208 [INFO] SKIP 5621 (no date)
+2025-12-16 06:14:09,659 [INFO] PROCESS 5622
+2025-12-16 06:14:09,659 [INFO] SKIP 5622 (no date)
+2025-12-16 06:14:10,110 [INFO] PROCESS 10962
+2025-12-16 06:14:10,110 [INFO] SKIP 10962 (no date)
+2025-12-16 06:14:10,561 [INFO] PROCESS 10963
+2025-12-16 06:14:10,561 [INFO] SKIP 10963 (no date)
+2025-12-16 06:14:11,012 [INFO] PROCESS 10982
+2025-12-16 06:14:11,514 [INFO] SENT 10982 → 574
+2025-12-16 06:14:11,966 [INFO] PROCESS 10983
+2025-12-16 06:14:11,966 [INFO] SKIP 10983 (no date)
+2025-12-16 06:14:12,417 [INFO] PROCESS 10991
+2025-12-16 06:14:12,898 [INFO] SENT 10991 → 575
+2025-12-16 06:14:13,349 [INFO] PROCESS 11186
+2025-12-16 06:14:13,349 [INFO] SKIP 11186 (no date)
+2025-12-16 06:14:13,800 [INFO] PROCESS 11187
+2025-12-16 06:14:14,110 [INFO] SENT 11187 → 576
+2025-12-16 06:14:14,561 [INFO] PROCESS 11192
+2025-12-16 06:14:14,561 [INFO] SKIP 11192 (no date)
+2025-12-16 06:14:15,012 [INFO] PROCESS 11193
+2025-12-16 06:14:15,296 [INFO] SENT 11193 → 577
+2025-12-16 06:14:15,747 [INFO] PROCESS 11194
+2025-12-16 06:14:15,748 [INFO] SKIP 11194 (no date)
+2025-12-16 06:14:16,198 [INFO] PROCESS 11196
+2025-12-16 06:14:16,481 [INFO] SENT 11196 → 578
+2025-12-16 06:14:16,932 [INFO] PROCESS 11197
+2025-12-16 06:14:16,933 [INFO] SKIP 11197 (no date)
+2025-12-16 06:14:17,383 [INFO] PROCESS 11198
+2025-12-16 06:14:17,681 [INFO] SENT 11198 → 579
+2025-12-16 06:14:18,132 [INFO] PROCESS 11199
+2025-12-16 06:14:18,420 [INFO] SENT 11199 → 580
+2025-12-16 06:14:18,871 [INFO] PROCESS 11200
+2025-12-16 06:14:19,160 [INFO] SENT 11200 → 581
+2025-12-16 06:14:19,610 [INFO] PROCESS 11384
+2025-12-16 06:14:19,894 [INFO] SENT 11384 → 582
+2025-12-16 06:14:20,345 [INFO] PROCESS 11510
+2025-12-16 06:14:20,614 [INFO] SENT 11510 → 583
+2025-12-16 06:14:21,065 [INFO] PROCESS 12064
+2025-12-16 06:14:24,625 [INFO] SENT 12064 → 584
+2025-12-16 06:14:25,075 [INFO] PROCESS 12116
+2025-12-16 06:14:25,350 [INFO] SENT 12116 → 585
+2025-12-16 06:14:25,802 [INFO] PROCESS 12117
+2025-12-16 06:14:26,125 [INFO] SENT 12117 → 586
+2025-12-16 06:14:26,576 [INFO] PROCESS 12118
+2025-12-16 06:14:26,868 [INFO] SENT 12118 → 587
+2025-12-16 06:14:27,320 [INFO] PROCESS 12119
+2025-12-16 06:14:27,617 [INFO] SENT 12119 → 588
+2025-12-16 06:14:28,068 [INFO] PROCESS 12149
+2025-12-16 06:14:31,564 [INFO] SENT 12149 → 589
+2025-12-16 06:14:32,015 [INFO] PROCESS 12150
+2025-12-16 06:14:32,328 [INFO] SENT 12150 → 590
+2025-12-16 06:14:32,779 [INFO] PROCESS 12207
+2025-12-16 06:14:33,080 [INFO] SENT 12207 → 591
+2025-12-16 06:14:33,530 [INFO] PROCESS 12231
+2025-12-16 06:14:33,958 [INFO] SENT 12231 → 592
+2025-12-16 06:14:34,409 [INFO] PROCESS 12251
+2025-12-16 06:14:34,771 [INFO] SENT 12251 → 593
+2025-12-16 06:14:35,222 [INFO] PROCESS 12252
+2025-12-16 06:14:35,430 [WARNING] FloodWait 36s
+2025-12-16 06:15:11,730 [INFO] SENT 12252 → 594
+2025-12-16 06:15:12,181 [INFO] PROCESS 12253
+2025-12-16 06:15:12,464 [INFO] SENT 12253 → 595
+2025-12-16 06:15:12,915 [INFO] PROCESS 12254
+2025-12-16 06:15:13,203 [INFO] SENT 12254 → 596
+2025-12-16 06:15:13,654 [INFO] PROCESS 12255
+2025-12-16 06:15:13,936 [INFO] SENT 12255 → 597
+2025-12-16 06:15:14,387 [INFO] PROCESS 12266
+2025-12-16 06:15:14,651 [INFO] SENT 12266 → 598
+2025-12-16 06:15:15,102 [INFO] PROCESS 12304
+2025-12-16 06:15:18,653 [INFO] SENT 12304 → 599
+2025-12-16 06:15:19,104 [INFO] PROCESS 12328
+2025-12-16 06:15:19,446 [INFO] SENT 12328 → 600
+2025-12-16 06:15:19,897 [INFO] PROCESS 12455
+2025-12-16 06:15:20,198 [INFO] SENT 12455 → 601
+2025-12-16 06:15:20,650 [INFO] PROCESS 12456
+2025-12-16 06:15:21,000 [INFO] SENT 12456 → 602
+2025-12-16 06:15:21,451 [INFO] PROCESS 12457
+2025-12-16 06:15:21,745 [INFO] SENT 12457 → 603
+2025-12-16 06:15:22,196 [INFO] PROCESS 12458
+2025-12-16 06:15:25,701 [INFO] SENT 12458 → 604
+2025-12-16 06:15:26,152 [INFO] PROCESS 12459
+2025-12-16 06:15:26,431 [INFO] SENT 12459 → 605
+2025-12-16 06:15:26,882 [INFO] PROCESS 12460
+2025-12-16 06:15:27,215 [INFO] SENT 12460 → 606
+2025-12-16 06:15:27,666 [INFO] PROCESS 12461
+2025-12-16 06:15:27,924 [INFO] SENT 12461 → 607
+2025-12-16 06:15:28,375 [INFO] PROCESS 12462
+2025-12-16 06:15:28,762 [INFO] SENT 12462 → 608
+2025-12-16 06:15:29,213 [INFO] PROCESS 12463
+2025-12-16 06:15:32,745 [INFO] SENT 12463 → 609
+2025-12-16 06:15:33,195 [INFO] PROCESS 12464
+2025-12-16 06:15:33,531 [INFO] SENT 12464 → 610
+2025-12-16 06:15:33,981 [INFO] PROCESS 12465
+2025-12-16 06:15:34,344 [INFO] SENT 12465 → 611
+2025-12-16 06:15:34,795 [INFO] PROCESS 12466
+2025-12-16 06:15:35,112 [INFO] SENT 12466 → 612
+2025-12-16 06:15:35,564 [INFO] PROCESS 12467
+2025-12-16 06:15:35,565 [INFO] SKIP 12467 (no date)
+2025-12-16 06:15:36,015 [INFO] PROCESS 12468
+2025-12-16 06:15:36,016 [INFO] SKIP 12468 (no date)
+2025-12-16 06:15:36,466 [INFO] PROCESS 12469
+2025-12-16 06:15:36,881 [INFO] SENT 12469 → 613
+2025-12-16 06:15:37,332 [INFO] PROCESS 12470
+2025-12-16 06:15:37,551 [WARNING] FloodWait 34s
+2025-12-16 06:16:11,840 [INFO] SENT 12470 → 614
+2025-12-16 06:16:12,291 [INFO] PROCESS 12471
+2025-12-16 06:16:12,588 [INFO] SENT 12471 → 615
+2025-12-16 06:16:13,039 [INFO] PROCESS 12472
+2025-12-16 06:16:13,298 [INFO] SENT 12472 → 616
+2025-12-16 06:16:13,749 [INFO] PROCESS 12473
+2025-12-16 06:16:13,749 [INFO] SKIP 12473 (no date)
+2025-12-16 06:16:14,200 [INFO] PROCESS 12579
+2025-12-16 06:16:14,200 [INFO] SKIP 12579 (no date)
+2025-12-16 06:16:14,650 [INFO] PROCESS 12730
+2025-12-16 06:16:14,651 [INFO] SKIP 12730 (no date)
+2025-12-16 06:16:15,101 [INFO] PROCESS 12794
+2025-12-16 06:16:15,102 [INFO] SKIP 12794 (no date)
+2025-12-16 06:16:15,553 [INFO] PROCESS 12795
+2025-12-16 06:16:15,554 [INFO] SKIP 12795 (no date)
+2025-12-16 06:16:16,004 [INFO] PROCESS 12797
+2025-12-16 06:16:16,005 [INFO] SKIP 12797 (no date)
+2025-12-16 06:16:16,455 [INFO] RUNNING

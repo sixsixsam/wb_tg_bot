@@ -1,30 +1,33 @@
 # app/db.py
-# Асинхронная работа с SQLite через aiosqlite.
-# Таблицы: messages, errors, settings
-
 import aiosqlite
-import asyncio
 import os
-import json
 from . import config
 
+DB_PATH = os.getenv("DB_PATH", "reposter.db")
 
-DB_PATH = "reposter.db"
+db_conn = None  # persistent connection
 
-# Инициализация БД — вызывается при старте
+
 async def init_db():
-    async with aiosqlite.connect(DB_PATH) as db:
-        await db.execute("""
+    global db_conn
+    db_conn = await aiosqlite.connect(DB_PATH)
+
+    # Удаляем старую таблицу для чистой схемы (если нужно, убрать на проде!)
+    # await db_conn.execute("DROP TABLE IF EXISTS messages;")
+
+    # Создаем таблицы
+    await db_conn.execute("""
         CREATE TABLE IF NOT EXISTS messages (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            source_channel TEXT,
-            source_message_id INTEGER,
+            source_channel TEXT NOT NULL,
+            source_message_id INTEGER NOT NULL,
             target_message_id INTEGER,
+            message_type TEXT DEFAULT 'text',
             processed_at TEXT,
-            summary TEXT
+            summary TEXT,
+            PRIMARY KEY (source_channel, source_message_id)
         );
-        """)
-        await db.execute("""
+    """)
+    await db_conn.execute("""
         CREATE TABLE IF NOT EXISTS errors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             source_channel TEXT,
@@ -33,69 +36,69 @@ async def init_db():
             traceback TEXT,
             created_at TEXT
         );
-        """)
-        await db.execute("""
+    """)
+    await db_conn.execute("""
         CREATE TABLE IF NOT EXISTS settings (
             key TEXT PRIMARY KEY,
             value TEXT
         );
-        """)
-        # Записать дефолтные настройки, если нет
-        cur = await db.execute("SELECT value FROM settings WHERE key = ?", ("price_pro_delta",))
+    """)
+    await db_conn.commit()
+
+
+async def get_message_target(source_channel, source_message_id):
+    async with db_conn.execute(
+        "SELECT target_message_id FROM messages WHERE source_channel=? AND source_message_id=?",
+        (source_channel, source_message_id)
+    ) as cur:
         row = await cur.fetchone()
-        if not row:
-            await db.execute("INSERT OR REPLACE INTO settings(key, value) VALUES (?, ?)", ("price_pro_delta", str(config.PRICE_PRO_DELTA)))
-            await db.execute("INSERT OR REPLACE INTO settings(key, value) VALUES (?, ?)", ("price_default_delta", str(config.PRICE_DEFAULT_DELTA)))
-        await db.commit()
+        return row[0] if row else None
 
-# Сохранить сообщение
-async def save_message(source_channel, source_message_id, target_message_id, processed_at, summary):
-    async with aiosqlite.connect(DB_PATH) as db:
-        await db.execute(
-            "INSERT INTO messages(source_channel, source_message_id, target_message_id, processed_at, summary) VALUES (?, ?, ?, ?, ?)",
-            (source_channel, source_message_id, target_message_id, processed_at, summary)
+
+async def update_message_target(
+    source_channel,
+    source_message_id,
+    target_message_id,
+    processed_at,
+    summary,
+    message_type="text"
+):
+    # ON CONFLICT сработает только если есть PRIMARY KEY (у нас source_channel+source_message_id)
+    await db_conn.execute("""
+        INSERT INTO messages (
+            source_channel, source_message_id,
+            target_message_id, message_type,
+            processed_at, summary
         )
-        await db.commit()
-        # Обрезать до RECENT_MESSAGES_LIMIT
-        await db.execute(f"""
-            DELETE FROM messages WHERE id NOT IN (
-                SELECT id FROM messages ORDER BY id DESC LIMIT {config.RECENT_MESSAGES_LIMIT}
-            );
-        """)
-        await db.commit()
+        VALUES (?, ?, ?, ?, ?, ?)
+        ON CONFLICT(source_channel, source_message_id) DO UPDATE SET
+            target_message_id=excluded.target_message_id,
+            processed_at=excluded.processed_at,
+            summary=excluded.summary,
+            message_type=excluded.message_type
+    """, (
+        source_channel,
+        source_message_id,
+        target_message_id,
+        message_type,
+        processed_at,
+        summary
+    ))
+    await db_conn.commit()
 
-# Сохранить ошибку
+
 async def save_error(source_channel, source_message_id, error_text, traceback_text, created_at):
-    async with aiosqlite.connect(DB_PATH) as db:
-        await db.execute(
-            "INSERT INTO errors(source_channel, source_message_id, error_text, traceback, created_at) VALUES (?, ?, ?, ?, ?)",
-            (source_channel, source_message_id, error_text, traceback_text, created_at)
+    await db_conn.execute("""
+        INSERT INTO errors(
+            source_channel, source_message_id,
+            error_text, traceback, created_at
         )
-        await db.commit()
-
-# Получить последние N ошибок / сообщений
-async def get_recent_errors(limit=100):
-    async with aiosqlite.connect(DB_PATH) as db:
-        cur = await db.execute("SELECT id, source_channel, source_message_id, error_text, traceback, created_at FROM errors ORDER BY id DESC LIMIT ?", (limit,))
-        rows = await cur.fetchall()
-    return rows
-
-async def get_recent_messages(limit=100):
-    async with aiosqlite.connect(DB_PATH) as db:
-        cur = await db.execute("SELECT id, source_channel, source_message_id, target_message_id, processed_at, summary FROM messages ORDER BY id DESC LIMIT ?", (limit,))
-        rows = await cur.fetchall()
-    return rows
-
-# Функции настроек
-async def get_setting(key, default=None):
-    async with aiosqlite.connect(DB_PATH) as db:
-        cur = await db.execute("SELECT value FROM settings WHERE key = ?", (key,))
-        row = await cur.fetchone()
-        if row:
-            return row[0]
-    return default
-
-async def set_setting(key, value):
-    async with aiosqlite.connect(DB_PATH) as db:
-        await db.execute("INSERT OR REPLACE INTO settings(key, value) VALUES (?, ?)", (key, str(value)))
-        await db.commit()
+        VALUES (?, ?, ?, ?, ?)
+    """, (
+        source_channel,
+        source_message_id,
+        error_text,
+        traceback_text,
+        created_at
+    ))
+    await db_conn.commit()
