@@ -1,32 +1,48 @@
+# Ваш существующий workflow с исправленным шагом debug:
+
 - name: Debug session files
   run: |
+    # Показываем текущую директорию
+    echo "Current directory: $(pwd)"
+    echo "Directory contents:"
+    ls -la
+    
+    # Создаем user.session
+    echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > user.session
+    
+    # Проверяем созданный файл
+    echo "Checking session file:"
+    file user.session
+    ls -la user.session
+    
     # Создаем тестовый скрипт
     cat > test_session.py << 'EOF'
-    import os
-    from pyrogram import Client
+import os
+from pyrogram import Client
+
+async def test():
+    print("Current dir:", os.getcwd())
+    print("Files:", os.listdir())
     
-    async def test():
-        print("Current dir:", os.getcwd())
-        print("Files:", os.listdir())
+    # Пробуем инициализировать клиента
+    client = Client("user", workdir=".", api_id=1, api_hash="test")  # Добавлены фиктивные параметры
+    
+    # Проверяем, есть ли файл сессии
+    session_file = "user.session"
+    if os.path.exists(session_file):
+        print(f"✅ Session file exists: {session_file}, size: {os.path.getsize(session_file)} bytes")
         
-        # Пробуем инициализировать клиента
-        client = Client("user", workdir=".")
-        
-        # Проверяем, есть ли файл сессии
-        session_file = "user.session"
-        if os.path.exists(session_file):
-            print(f"✅ Session file exists: {session_file}, size: {os.path.getsize(session_file)} bytes")
-            
-            # Пробуем прочитать заголовок
-            with open(session_file, 'rb') as f:
-                header = f.read(16)
-                print(f"File header: {header}")
-        else:
-            print(f"❌ Session file NOT found: {session_file}")
-            
-    import asyncio
-    asyncio.run(test())
-    EOF
+        # Пробуем прочитать заголовок
+        with open(session_file, 'rb') as f:
+            header = f.read(16)
+            print(f"File header: {header.hex()}")
+    else:
+        print(f"❌ Session file NOT found: {session_file}")
+
+import asyncio
+asyncio.run(test())
+EOF
     
     # Запускаем тест
+    echo "=== Running test script ==="
     python test_session.py
