@@ -49,11 +49,6 @@ jobs:
           # Показываем все файлы сессий в app/
           echo "=== Все файлы сессий в app/ ==="
           find app/ -name "*.session" -type f | xargs ls -l
-          
-          # Дополнительная проверка конфига
-          echo "=== Проверка конфигурации ==="
-          echo "USER_SESSION_NAME должно быть 'price_reposter_user':"
-          grep "USER_SESSION_NAME" app/config.py
       # ======================================
 
       - name: Run bot
@@ -63,13 +58,13 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           SOURCE_CHANNELS: ${{ secrets.SOURCE_CHANNELS }}
           TARGET_CHANNEL: ${{ secrets.TARGET_CHANNEL }}
-          # Дополнительные переменные из config.py
-          MIN_PRICE_TO_IGNORE: ${{ secrets.MIN_PRICE_TO_IGNORE }}
-          REQUEST_DELAY: ${{ secrets.REQUEST_DELAY }}
-          BACKFILL_LIMIT: ${{ secrets.BACKFILL_LIMIT }}
+          # Дополнительные переменные из config.py (с значениями по умолчанию)
+          MIN_PRICE_TO_IGNORE: "10000.0"
+          REQUEST_DELAY: "0.45"
+          BACKFILL_LIMIT: "500"
           DOWNLOAD_DIR: "downloads"
           LOG_DIR: "logs"
           ADMIN_BIND_HOST: "0.0.0.0"
-          ADMIN_BIND_PORT: 8000
+          ADMIN_BIND_PORT: "8000"
         run: |
           python -m app.main
