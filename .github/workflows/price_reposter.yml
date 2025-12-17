@@ -26,23 +26,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # === СОЗДАНИЕ ФАЙЛОВ СЕССИЙ ===
-      - name: Create Telegram session files
+      # === СОЗДАНИЕ ФАЙЛА СЕССИИ (ТОЛЬКО USER) ===
+      - name: Create Telegram session file
         run: |
-          # Создаем user.session ВНУТРИ папки app/
+          # ТОЛЬКО user.session внутри папки app/
           echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > app/user.session
-          echo "✅ User session created: app/user.session"
+          echo "✅ Session file created at app/user.session"
+          
+          # Проверяем созданный файл
+          echo "=== Проверка файла ==="
           ls -l app/user.session
+          echo "Размер: $(wc -c < app/user.session) байт"
           
-          # Создаем bot.session В КОРНЕ (если нужно)
-          echo "${{ secrets.BOT_SESSION_BASE64 }}" | base64 -d > bot.session
-          echo "✅ Bot session created: bot.session"
-          ls -l bot.session
+          # Проверяем первые байты
+          echo "Заголовок (первые 6 байт в hex):"
+          head -c 6 app/user.session | xxd
           
-          # Проверяем оба файла
-          echo "=== Все файлы сессий ==="
-          find . -name "*.session" -type f | xargs ls -l
-      # =============================
+          # Показываем содержимое папки app/ для отладки
+          echo "=== Содержимое папки app/ ==="
+          ls -la app/
+      # ==========================================
 
       - name: Run bot
         env:
