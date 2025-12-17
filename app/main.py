@@ -128,32 +128,69 @@ async def process_message(msg: Message):
     try:
         if msg.photo:
             media_file = await download_media(msg)
-            sent = await safe(
-                bot_client.send_photo if not old_target_id else bot_client.edit_message_caption,
-                config.TARGET_CHANNEL,
-                media_file if not old_target_id else old_target_id,
-                caption=new_text,
-                parse_mode=ParseMode.HTML,
-                reply_markup=kb
-            )
+            if old_target_id:
+                # Редактируем существующее сообщение
+                sent = await safe(
+                    bot_client.edit_message_caption,
+                    chat_id=config.TARGET_CHANNEL,
+                    message_id=old_target_id,
+                    caption=new_text,
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=kb
+                )
+            else:
+                # Отправляем новое сообщение
+                sent = await safe(
+                    bot_client.send_photo,
+                    chat_id=config.TARGET_CHANNEL,
+                    photo=media_file,
+                    caption=new_text,
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=kb
+                )
+                
         elif msg.video:
             media_file = await download_media(msg)
-            sent = await safe(
-                bot_client.send_video if not old_target_id else bot_client.edit_message_caption,
-                config.TARGET_CHANNEL,
-                media_file if not old_target_id else old_target_id,
-                caption=new_text,
-                parse_mode=ParseMode.HTML,
-                reply_markup=kb
-            )
+            if old_target_id:
+                # Редактируем существующее сообщение
+                sent = await safe(
+                    bot_client.edit_message_caption,
+                    chat_id=config.TARGET_CHANNEL,
+                    message_id=old_target_id,
+                    caption=new_text,
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=kb
+                )
+            else:
+                # Отправляем новое сообщение
+                sent = await safe(
+                    bot_client.send_video,
+                    chat_id=config.TARGET_CHANNEL,
+                    video=media_file,
+                    caption=new_text,
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=kb
+                )
         else:
-            sent = await safe(
-                bot_client.send_message if not old_target_id else bot_client.edit_message_text,
-                config.TARGET_CHANNEL,
-                new_text,
-                parse_mode=ParseMode.HTML,
-                reply_markup=kb
-            )
+            if old_target_id:
+                # Редактируем существующее текстовое сообщение
+                sent = await safe(
+                    bot_client.edit_message_text,
+                    chat_id=config.TARGET_CHANNEL,
+                    message_id=old_target_id,
+                    text=new_text,
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=kb
+                )
+            else:
+                # Отправляем новое текстовое сообщение
+                sent = await safe(
+                    bot_client.send_message,
+                    chat_id=config.TARGET_CHANNEL,
+                    text=new_text,
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=kb
+                )
 
         if sent:
             await db.update_message_target(
@@ -216,9 +253,13 @@ async def main():
             await asyncio.sleep(config.REQUEST_DELAY)
 
     logger.info("DONE")
-
-    await user_client.stop()
-    await bot_client.stop()
+    
+    # Корректная остановка
+    try:
+        await user_client.stop()
+        await bot_client.stop()
+    except RuntimeError as e:
+        logger.warning(f"Ignoring stop error: {e}")
 
 if __name__ == "__main__":
     asyncio.run(main())
