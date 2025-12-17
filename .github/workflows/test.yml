@@ -18,43 +18,20 @@ jobs:
       - name: Install dependencies
         run: pip install pyrogram
 
-      - name: Debug session files
+      - name: Simple debug (без heredoc)
         run: |
-          echo "Current directory: $(pwd)"
-          echo "Directory contents:"
-          ls -la
+          echo "=== Шаг 1: Проверяем секрет ==="
+          echo "Длина секрета: ${#USER_SESSION_B64}"
           
-          echo "Creating user.session from secret..."
+          echo "=== Шаг 2: Создаем user.session ==="
           echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > user.session
           
-          echo "Checking session file:"
-          file user.session
-          ls -la user.session
+          echo "=== Шаг 3: Проверяем файл ==="
+          ls -l user.session
+          echo "Размер файла: $(wc -c < user.session) байт"
           
-          echo "=== Creating test script ==="
-          cat > test_session.py << 'EOF'
-import os
-from pyrogram import Client
-
-async def test():
-    print("Current dir:", os.getcwd())
-    print("Files:", os.listdir())
-    
-    # Проверяем, есть ли файл сессии
-    session_file = "user.session"
-    if os.path.exists(session_file):
-        print(f"✅ Session file exists: {session_file}, size: {os.path.getsize(session_file)} bytes")
-        
-        # Пробуем прочитать заголовок
-        with open(session_file, 'rb') as f:
-            header = f.read(16)
-            print(f"File header (hex): {header.hex()}")
-    else:
-        print(f"❌ Session file NOT found: {session_file}")
-
-import asyncio
-asyncio.run(test())
-EOF
+          echo "=== Шаг 4: Заголовок файла (первые 16 байт) ==="
+          head -c 16 user.session | xxd
           
-          echo "=== Running test script ==="
-          python test_session.py
+          echo "=== Шаг 5: Содержимое директории ==="
+          ls -la
