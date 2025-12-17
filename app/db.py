@@ -55,6 +55,18 @@ async def get_message_target(source_channel, source_message_id):
         return row[0] if row else None
 
 
+async def get_message_target_with_text(source_channel, source_message_id):
+    """Получаем target_id и текст сообщения из базы"""
+    async with db_conn.execute(
+        "SELECT target_message_id, summary FROM messages WHERE source_channel=? AND source_message_id=?",
+        (source_channel, source_message_id)
+    ) as cur:
+        row = await cur.fetchone()
+        if row:
+            return row[0], row[1]  # target_id, text
+        return None, None  # Если записи нет
+
+
 async def update_message_target(
     source_channel,
     source_message_id,
