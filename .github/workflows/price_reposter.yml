@@ -26,26 +26,35 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # === СОЗДАНИЕ ФАЙЛА СЕССИИ (ТОЛЬКО USER) ===
+      # === СОЗДАНИЕ ФАЙЛА СЕССИИ ===
       - name: Create Telegram session file
         run: |
-          # ТОЛЬКО user.session внутри папки app/
-          echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > app/user.session
-          echo "✅ Session file created at app/user.session"
+          # Создаем price_reposter_user.session (как указано в config.py)
+          echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > app/price_reposter_user.session
+          echo "✅ Session file created at app/price_reposter_user.session"
           
           # Проверяем созданный файл
           echo "=== Проверка файла ==="
-          ls -l app/user.session
-          echo "Размер: $(wc -c < app/user.session) байт"
+          ls -l app/price_reposter_user.session
+          echo "Размер: $(wc -c < app/price_reposter_user.session) байт"
           
           # Проверяем первые байты
           echo "Заголовок (первые 6 байт в hex):"
-          head -c 6 app/user.session | xxd
+          head -c 6 app/price_reposter_user.session | xxd
           
-          # Показываем содержимое папки app/ для отладки
-          echo "=== Содержимое папки app/ ==="
-          ls -la app/
-      # ==========================================
+          # Проверяем, что файл SQLite
+          echo "Проверка формата:"
+          file app/price_reposter_user.session
+          
+          # Показываем все файлы сессий в app/
+          echo "=== Все файлы сессий в app/ ==="
+          find app/ -name "*.session" -type f | xargs ls -l
+          
+          # Дополнительная проверка конфига
+          echo "=== Проверка конфигурации ==="
+          echo "USER_SESSION_NAME должно быть 'price_reposter_user':"
+          grep "USER_SESSION_NAME" app/config.py
+      # ======================================
 
       - name: Run bot
         env:
@@ -54,5 +63,13 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           SOURCE_CHANNELS: ${{ secrets.SOURCE_CHANNELS }}
           TARGET_CHANNEL: ${{ secrets.TARGET_CHANNEL }}
+          # Дополнительные переменные из config.py
+          MIN_PRICE_TO_IGNORE: ${{ secrets.MIN_PRICE_TO_IGNORE }}
+          REQUEST_DELAY: ${{ secrets.REQUEST_DELAY }}
+          BACKFILL_LIMIT: ${{ secrets.BACKFILL_LIMIT }}
+          DOWNLOAD_DIR: "downloads"
+          LOG_DIR: "logs"
+          ADMIN_BIND_HOST: "0.0.0.0"
+          ADMIN_BIND_PORT: 8000
         run: |
           python -m app.main
