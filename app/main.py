@@ -3,6 +3,7 @@ import asyncio
 import threading
 import traceback
 import re
+import os
 from datetime import datetime
 
 from pyrogram import Client, filters
@@ -31,19 +32,33 @@ def start_fastapi():
 threading.Thread(target=start_fastapi, daemon=True).start()
 
 # ================= CLIENTS =================
+# РАЗДЕЛ ИСПРАВЛЕН: Явные пути к файлам сессий
+# Получаем абсолютный путь к папке, где лежит main.py
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+print(f"[DEBUG] Base directory: {BASE_DIR}")
+print(f"[DEBUG] Files in base dir: {os.listdir(BASE_DIR)}")
+
+# Для user_client - файл сессии будет в app/user.session
+USER_SESSION_PATH = os.path.join(BASE_DIR, config.USER_SESSION_NAME)
+print(f"[DEBUG] User session path: {USER_SESSION_PATH}.session")
+print(f"[DEBUG] User session exists: {os.path.exists(USER_SESSION_PATH + '.session')}")
+
 user_client = Client(
-    config.USER_SESSION_NAME,
+    name=USER_SESSION_PATH,  # Явный путь к файлу сессии (без расширения .session)
     api_id=config.API_ID,
     api_hash=config.API_HASH,
-    workdir="."
+    workdir=BASE_DIR  # Рабочая директория = папка app/
 )
 
+# Для bot_client - если используем токен, то файл сессии не нужен
+BOT_SESSION_PATH = os.path.join(BASE_DIR, config.BOT_SESSION_NAME) if hasattr(config, 'BOT_SESSION_NAME') else None
+
 bot_client = Client(
-    config.BOT_SESSION_NAME,
+    name=BOT_SESSION_PATH if BOT_SESSION_PATH else config.BOT_SESSION_NAME,
     api_id=config.API_ID,
     api_hash=config.API_HASH,
-    bot_token=config.BOT_TOKEN,
-    workdir="."
+    bot_token=config.BOT_TOKEN if hasattr(config, 'BOT_TOKEN') else None,
+    workdir=BASE_DIR
 )
 
 # ================= REGEX =================
@@ -166,9 +181,33 @@ async def on_edit(_, msg: Message):
 
 # ================= START =================
 async def main():
+    print("[DEBUG] Starting main()...")
+    
+    # Дополнительная проверка перед стартом
+    user_session_file = USER_SESSION_PATH + '.session'
+    print(f"[DEBUG] Final check - User session file: {user_session_file}")
+    print(f"[DEBUG] File exists: {os.path.exists(user_session_file)}")
+    
+    if os.path.exists(user_session_file):
+        print(f"[DEBUG] File size: {os.path.getsize(user_session_file)} bytes")
+        with open(user_session_file, 'rb') as f:
+            header = f.read(6)
+            print(f"[DEBUG] File header: {header.hex()} (should be '53514c697465' for SQLite)")
+    else:
+        print(f"[DEBUG] ERROR: Session file not found at expected location!")
+        print(f"[DEBUG] Current directory: {os.getcwd()}")
+        print(f"[DEBUG] Files in current dir: {os.listdir('.')}")
+        print(f"[DEBUG] Files in app dir: {os.listdir(BASE_DIR) if BASE_DIR != '.' else 'same as current'}")
+    
     await db.init_db()
+    
+    print("[DEBUG] Starting user_client...")
     await user_client.start()
+    print("[DEBUG] User client started successfully!")
+    
+    print("[DEBUG] Starting bot_client...")
     await bot_client.start()
+    print("[DEBUG] Bot client started successfully!")
 
     for src in config.SOURCE_CHANNELS:
         logger.info(f"BACKFILL {src}")
