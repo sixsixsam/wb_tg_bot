@@ -26,6 +26,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # === ДОБАВЬТЕ ЭТОТ ШАГ! ===
+      - name: Create Telegram session files
+        run: |
+          # Создаем user.session из секрета
+          echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > user.session
+          
+          # Если у вас есть секрет для бота, создаем и его
+          echo "${{ secrets.BOT_SESSION_BASE64 }}" | base64 -d > bot.session
+          
+          # Проверяем что файлы создались (выводим размеры)
+          ls -la *.session
+          echo "Session files created successfully!"
+      # ===========================
+
       - name: Run bot
         env:
           API_ID: ${{ secrets.API_ID }}
