@@ -1,31 +1,44 @@
-# Ваш существующий workflow с исправленным шагом debug:
+name: Debug Session Files
 
-- name: Debug session files
-  run: |
-    # Показываем текущую директорию
-    echo "Current directory: $(pwd)"
-    echo "Directory contents:"
-    ls -la
-    
-    # Создаем user.session
-    echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > user.session
-    
-    # Проверяем созданный файл
-    echo "Checking session file:"
-    file user.session
-    ls -la user.session
-    
-    # Создаем тестовый скрипт
-    cat > test_session.py << 'EOF'
+on:
+  workflow_dispatch:
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyrogram
+
+      - name: Debug session files
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+          
+          echo "Creating user.session from secret..."
+          echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > user.session
+          
+          echo "Checking session file:"
+          file user.session
+          ls -la user.session
+          
+          echo "=== Creating test script ==="
+          cat > test_session.py << 'EOF'
 import os
 from pyrogram import Client
 
 async def test():
     print("Current dir:", os.getcwd())
     print("Files:", os.listdir())
-    
-    # Пробуем инициализировать клиента
-    client = Client("user", workdir=".", api_id=1, api_hash="test")  # Добавлены фиктивные параметры
     
     # Проверяем, есть ли файл сессии
     session_file = "user.session"
@@ -35,14 +48,13 @@ async def test():
         # Пробуем прочитать заголовок
         with open(session_file, 'rb') as f:
             header = f.read(16)
-            print(f"File header: {header.hex()}")
+            print(f"File header (hex): {header.hex()}")
     else:
         print(f"❌ Session file NOT found: {session_file}")
 
 import asyncio
 asyncio.run(test())
 EOF
-    
-    # Запускаем тест
-    echo "=== Running test script ==="
-    python test_session.py
+          
+          echo "=== Running test script ==="
+          python test_session.py
