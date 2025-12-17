@@ -30,7 +30,7 @@ DOWNLOAD_RETRIES = int(os.getenv("DOWNLOAD_RETRIES", 3))
 ALBUM_BUFFER_DELAY = float(os.getenv("ALBUM_BUFFER_DELAY", 1.0))
 
 # ---------- Backfill ----------
-BACKFILL_LIMIT = int(os.getenv("BACKFILL_LIMIT", 50))
+BACKFILL_LIMIT = int(os.getenv("BACKFILL_LIMIT", 70))
 
 # ---------- Логи ----------
 LOG_DIR = os.getenv("LOG_DIR", "logs")
