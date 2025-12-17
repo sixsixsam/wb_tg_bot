@@ -4,6 +4,7 @@ import threading
 import traceback
 import re
 import os
+import sys
 from datetime import datetime
 
 from pyrogram import Client, filters
@@ -29,7 +30,8 @@ async def ping():
 def start_fastapi():
     uvicorn.run(api, host="0.0.0.0", port=config.ADMIN_BIND_PORT)
 
-threading.Thread(target=start_fastapi, daemon=True).start()
+# ЗАКОММЕНТИРУЙТЕ ДЛЯ CRON-ЗАДАЧ - НЕ НУЖЕН СЕРВЕР
+# threading.Thread(target=start_fastapi, daemon=True).start()
 
 # ================= CLIENTS =================
 # РАЗДЕЛ ИСПРАВЛЕН: Явные пути к файлам сессий
@@ -302,14 +304,47 @@ async def main():
             await process_message(m)
             await asyncio.sleep(config.REQUEST_DELAY)
 
-    logger.info("DONE")
+    logger.info("DONE - All messages processed")
     
-    # Корректная остановка
+    # === ИСПРАВЛЕННЫЙ БЛОК ОСТАНОВКИ ===
+    print("🔄 Starting graceful shutdown...")
+    
+    # 1. Останавливаем клиенты (с таймаутом)
     try:
-        await user_client.stop()
-        await bot_client.stop()
-    except RuntimeError as e:
-        logger.warning(f"Ignoring stop error: {e}")
+        if bot_client.is_connected:
+            await asyncio.wait_for(bot_client.stop(), timeout=2.0)
+            print("✅ Bot client stopped")
+    except (asyncio.TimeoutError, Exception) as e:
+        print(f"⚠️ Bot client stop error (ignored): {e}")
+    
+    try:
+        if user_client.is_connected:
+            await asyncio.wait_for(user_client.stop(), timeout=2.0)
+            print("✅ User client stopped")
+    except (asyncio.TimeoutError, Exception) as e:
+        print(f"⚠️ User client stop error (ignored): {e}")
+    
+    # 2. Ждем завершения оставшихся задач
+    await asyncio.sleep(0.5)
+    
+    # 3. Явный выход для cron-задачи
+    print("✅ Bot work completed successfully")
+    return
+
+def run_bot():
+    """Запуск бота с гарантированным завершением для cron"""
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("Bot interrupted by user")
+    except Exception as e:
+        print(f"❌ Bot error: {e}")
+        import traceback
+        traceback.print_exc()
+    finally:
+        print("🏁 Bot process finished")
+        # Гарантированное завершение процесса
+        sys.exit(0)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    run_bot()
