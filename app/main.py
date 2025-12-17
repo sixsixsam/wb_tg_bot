@@ -110,7 +110,7 @@ async def process_message(msg: Message):
 
     text = clean_text(raw)
 
-    new_text, _ = replace_prices_in_text(
+    new_text, price_changes = replace_prices_in_text(
         text=text,
         pro_delta=config.PRICE_PRO_DELTA,
         default_delta=config.PRICE_DEFAULT_DELTA,
@@ -119,9 +119,39 @@ async def process_message(msg: Message):
     )
 
     if not new_text.strip():
+        logger.info(f"SKIP {msg.id} (empty text after cleaning)")
         return
 
-    old_target_id = await db.get_message_target(str(msg.chat.id), msg.id)
+    # Получаем старый текст из базы данных
+    old_target_id, old_text = await db.get_message_target_with_text(str(msg.chat.id), msg.id)
+    
+    # Логируем изменения
+    if old_target_id:
+        logger.info(f"Found existing message in DB: target_id={old_target_id}")
+        
+        if old_text == new_text:
+            logger.info(f"SKIP {msg.id} (text not changed)")
+            return
+        else:
+            # Анализируем различия
+            logger.info(f"Text changed for message {msg.id}")
+            
+            # Логируем изменения цен, если есть
+            if price_changes:
+                logger.info(f"Price changes detected: {price_changes}")
+            
+            # Сравниваем длину текста
+            if len(old_text) != len(new_text):
+                logger.info(f"Text length changed: {len(old_text)} -> {len(new_text)} chars")
+            
+            # Сравниваем первые 50 символов для наглядности
+            old_preview = old_text[:50].replace('\n', ' ')
+            new_preview = new_text[:50].replace('\n', ' ')
+            if old_preview != new_preview:
+                logger.info(f"Text preview changed: '{old_preview}' -> '{new_preview}'")
+    else:
+        logger.info(f"New message {msg.id}, no previous record in DB")
+
     kb = build_keyboard()
     media_file = None
 
@@ -130,6 +160,7 @@ async def process_message(msg: Message):
             media_file = await download_media(msg)
             if old_target_id:
                 # Редактируем существующее сообщение
+                logger.info(f"Editing photo message {msg.id} -> {old_target_id}")
                 sent = await safe(
                     bot_client.edit_message_caption,
                     chat_id=config.TARGET_CHANNEL,
@@ -138,8 +169,11 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
+                if sent:
+                    logger.info(f"✅ Photo message {msg.id} edited successfully")
             else:
                 # Отправляем новое сообщение
+                logger.info(f"Sending new photo message {msg.id}")
                 sent = await safe(
                     bot_client.send_photo,
                     chat_id=config.TARGET_CHANNEL,
@@ -148,11 +182,14 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
+                if sent:
+                    logger.info(f"✅ Photo message {msg.id} sent successfully, target_id={sent.id}")
                 
         elif msg.video:
             media_file = await download_media(msg)
             if old_target_id:
                 # Редактируем существующее сообщение
+                logger.info(f"Editing video message {msg.id} -> {old_target_id}")
                 sent = await safe(
                     bot_client.edit_message_caption,
                     chat_id=config.TARGET_CHANNEL,
@@ -161,8 +198,11 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
+                if sent:
+                    logger.info(f"✅ Video message {msg.id} edited successfully")
             else:
                 # Отправляем новое сообщение
+                logger.info(f"Sending new video message {msg.id}")
                 sent = await safe(
                     bot_client.send_video,
                     chat_id=config.TARGET_CHANNEL,
@@ -171,9 +211,12 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
+                if sent:
+                    logger.info(f"✅ Video message {msg.id} sent successfully, target_id={sent.id}")
         else:
             if old_target_id:
                 # Редактируем существующее текстовое сообщение
+                logger.info(f"Editing text message {msg.id} -> {old_target_id}")
                 sent = await safe(
                     bot_client.edit_message_text,
                     chat_id=config.TARGET_CHANNEL,
@@ -182,8 +225,11 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
+                if sent:
+                    logger.info(f"✅ Text message {msg.id} edited successfully")
             else:
                 # Отправляем новое текстовое сообщение
+                logger.info(f"Sending new text message {msg.id}")
                 sent = await safe(
                     bot_client.send_message,
                     chat_id=config.TARGET_CHANNEL,
@@ -191,6 +237,8 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
+                if sent:
+                    logger.info(f"✅ Text message {msg.id} sent successfully, target_id={sent.id}")
 
         if sent:
             await db.update_message_target(
@@ -200,8 +248,10 @@ async def process_message(msg: Message):
                 datetime.utcnow().isoformat(),
                 new_text[:800]
             )
+            logger.info(f"✅ Database updated for message {msg.id}")
 
-    except Exception:
+    except Exception as e:
+        logger.error(f"❌ Error processing message {msg.id}: {str(e)}")
         logger.error(traceback.format_exc())
     finally:
         if media_file:
