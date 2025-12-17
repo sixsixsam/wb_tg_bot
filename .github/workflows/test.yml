@@ -1,0 +1,32 @@
+- name: Debug session files
+  run: |
+    # Создаем тестовый скрипт
+    cat > test_session.py << 'EOF'
+    import os
+    from pyrogram import Client
+    
+    async def test():
+        print("Current dir:", os.getcwd())
+        print("Files:", os.listdir())
+        
+        # Пробуем инициализировать клиента
+        client = Client("user", workdir=".")
+        
+        # Проверяем, есть ли файл сессии
+        session_file = "user.session"
+        if os.path.exists(session_file):
+            print(f"✅ Session file exists: {session_file}, size: {os.path.getsize(session_file)} bytes")
+            
+            # Пробуем прочитать заголовок
+            with open(session_file, 'rb') as f:
+                header = f.read(16)
+                print(f"File header: {header}")
+        else:
+            print(f"❌ Session file NOT found: {session_file}")
+            
+    import asyncio
+    asyncio.run(test())
+    EOF
+    
+    # Запускаем тест
+    python test_session.py
