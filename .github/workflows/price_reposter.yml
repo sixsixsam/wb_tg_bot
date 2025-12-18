@@ -11,7 +11,8 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 15  # ⬅️ КРИТИЧНО! Максимум 15 минут
+    
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
