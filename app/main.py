@@ -91,15 +91,44 @@ def build_keyboard():
     )
 
 async def safe(func, *args, **kwargs):
-    while True:
+    """ИСПРАВЛЕНА: Убрана бесконечность, добавлены таймауты"""
+    max_retries = 3
+    for attempt in range(max_retries):
         try:
-            return await func(*args, **kwargs)
+            # Таймаут на выполнение функции
+            return await asyncio.wait_for(func(*args, **kwargs), timeout=30.0)
         except FloodWait as fw:
-            logger.warning(f"FloodWait {fw.value}s")
-            await asyncio.sleep(fw.value)
+            logger.warning(f"FloodWait {fw.value}s, attempt {attempt+1}/{max_retries}")
+            await asyncio.sleep(min(fw.value, 300))  # Максимум 5 минут ожидания
+        except asyncio.TimeoutError:
+            logger.error(f"Timeout on attempt {attempt+1}/{max_retries}")
+            if attempt == max_retries - 1:
+                return None
+            await asyncio.sleep(2 ** attempt)  # Exponential backoff
         except RPCError as e:
-            logger.error(f"RPCError: {e}")
-            return None
+            if "MESSAGE_NOT_MODIFIED" in str(e):
+                logger.info(f"Message already up to date")
+                return "already_updated"  # Специальный маркер успеха
+            elif "FLOOD_WAIT" in str(e):
+                # Парсим время ожидания из ошибки
+                import re
+                match = re.search(r"FLOOD_WAIT_(\d+)", str(e))
+                wait_time = int(match.group(1)) if match else 60
+                logger.warning(f"Flood wait {wait_time}s")
+                await asyncio.sleep(min(wait_time, 300))
+                continue
+            else:
+                logger.error(f"RPCError on attempt {attempt+1}: {e}")
+                if attempt == max_retries - 1:
+                    return None
+                await asyncio.sleep(2 ** attempt)
+        except Exception as e:
+            logger.error(f"Unexpected error on attempt {attempt+1}: {e}")
+            if attempt == max_retries - 1:
+                return None
+    
+    logger.error(f"Failed after {max_retries} attempts")
+    return None
 
 # ================= CORE =================
 async def process_message(msg: Message):
@@ -171,8 +200,10 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
-                if sent:
+                if sent and sent != "already_updated":
                     logger.info(f"✅ Photo message {msg.id} edited successfully")
+                elif sent == "already_updated":
+                    logger.info(f"✅ Photo message {msg.id} already up to date")
             else:
                 # Отправляем новое сообщение
                 logger.info(f"Sending new photo message {msg.id}")
@@ -200,8 +231,10 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
-                if sent:
+                if sent and sent != "already_updated":
                     logger.info(f"✅ Video message {msg.id} edited successfully")
+                elif sent == "already_updated":
+                    logger.info(f"✅ Video message {msg.id} already up to date")
             else:
                 # Отправляем новое сообщение
                 logger.info(f"Sending new video message {msg.id}")
@@ -227,8 +260,10 @@ async def process_message(msg: Message):
                     parse_mode=ParseMode.HTML,
                     reply_markup=kb
                 )
-                if sent:
+                if sent and sent != "already_updated":
                     logger.info(f"✅ Text message {msg.id} edited successfully")
+                elif sent == "already_updated":
+                    logger.info(f"✅ Text message {msg.id} already up to date")
             else:
                 # Отправляем новое текстовое сообщение
                 logger.info(f"Sending new text message {msg.id}")
@@ -242,7 +277,8 @@ async def process_message(msg: Message):
                 if sent:
                     logger.info(f"✅ Text message {msg.id} sent successfully, target_id={sent.id}")
 
-        if sent:
+        # Обновляем базу данных
+        if sent and sent != "already_updated":
             await db.update_message_target(
                 str(msg.chat.id),
                 msg.id,
@@ -251,6 +287,16 @@ async def process_message(msg: Message):
                 new_text[:800]
             )
             logger.info(f"✅ Database updated for message {msg.id}")
+        elif sent == "already_updated" and old_target_id:
+            # Обновляем только timestamp для уже актуальных сообщений
+            await db.update_message_target(
+                str(msg.chat.id),
+                msg.id,
+                old_target_id,
+                datetime.utcnow().isoformat(),
+                new_text[:800]
+            )
+            logger.info(f"✅ Database timestamp updated for message {msg.id}")
 
     except Exception as e:
         logger.error(f"❌ Error processing message {msg.id}: {str(e)}")
@@ -298,11 +344,43 @@ async def main():
     await bot_client.start()
     print("[DEBUG] Bot client started successfully!")
 
-    for src in config.SOURCE_CHANNELS:
-        logger.info(f"BACKFILL {src}")
-        async for m in user_client.get_chat_history(src, limit=config.BACKFILL_LIMIT):
-            await process_message(m)
-            await asyncio.sleep(config.REQUEST_DELAY)
+    # ОГРАНИЧЕНИЕ ВРЕМЕНИ НА ВЕСЬ BACKFILL
+    try:
+        for src in config.SOURCE_CHANNELS:
+            logger.info(f"BACKFILL {src}")
+            message_count = 0
+            
+            # Таймаут на получение истории для каждого канала
+            try:
+                async for m in user_client.get_chat_history(src, limit=config.BACKFILL_LIMIT):
+                    if message_count >= config.BACKFILL_LIMIT:
+                        break
+                    
+                    # Таймаут на обработку каждого сообщения
+                    try:
+                        await asyncio.wait_for(
+                            process_message(m), 
+                            timeout=60.0  # 60 секунд на сообщение
+                        )
+                    except asyncio.TimeoutError:
+                        logger.error(f"Timeout processing message {m.id}, skipping")
+                    
+                    await asyncio.sleep(float(config.REQUEST_DELAY))
+                    message_count += 1
+                    
+                logger.info(f"Processed {message_count} messages from {src}")
+                
+            except asyncio.TimeoutError:
+                logger.error(f"Timeout getting history from {src}, moving to next channel")
+                continue
+            except Exception as e:
+                logger.error(f"Error processing channel {src}: {e}")
+                continue
+                
+    except asyncio.CancelledError:
+        logger.warning("Backfill cancelled")
+    except Exception as e:
+        logger.error(f"Critical error in backfill: {e}")
 
     logger.info("DONE - All messages processed")
     
@@ -312,20 +390,20 @@ async def main():
     # 1. Останавливаем клиенты (с таймаутом)
     try:
         if bot_client.is_connected:
-            await asyncio.wait_for(bot_client.stop(), timeout=2.0)
+            await asyncio.wait_for(bot_client.stop(), timeout=5.0)
             print("✅ Bot client stopped")
     except (asyncio.TimeoutError, Exception) as e:
         print(f"⚠️ Bot client stop error (ignored): {e}")
     
     try:
         if user_client.is_connected:
-            await asyncio.wait_for(user_client.stop(), timeout=2.0)
+            await asyncio.wait_for(user_client.stop(), timeout=5.0)
             print("✅ User client stopped")
     except (asyncio.TimeoutError, Exception) as e:
         print(f"⚠️ User client stop error (ignored): {e}")
     
     # 2. Ждем завершения оставшихся задач
-    await asyncio.sleep(0.5)
+    await asyncio.sleep(1.0)
     
     # 3. Явный выход для cron-задачи
     print("✅ Bot work completed successfully")
@@ -334,7 +412,11 @@ async def main():
 def run_bot():
     """Запуск бота с гарантированным завершением для cron"""
     try:
-        asyncio.run(main())
+        # ГЛАВНЫЙ ТАЙМАУТ: 10 минут на весь бота
+        asyncio.run(asyncio.wait_for(main(), timeout=600.0))
+        print("✅ Bot completed within timeout")
+    except asyncio.TimeoutError:
+        print("❌ Bot timeout after 10 minutes - forcing exit")
     except KeyboardInterrupt:
         print("Bot interrupted by user")
     except Exception as e:
