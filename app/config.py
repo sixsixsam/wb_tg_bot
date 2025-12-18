@@ -37,6 +37,14 @@ LOG_DIR = os.getenv("LOG_DIR", "logs")
 LOG_MAX_BYTES = 10 * 1024 * 1024
 LOG_BACKUP_COUNT = 5
 
+# config.py - добавьте в конец:
+
+# ================= ТАЙМАУТЫ =================
+MAX_RETRIES = int(os.getenv("MAX_RETRIES", 3))
+REQUEST_TIMEOUT = float(os.getenv("REQUEST_TIMEOUT", 30.0))
+MESSAGE_PROCESS_TIMEOUT = float(os.getenv("MESSAGE_PROCESS_TIMEOUT", 60.0))
+TOTAL_BOT_TIMEOUT = float(os.getenv("TOTAL_BOT_TIMEOUT", 600.0))  # 10 минут
+
 # ---------- Админ ----------
 ADMIN_BIND_HOST = os.getenv("ADMIN_BIND_HOST", "127.0.0.1")
 ADMIN_BIND_PORT = int(os.getenv("ADMIN_BIND_PORT", 8000))
