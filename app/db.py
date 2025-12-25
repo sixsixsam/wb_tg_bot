@@ -1,21 +1,70 @@
 # app/db.py
 import aiosqlite
 import os
+import sqlite3
+from pathlib import Path
 from . import config
 
-DB_PATH = os.getenv("DB_PATH", "reposter.db")
+# БД всегда в корне проекта для доступа из workflow
+BASE_DIR = Path(__file__).parent.parent  # Поднимаемся из app/ в корень
+DB_PATH = BASE_DIR / "reposter.db"
 
 db_conn = None  # persistent connection
 
 
 async def init_db():
     global db_conn
-    db_conn = await aiosqlite.connect(DB_PATH)
-
-    # Удаляем старую таблицу для чистой схемы (если нужно, убрать на проде!)
-    # await db_conn.execute("DROP TABLE IF EXISTS messages;")
-
-    # Создаем таблицы
+    
+    print(f"[DB] Database path: {DB_PATH}")
+    print(f"[DB] Database exists: {DB_PATH.exists()}")
+    
+    # Если БД не существует - создаем её
+    if not DB_PATH.exists():
+        print("[DB] Creating new database...")
+        # Создаем БД с помощью sync sqlite3 (проще)
+        sync_conn = sqlite3.connect(str(DB_PATH))
+        cursor = sync_conn.cursor()
+        
+        # Создаем таблицы
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS messages (
+                source_channel TEXT NOT NULL,
+                source_message_id INTEGER NOT NULL,
+                target_message_id INTEGER,
+                message_type TEXT DEFAULT 'text',
+                processed_at TEXT,
+                summary TEXT,
+                PRIMARY KEY (source_channel, source_message_id)
+            );
+        """)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS errors (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                source_channel TEXT,
+                source_message_id INTEGER,
+                error_text TEXT,
+                traceback TEXT,
+                created_at TEXT
+            );
+        """)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS settings (
+                key TEXT PRIMARY KEY,
+                value TEXT
+            );
+        """)
+        
+        sync_conn.commit()
+        sync_conn.close()
+        print(f"[DB] New database created: {DB_PATH}")
+    
+    # Подключаемся с помощью aiosqlite
+    db_conn = await aiosqlite.connect(str(DB_PATH))
+    
+    # Включаем поддержку ON CONFLICT
+    await db_conn.execute("PRAGMA foreign_keys = ON")
+    
+    # Создаем таблицы если их еще нет (на всякий случай)
     await db_conn.execute("""
         CREATE TABLE IF NOT EXISTS messages (
             source_channel TEXT NOT NULL,
@@ -44,6 +93,11 @@ async def init_db():
         );
     """)
     await db_conn.commit()
+    
+    # Проверяем сколько записей уже есть
+    async with db_conn.execute("SELECT COUNT(*) FROM messages") as cur:
+        count = await cur.fetchone()
+        print(f"[DB] Total messages in database: {count[0]}")
 
 
 async def get_message_target(source_channel, source_message_id):
@@ -75,19 +129,14 @@ async def update_message_target(
     summary,
     message_type="text"
 ):
-    # ON CONFLICT сработает только если есть PRIMARY KEY (у нас source_channel+source_message_id)
+    # Используем INSERT OR REPLACE для простоты
     await db_conn.execute("""
-        INSERT INTO messages (
+        INSERT OR REPLACE INTO messages (
             source_channel, source_message_id,
             target_message_id, message_type,
             processed_at, summary
         )
         VALUES (?, ?, ?, ?, ?, ?)
-        ON CONFLICT(source_channel, source_message_id) DO UPDATE SET
-            target_message_id=excluded.target_message_id,
-            processed_at=excluded.processed_at,
-            summary=excluded.summary,
-            message_type=excluded.message_type
     """, (
         source_channel,
         source_message_id,
@@ -114,3 +163,10 @@ async def save_error(source_channel, source_message_id, error_text, traceback_te
         created_at
     ))
     await db_conn.commit()
+
+
+async def close_db():
+    """Закрыть соединение с БД"""
+    if db_conn:
+        await db_conn.close()
+        print("[DB] Database connection closed")
