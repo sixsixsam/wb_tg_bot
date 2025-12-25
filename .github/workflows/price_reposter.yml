@@ -13,7 +13,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 15  # ⬅️ КРИТИЧНО! Максимум 15 минут
+    timeout-minutes: 15
     
     steps:
       - name: Checkout repo WITH database
@@ -57,8 +57,8 @@ jobs:
           else
             echo "⚠️ База данных не найдена. Создаем новую..."
             
-            # Создаем новую БД
-            python3 -c "
+            # Создаем новый Python скрипт для создания БД
+            cat > create_db.py << 'EOF'
 import sqlite3
 import os
 
@@ -113,7 +113,10 @@ conn.close()
 
 print(f'✅ Создана новая база данных: {db_path}')
 print(f'Размер: {os.path.getsize(db_path)} байт')
-"
+EOF
+            
+            python3 create_db.py
+            rm -f create_db.py
             
             echo "✅ Новая БД создана"
             ls -lh reposter.db
@@ -151,7 +154,6 @@ print(f'Размер: {os.path.getsize(db_path)} байт')
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           SOURCE_CHANNELS: ${{ secrets.SOURCE_CHANNELS }}
           TARGET_CHANNEL: ${{ secrets.TARGET_CHANNEL }}
-          # Дополнительные переменные из config.py (с значениями по умолчанию)
           MIN_PRICE_TO_IGNORE: "10000.0"
           REQUEST_DELAY: "0.45"
           BACKFILL_LIMIT: "500"
@@ -236,5 +238,4 @@ print(f'Размер: {os.path.getsize(db_path)} байт')
           path: |
             reposter.db
             app/price_reposter_user.session
-            app/*.log
           retention-days: 7
