@@ -12,10 +12,11 @@ jobs:
     timeout-minutes: 15
     
     steps:
-      - name: Checkout repo
+      - name: Checkout repo with write permissions
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true  # ⬅️ ВАЖНО!
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -41,38 +42,33 @@ jobs:
         run: |
           python -m app.main
       
-      # ⬇⬇⬇ КОММИТ БД В РЕПОЗИТОРИЙ ⬇⬇⬇
       - name: Commit and push database
         if: always()
         run: |
-          # Настраиваем git
-          git config --global user.email "actions@github.com"
+          git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           
-          # Проверяем, существует ли БД
           if [ -f "reposter.db" ]; then
             echo "Database file exists, checking for changes..."
             
-            # Добавляем БД в git
-            git add reposter.db
+            # Сначала проверяем статус
+            git status
+            
+            # Используем -f для добавления
+            git add -f reposter.db
             
             # Проверяем есть ли изменения
             if ! git diff --cached --quiet; then
               echo "Database changed, committing..."
               git commit -m "Update reposter.db [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
               
-              # Пробуем запушить несколько раз (на случай конфликтов)
-              for i in 1 2 3; do
-                echo "Push attempt $i/3..."
-                if git push origin main; then
-                  echo "✅ Database pushed successfully!"
-                  break
-                else
-                  echo "⚠️ Push failed, pulling latest changes..."
-                  git pull origin main --rebase
-                  sleep 2
-                fi
-              done
+              # Пробуем запушить
+              if git push; then
+                echo "✅ Database pushed successfully!"
+              else
+                echo "⚠️ Push failed, trying with origin main..."
+                git push origin HEAD:main
+              fi
             else
               echo "✅ No changes in database"
             fi
@@ -80,3 +76,13 @@ jobs:
             echo "⚠️ Database file not found!"
             ls -la
           fi
+      
+      # Все равно загружаем как артефакт для надежности
+      - name: Upload database artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: telegram-bot-files
+          path: |
+            reposter.db
+          retention-days: 7
