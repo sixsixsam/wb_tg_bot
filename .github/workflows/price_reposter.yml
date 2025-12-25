@@ -2,9 +2,7 @@ name: Telegram Price Reposter
 
 on:
   schedule:
-    # 06:00 МСК = 03:00 UTC
     - cron: "0 3 * * *"
-    # 12:00 МСК = 09:00 UTC
     - cron: "0 9 * * *"
   workflow_dispatch:
   push:
@@ -16,49 +14,30 @@ jobs:
     timeout-minutes: 15
     
     steps:
-      - name: Checkout repo WITH database
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
+      
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
+      
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Create app directory
-        run: |
           mkdir -p app
-          echo "=== Содержимое репозитория ==="
-          ls -la
-
+      
       - name: Create database if missing
         run: |
-          echo "=== Проверка базы данных ==="
-          
-          if [ -f "reposter.db" ]; then
-            echo "✅ База данных найдена: reposter.db"
-            ls -lh reposter.db
-          else
-            echo "⚠️ База данных не найдена. Создаем новую..."
-            
-            # Создаем простой скрипт для создания БД
-            cat > create_db.py << 'EOF'
+          if [ ! -f "reposter.db" ]; then
+            echo "Creating new database..."
+            # Создаем отдельный файл для создания БД
+            cat > /tmp/create_db.py << "END"
 import sqlite3
-import os
-
-db_path = 'reposter.db'
-conn = sqlite3.connect(db_path)
+conn = sqlite3.connect('reposter.db')
 cursor = conn.cursor()
-
-# Создаем таблицу messages
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS messages (
+    CREATE TABLE messages (
         source_channel TEXT NOT NULL,
         source_message_id INTEGER NOT NULL,
         target_message_id INTEGER,
@@ -68,38 +47,21 @@ cursor.execute('''
         PRIMARY KEY (source_channel, source_message_id)
     )
 ''')
-
-# Создаем индекс
-cursor.execute('''
-    CREATE INDEX IF NOT EXISTS idx_source_message 
-    ON messages (source_channel, source_message_id)
-''')
-
 conn.commit()
 conn.close()
-
-print(f'✅ Создана новая база данных: {db_path}')
-EOF
-            
-            python3 create_db.py
-            rm -f create_db.py
-            
-            echo "✅ Новая БД создана"
+print('Database created: reposter.db')
+END
+            python3 /tmp/create_db.py
+          else
+            echo "Database already exists"
             ls -lh reposter.db
           fi
-
-      # === СОЗДАНИЕ ФАЙЛА СЕССИИ ===
+      
       - name: Create Telegram session file
         run: |
-          # Создаем price_reposter_user.session (как указано в config.py)
           echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > app/price_reposter_user.session
-          echo "✅ Session file created at app/price_reposter_user.session"
-          
-          # Проверяем созданный файл
-          echo "=== Проверка файла ==="
-          ls -l app/price_reposter_user.session
-          echo "Размер: $(wc -c < app/price_reposter_user.session) байт"
-
+          echo "Session file created"
+      
       - name: Run bot
         env:
           API_ID: ${{ secrets.API_ID }}
@@ -115,54 +77,24 @@ EOF
           ADMIN_BIND_HOST: "0.0.0.0"
           ADMIN_BIND_PORT: "8000"
         run: |
-          echo "=== Запуск бота ==="
           cd app
           python main.py
-          
-          echo "=== Проверка после работы ==="
-          cd ..
-          if [ -f "reposter.db" ]; then
-            echo "✅ База данных обновлена"
-            ls -lh reposter.db
-          fi
-
-      - name: Commit updated database
+      
+      - name: Commit database changes
         if: always()
         run: |
-          echo "=== Коммит обновленной БД ==="
-          
-          if [ -f "reposter.db" ]; then
-            git config --global user.email "actions@github.com"
-            git config --global user.name "GitHub Actions"
-            
-            git add reposter.db
-            
-            if git diff --cached --quiet; then
-              echo "✅ Нет изменений в БД"
-            else
-              echo "✅ Есть изменения, коммитим..."
-              git commit -m "Update reposter.db [$(date +'%Y-%m-%d %H:%M:%S')]"
-              
-              # Пробуем запушить несколько раз
-              for i in 1 2 3; do
-                if git push origin main; then
-                  echo "✅ Успешно запушили изменения"
-                  break
-                else
-                  echo "⚠️ Попытка $i не удалась, пробуем снова..."
-                  sleep 2
-                  git pull origin main --rebase
-                fi
-              done
-            fi
-          fi
-
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add reposter.db
+          git diff --cached --quiet || git commit -m "Update database [$(date +'%Y-%m-%d %H:%M:%S')]"
+          git push origin main
+      
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: bot-artifacts
+          name: bot-files
           path: |
             reposter.db
             app/price_reposter_user.session
-          retention-days: 3
+          retention-days: 7
