@@ -5,8 +5,6 @@ on:
     - cron: "0 3 * * *"
     - cron: "0 9 * * *"
   workflow_dispatch:
-  push:
-    branches: [ main ]
 
 jobs:
   run:
@@ -14,11 +12,9 @@ jobs:
     timeout-minutes: 15
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       
@@ -26,36 +22,6 @@ jobs:
         run: |
           pip install -r requirements.txt
           mkdir -p app
-      
-      - name: Create database if missing
-        run: |
-          if [ ! -f "reposter.db" ]; then
-            echo "Creating new database..."
-            # Создаем отдельный файл для создания БД
-            cat > /tmp/create_db.py << "END"
-import sqlite3
-conn = sqlite3.connect('reposter.db')
-cursor = conn.cursor()
-cursor.execute('''
-    CREATE TABLE messages (
-        source_channel TEXT NOT NULL,
-        source_message_id INTEGER NOT NULL,
-        target_message_id INTEGER,
-        message_type TEXT DEFAULT 'text',
-        processed_at TEXT,
-        summary TEXT,
-        PRIMARY KEY (source_channel, source_message_id)
-    )
-''')
-conn.commit()
-conn.close()
-print('Database created: reposter.db')
-END
-            python3 /tmp/create_db.py
-          else
-            echo "Database already exists"
-            ls -lh reposter.db
-          fi
       
       - name: Create Telegram session file
         run: |
@@ -77,24 +43,7 @@ END
           ADMIN_BIND_HOST: "0.0.0.0"
           ADMIN_BIND_PORT: "8000"
         run: |
+          echo "=== Запуск бота ==="
           cd app
           python main.py
-      
-      - name: Commit database changes
-        if: always()
-        run: |
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git add reposter.db
-          git diff --cached --quiet || git commit -m "Update database [$(date +'%Y-%m-%d %H:%M:%S')]"
-          git push origin main
-      
-      - name: Upload artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: bot-files
-          path: |
-            reposter.db
-            app/price_reposter_user.session
-          retention-days: 7
+          echo "=== Бот завершил работу ==="
