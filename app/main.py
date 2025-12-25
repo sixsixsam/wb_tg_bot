@@ -34,25 +34,21 @@ def start_fastapi():
 # threading.Thread(target=start_fastapi, daemon=True).start()
 
 # ================= CLIENTS =================
-# РАЗДЕЛ ИСПРАВЛЕН: Явные пути к файлам сессий
-# Получаем абсолютный путь к папке, где лежит main.py
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 print(f"[DEBUG] Base directory: {BASE_DIR}")
 print(f"[DEBUG] Files in base dir: {os.listdir(BASE_DIR)}")
 
-# Для user_client - файл сессии будет в app/user.session
 USER_SESSION_PATH = os.path.join(BASE_DIR, config.USER_SESSION_NAME)
 print(f"[DEBUG] User session path: {USER_SESSION_PATH}.session")
 print(f"[DEBUG] User session exists: {os.path.exists(USER_SESSION_PATH + '.session')}")
 
 user_client = Client(
-    name=USER_SESSION_PATH,  # Явный путь к файлу сессии (без расширения .session)
+    name=USER_SESSION_PATH,
     api_id=config.API_ID,
     api_hash=config.API_HASH,
-    workdir=BASE_DIR  # Рабочая директория = папка app/
+    workdir=BASE_DIR
 )
 
-# Для bot_client - если используем токен, то файл сессии не нужен
 BOT_SESSION_PATH = os.path.join(BASE_DIR, config.BOT_SESSION_NAME) if hasattr(config, 'BOT_SESSION_NAME') else None
 
 bot_client = Client(
@@ -99,18 +95,17 @@ async def safe(func, *args, **kwargs):
             return await asyncio.wait_for(func(*args, **kwargs), timeout=30.0)
         except FloodWait as fw:
             logger.warning(f"FloodWait {fw.value}s, attempt {attempt+1}/{max_retries}")
-            await asyncio.sleep(min(fw.value, 300))  # Максимум 5 минут ожидания
+            await asyncio.sleep(min(fw.value, 300))
         except asyncio.TimeoutError:
             logger.error(f"Timeout on attempt {attempt+1}/{max_retries}")
             if attempt == max_retries - 1:
                 return None
-            await asyncio.sleep(2 ** attempt)  # Exponential backoff
+            await asyncio.sleep(2 ** attempt)
         except RPCError as e:
             if "MESSAGE_NOT_MODIFIED" in str(e):
                 logger.info(f"Message already up to date")
-                return "already_updated"  # Специальный маркер успеха
+                return "already_updated"
             elif "FLOOD_WAIT" in str(e):
-                # Парсим время ожидания из ошибки
                 import re
                 match = re.search(r"FLOOD_WAIT_(\d+)", str(e))
                 wait_time = int(match.group(1)) if match else 60
@@ -164,22 +159,9 @@ async def process_message(msg: Message):
             logger.info(f"SKIP {msg.id} (text not changed)")
             return
         else:
-            # Анализируем различия
             logger.info(f"Text changed for message {msg.id}")
-            
-            # Логируем изменения цен, если есть
             if price_changes:
                 logger.info(f"Price changes detected: {price_changes}")
-            
-            # Сравниваем длину текста
-            if len(old_text) != len(new_text):
-                logger.info(f"Text length changed: {len(old_text)} -> {len(new_text)} chars")
-            
-            # Сравниваем первые 50 символов для наглядности
-            old_preview = old_text[:50].replace('\n', ' ')
-            new_preview = new_text[:50].replace('\n', ' ')
-            if old_preview != new_preview:
-                logger.info(f"Text preview changed: '{old_preview}' -> '{new_preview}'")
     else:
         logger.info(f"New message {msg.id}, no previous record in DB")
 
@@ -190,7 +172,6 @@ async def process_message(msg: Message):
         if msg.photo:
             media_file = await download_media(msg)
             if old_target_id:
-                # Редактируем существующее сообщение
                 logger.info(f"Editing photo message {msg.id} -> {old_target_id}")
                 sent = await safe(
                     bot_client.edit_message_caption,
@@ -205,7 +186,6 @@ async def process_message(msg: Message):
                 elif sent == "already_updated":
                     logger.info(f"✅ Photo message {msg.id} already up to date")
             else:
-                # Отправляем новое сообщение
                 logger.info(f"Sending new photo message {msg.id}")
                 sent = await safe(
                     bot_client.send_photo,
@@ -221,7 +201,6 @@ async def process_message(msg: Message):
         elif msg.video:
             media_file = await download_media(msg)
             if old_target_id:
-                # Редактируем существующее сообщение
                 logger.info(f"Editing video message {msg.id} -> {old_target_id}")
                 sent = await safe(
                     bot_client.edit_message_caption,
@@ -236,7 +215,6 @@ async def process_message(msg: Message):
                 elif sent == "already_updated":
                     logger.info(f"✅ Video message {msg.id} already up to date")
             else:
-                # Отправляем новое сообщение
                 logger.info(f"Sending new video message {msg.id}")
                 sent = await safe(
                     bot_client.send_video,
@@ -250,7 +228,6 @@ async def process_message(msg: Message):
                     logger.info(f"✅ Video message {msg.id} sent successfully, target_id={sent.id}")
         else:
             if old_target_id:
-                # Редактируем существующее текстовое сообщение
                 logger.info(f"Editing text message {msg.id} -> {old_target_id}")
                 sent = await safe(
                     bot_client.edit_message_text,
@@ -265,7 +242,6 @@ async def process_message(msg: Message):
                 elif sent == "already_updated":
                     logger.info(f"✅ Text message {msg.id} already up to date")
             else:
-                # Отправляем новое текстовое сообщение
                 logger.info(f"Sending new text message {msg.id}")
                 sent = await safe(
                     bot_client.send_message,
@@ -288,7 +264,6 @@ async def process_message(msg: Message):
             )
             logger.info(f"✅ Database updated for message {msg.id}")
         elif sent == "already_updated" and old_target_id:
-            # Обновляем только timestamp для уже актуальных сообщений
             await db.update_message_target(
                 str(msg.chat.id),
                 msg.id,
@@ -316,24 +291,9 @@ async def on_edit(_, msg: Message):
 
 # ================= START =================
 async def main():
-    print("[DEBUG] Starting main()...")
+    print("🚀 Starting bot...")
     
-    # Дополнительная проверка перед стартом
-    user_session_file = USER_SESSION_PATH + '.session'
-    print(f"[DEBUG] Final check - User session file: {user_session_file}")
-    print(f"[DEBUG] File exists: {os.path.exists(user_session_file)}")
-    
-    if os.path.exists(user_session_file):
-        print(f"[DEBUG] File size: {os.path.getsize(user_session_file)} bytes")
-        with open(user_session_file, 'rb') as f:
-            header = f.read(6)
-            print(f"[DEBUG] File header: {header.hex()} (should be '53514c697465' for SQLite)")
-    else:
-        print(f"[DEBUG] ERROR: Session file not found at expected location!")
-        print(f"[DEBUG] Current directory: {os.getcwd()}")
-        print(f"[DEBUG] Files in current dir: {os.listdir('.')}")
-        print(f"[DEBUG] Files in app dir: {os.listdir(BASE_DIR) if BASE_DIR != '.' else 'same as current'}")
-    
+    # Инициализируем БД (она сама создастся если нужно)
     await db.init_db()
     
     print("[DEBUG] Starting user_client...")
@@ -344,7 +304,7 @@ async def main():
     await bot_client.start()
     print("[DEBUG] Bot client started successfully!")
 
-    # ИСПРАВЛЕННЫЙ BACKFILL С ПРАВИЛЬНЫМ ПОРЯДКОМ
+    # BACKFILL С ПРАВИЛЬНЫМ ПОРЯДКОМ (РЕВЕРС)
     try:
         for src in config.SOURCE_CHANNELS:
             logger.info(f"BACKFILL {src}")
@@ -369,11 +329,10 @@ async def main():
                 for i, m in enumerate(messages, 1):
                     logger.info(f"Processing {i}/{len(messages)} (message ID: {m.id})")
                     
-                    # Таймаут на обработку каждого сообщения
                     try:
                         await asyncio.wait_for(
                             process_message(m), 
-                            timeout=60.0  # 60 секунд на сообщение
+                            timeout=60.0
                         )
                     except asyncio.TimeoutError:
                         logger.error(f"Timeout processing message {m.id}, skipping")
@@ -394,32 +353,31 @@ async def main():
     except Exception as e:
         logger.error(f"Critical error in backfill: {e}")
 
-    logger.info("DONE - All messages processed")
+    logger.info("✅ Bot work completed successfully")
     
-    # === ИСПРАВЛЕННЫЙ БЛОК ОСТАНОВКИ ===
-    print("🔄 Starting graceful shutdown...")
-    
-    # 1. Останавливаем клиенты (с таймаутом)
+    # Останавливаем клиенты
     try:
         if bot_client.is_connected:
-            await asyncio.wait_for(bot_client.stop(), timeout=5.0)
+            await bot_client.stop()
             print("✅ Bot client stopped")
-    except (asyncio.TimeoutError, Exception) as e:
-        print(f"⚠️ Bot client stop error (ignored): {e}")
+    except Exception as e:
+        print(f"⚠️ Bot client stop error: {e}")
     
     try:
         if user_client.is_connected:
-            await asyncio.wait_for(user_client.stop(), timeout=5.0)
+            await user_client.stop()
             print("✅ User client stopped")
-    except (asyncio.TimeoutError, Exception) as e:
-        print(f"⚠️ User client stop error (ignored): {e}")
+    except Exception as e:
+        print(f"⚠️ User client stop error: {e}")
     
-    # 2. Ждем завершения оставшихся задач
-    await asyncio.sleep(1.0)
+    # Закрываем БД
+    try:
+        await db.close_db()
+        print("✅ Database closed")
+    except Exception as e:
+        print(f"⚠️ Database close error: {e}")
     
-    # 3. Явный выход для cron-задачи
-    print("✅ Bot work completed successfully")
-    return
+    print("🎉 Bot finished")
 
 def run_bot():
     """Запуск бота с гарантированным завершением для cron"""
@@ -437,7 +395,6 @@ def run_bot():
         traceback.print_exc()
     finally:
         print("🏁 Bot process finished")
-        # Гарантированное завершение процесса
         sys.exit(0)
 
 if __name__ == "__main__":
