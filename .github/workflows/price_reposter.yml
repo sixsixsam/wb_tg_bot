@@ -20,7 +20,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -37,35 +36,23 @@ jobs:
           mkdir -p app
           echo "=== Содержимое репозитория ==="
           ls -la
-          echo "=== Файлы в app/ ==="
-          ls -la app/ 2>/dev/null || echo "app/ пустой"
 
-      - name: Check and create database if missing
+      - name: Create database if missing
         run: |
           echo "=== Проверка базы данных ==="
           
           if [ -f "reposter.db" ]; then
             echo "✅ База данных найдена: reposter.db"
             ls -lh reposter.db
-            
-            # Проверяем структуру БД
-            echo "=== Проверка структуры БД ==="
-            if command -v sqlite3 &> /dev/null; then
-              sqlite3 reposter.db ".tables" || echo "Не удалось прочитать БД"
-              sqlite3 reposter.db "SELECT COUNT(*) FROM messages;" 2>/dev/null || echo "Таблица messages не найдена"
-            fi
           else
             echo "⚠️ База данных не найдена. Создаем новую..."
             
-            # Создаем новый Python скрипт для создания БД
+            # Создаем простой скрипт для создания БД
             cat > create_db.py << 'EOF'
 import sqlite3
 import os
 
 db_path = 'reposter.db'
-if os.path.exists(db_path):
-    os.remove(db_path)
-
 conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
@@ -82,26 +69,6 @@ cursor.execute('''
     )
 ''')
 
-# Создаем таблицу errors
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS errors (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        source_channel TEXT,
-        source_message_id INTEGER,
-        error_text TEXT,
-        traceback TEXT,
-        created_at TEXT
-    )
-''')
-
-# Создаем таблицу settings
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS settings (
-        key TEXT PRIMARY KEY,
-        value TEXT
-    )
-''')
-
 # Создаем индекс
 cursor.execute('''
     CREATE INDEX IF NOT EXISTS idx_source_message 
@@ -112,7 +79,6 @@ conn.commit()
 conn.close()
 
 print(f'✅ Создана новая база данных: {db_path}')
-print(f'Размер: {os.path.getsize(db_path)} байт')
 EOF
             
             python3 create_db.py
@@ -133,19 +99,6 @@ EOF
           echo "=== Проверка файла ==="
           ls -l app/price_reposter_user.session
           echo "Размер: $(wc -c < app/price_reposter_user.session) байт"
-          
-          # Проверяем первые байты
-          echo "Заголовок (первые 6 байт в hex):"
-          head -c 6 app/price_reposter_user.session | xxd
-          
-          # Проверяем, что файл SQLite
-          echo "Проверка формата:"
-          file app/price_reposter_user.session
-          
-          # Показываем все файлы сессий в app/
-          echo "=== Все файлы сессий в app/ ==="
-          find app/ -name "*.session" -type f | xargs ls -l
-      # ======================================
 
       - name: Run bot
         env:
@@ -171,71 +124,45 @@ EOF
           if [ -f "reposter.db" ]; then
             echo "✅ База данных обновлена"
             ls -lh reposter.db
-            
-            # Показываем статистику
-            if command -v sqlite3 &> /dev/null; then
-              echo "=== Статистика БД ==="
-              sqlite3 reposter.db "SELECT COUNT(*) as 'Всего записей' FROM messages;" 2>/dev/null || echo "Ошибка чтения БД"
-              sqlite3 reposter.db "SELECT MAX(processed_at) as 'Последнее обновление' FROM messages;" 2>/dev/null || echo "Ошибка чтения БД"
-            fi
           fi
 
-      - name: Commit updated database back to repo
+      - name: Commit updated database
         if: always()
         run: |
-          echo "=== Коммит обновленной БД в репозиторий ==="
+          echo "=== Коммит обновленной БД ==="
           
-          # Проверяем, изменилась ли БД
           if [ -f "reposter.db" ]; then
-            echo "Проверяем изменения в БД..."
-            
-            # Добавляем БД в git
             git config --global user.email "actions@github.com"
             git config --global user.name "GitHub Actions"
             
-            # Сначала получаем последние изменения
-            git pull origin main --rebase || true
-            
-            # Добавляем БД
             git add reposter.db
             
-            # Проверяем есть ли изменения
-            if ! git diff --cached --quiet; then
-              echo "✅ Есть изменения в БД, коммитим..."
-              git commit -m "Update reposter.db from GitHub Actions [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
+            if git diff --cached --quiet; then
+              echo "✅ Нет изменений в БД"
+            else
+              echo "✅ Есть изменения, коммитим..."
+              git commit -m "Update reposter.db [$(date +'%Y-%m-%d %H:%M:%S')]"
               
-              # Пытаемся запушить
-              attempts=0
-              max_attempts=3
-              
-              while [ $attempts -lt $max_attempts ]; do
+              # Пробуем запушить несколько раз
+              for i in 1 2 3; do
                 if git push origin main; then
-                  echo "✅ БД успешно закоммичена и запущена"
+                  echo "✅ Успешно запушили изменения"
                   break
                 else
-                  attempts=$((attempts+1))
-                  echo "⚠️ Попытка $attempts/$max_attempts не удалась, пробуем снова..."
+                  echo "⚠️ Попытка $i не удалась, пробуем снова..."
                   sleep 2
                   git pull origin main --rebase
                 fi
               done
-              
-              if [ $attempts -eq $max_attempts ]; then
-                echo "⚠️ Не удалось запушить изменения, но БД обновлена локально"
-              fi
-            else
-              echo "✅ Нет изменений в БД"
             fi
-          else
-            echo "⚠️ Файл БД не найден для коммита"
           fi
 
-      - name: Upload database as artifact
+      - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: telegram-bot-database
+          name: bot-artifacts
           path: |
             reposter.db
             app/price_reposter_user.session
-          retention-days: 7
+          retention-days: 3
