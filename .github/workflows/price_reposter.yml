@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     
+    # 🔑 ДОБАВЬ ЭТОТ БЛОК С ПРАВАМИ:
+    permissions:
+      contents: write  # Это главное право для записи в репозиторий
+      actions: read    # Даем право читать Actions
+    
     steps:
       - name: Checkout repo with write permissions
         uses: actions/checkout@v4
