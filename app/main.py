@@ -344,17 +344,30 @@ async def main():
     await bot_client.start()
     print("[DEBUG] Bot client started successfully!")
 
-    # ОГРАНИЧЕНИЕ ВРЕМЕНИ НА ВЕСЬ BACKFILL
+    # ИСПРАВЛЕННЫЙ BACKFILL С ПРАВИЛЬНЫМ ПОРЯДКОМ
     try:
         for src in config.SOURCE_CHANNELS:
             logger.info(f"BACKFILL {src}")
             message_count = 0
             
-            # Таймаут на получение истории для каждого канала
             try:
+                # Собираем сообщения в список
+                messages = []
                 async for m in user_client.get_chat_history(src, limit=config.BACKFILL_LIMIT):
+                    messages.append(m)
+                    message_count += 1
                     if message_count >= config.BACKFILL_LIMIT:
                         break
+                
+                logger.info(f"Collected {len(messages)} messages from {src}")
+                
+                # РЕВЕРСИРУЕМ ПОРЯДОК: старые сообщения → новые
+                messages.reverse()
+                logger.info(f"Reversed order: processing from oldest to newest")
+                
+                # Обрабатываем в правильном порядке (от старых к новым)
+                for i, m in enumerate(messages, 1):
+                    logger.info(f"Processing {i}/{len(messages)} (message ID: {m.id})")
                     
                     # Таймаут на обработку каждого сообщения
                     try:
@@ -366,9 +379,8 @@ async def main():
                         logger.error(f"Timeout processing message {m.id}, skipping")
                     
                     await asyncio.sleep(float(config.REQUEST_DELAY))
-                    message_count += 1
                     
-                logger.info(f"Processed {message_count} messages from {src}")
+                logger.info(f"✅ Processed {len(messages)} messages from {src} in correct order")
                 
             except asyncio.TimeoutError:
                 logger.error(f"Timeout getting history from {src}, moving to next channel")
