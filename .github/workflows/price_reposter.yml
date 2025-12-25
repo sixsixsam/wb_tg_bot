@@ -7,6 +7,8 @@ on:
     # 12:00 МСК = 09:00 UTC
     - cron: "0 9 * * *"
   workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
   run:
@@ -14,8 +16,11 @@ jobs:
     timeout-minutes: 15  # ⬅️ КРИТИЧНО! Максимум 15 минут
     
     steps:
-      - name: Checkout repo
+      - name: Checkout repo WITH database
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -26,6 +31,93 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Create app directory
+        run: |
+          mkdir -p app
+          echo "=== Содержимое репозитория ==="
+          ls -la
+          echo "=== Файлы в app/ ==="
+          ls -la app/ 2>/dev/null || echo "app/ пустой"
+
+      - name: Check and create database if missing
+        run: |
+          echo "=== Проверка базы данных ==="
+          
+          if [ -f "reposter.db" ]; then
+            echo "✅ База данных найдена: reposter.db"
+            ls -lh reposter.db
+            
+            # Проверяем структуру БД
+            echo "=== Проверка структуры БД ==="
+            if command -v sqlite3 &> /dev/null; then
+              sqlite3 reposter.db ".tables" || echo "Не удалось прочитать БД"
+              sqlite3 reposter.db "SELECT COUNT(*) FROM messages;" 2>/dev/null || echo "Таблица messages не найдена"
+            fi
+          else
+            echo "⚠️ База данных не найдена. Создаем новую..."
+            
+            # Создаем новую БД
+            python3 -c "
+import sqlite3
+import os
+
+db_path = 'reposter.db'
+if os.path.exists(db_path):
+    os.remove(db_path)
+
+conn = sqlite3.connect(db_path)
+cursor = conn.cursor()
+
+# Создаем таблицу messages
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS messages (
+        source_channel TEXT NOT NULL,
+        source_message_id INTEGER NOT NULL,
+        target_message_id INTEGER,
+        message_type TEXT DEFAULT 'text',
+        processed_at TEXT,
+        summary TEXT,
+        PRIMARY KEY (source_channel, source_message_id)
+    )
+''')
+
+# Создаем таблицу errors
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS errors (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        source_channel TEXT,
+        source_message_id INTEGER,
+        error_text TEXT,
+        traceback TEXT,
+        created_at TEXT
+    )
+''')
+
+# Создаем таблицу settings
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS settings (
+        key TEXT PRIMARY KEY,
+        value TEXT
+    )
+''')
+
+# Создаем индекс
+cursor.execute('''
+    CREATE INDEX IF NOT EXISTS idx_source_message 
+    ON messages (source_channel, source_message_id)
+''')
+
+conn.commit()
+conn.close()
+
+print(f'✅ Создана новая база данных: {db_path}')
+print(f'Размер: {os.path.getsize(db_path)} байт')
+"
+            
+            echo "✅ Новая БД создана"
+            ls -lh reposter.db
+          fi
 
       # === СОЗДАНИЕ ФАЙЛА СЕССИИ ===
       - name: Create Telegram session file
@@ -68,4 +160,81 @@ jobs:
           ADMIN_BIND_HOST: "0.0.0.0"
           ADMIN_BIND_PORT: "8000"
         run: |
-          python -m app.main
+          echo "=== Запуск бота ==="
+          cd app
+          python main.py
+          
+          echo "=== Проверка после работы ==="
+          cd ..
+          if [ -f "reposter.db" ]; then
+            echo "✅ База данных обновлена"
+            ls -lh reposter.db
+            
+            # Показываем статистику
+            if command -v sqlite3 &> /dev/null; then
+              echo "=== Статистика БД ==="
+              sqlite3 reposter.db "SELECT COUNT(*) as 'Всего записей' FROM messages;" 2>/dev/null || echo "Ошибка чтения БД"
+              sqlite3 reposter.db "SELECT MAX(processed_at) as 'Последнее обновление' FROM messages;" 2>/dev/null || echo "Ошибка чтения БД"
+            fi
+          fi
+
+      - name: Commit updated database back to repo
+        if: always()
+        run: |
+          echo "=== Коммит обновленной БД в репозиторий ==="
+          
+          # Проверяем, изменилась ли БД
+          if [ -f "reposter.db" ]; then
+            echo "Проверяем изменения в БД..."
+            
+            # Добавляем БД в git
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            
+            # Сначала получаем последние изменения
+            git pull origin main --rebase || true
+            
+            # Добавляем БД
+            git add reposter.db
+            
+            # Проверяем есть ли изменения
+            if ! git diff --cached --quiet; then
+              echo "✅ Есть изменения в БД, коммитим..."
+              git commit -m "Update reposter.db from GitHub Actions [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
+              
+              # Пытаемся запушить
+              attempts=0
+              max_attempts=3
+              
+              while [ $attempts -lt $max_attempts ]; do
+                if git push origin main; then
+                  echo "✅ БД успешно закоммичена и запущена"
+                  break
+                else
+                  attempts=$((attempts+1))
+                  echo "⚠️ Попытка $attempts/$max_attempts не удалась, пробуем снова..."
+                  sleep 2
+                  git pull origin main --rebase
+                fi
+              done
+              
+              if [ $attempts -eq $max_attempts ]; then
+                echo "⚠️ Не удалось запушить изменения, но БД обновлена локально"
+              fi
+            else
+              echo "✅ Нет изменений в БД"
+            fi
+          else
+            echo "⚠️ Файл БД не найден для коммита"
+          fi
+
+      - name: Upload database as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: telegram-bot-database
+          path: |
+            reposter.db
+            app/price_reposter_user.session
+            app/*.log
+          retention-days: 7
