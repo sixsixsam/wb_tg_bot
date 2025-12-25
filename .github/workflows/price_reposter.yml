@@ -2,9 +2,7 @@ name: Telegram Price Reposter
 
 on:
   schedule:
-    # 06:00 МСК = 03:00 UTC
     - cron: "0 3 * * *"
-    # 12:00 МСК = 09:00 UTC
     - cron: "0 9 * * *"
   workflow_dispatch:
 
@@ -16,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -24,13 +24,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install -r requirements.txt
+          mkdir -p app
 
       - name: Create Telegram session file
         run: |
           echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > app/price_reposter_user.session
-          echo "Session file created"
 
       - name: Run bot
         env:
@@ -39,12 +38,45 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           SOURCE_CHANNELS: ${{ secrets.SOURCE_CHANNELS }}
           TARGET_CHANNEL: ${{ secrets.TARGET_CHANNEL }}
-          MIN_PRICE_TO_IGNORE: "10000.0"
-          REQUEST_DELAY: "0.45"
-          BACKFILL_LIMIT: "500"
-          DOWNLOAD_DIR: "downloads"
-          LOG_DIR: "logs"
-          ADMIN_BIND_HOST: "0.0.0.0"
-          ADMIN_BIND_PORT: "8000"
         run: |
           python -m app.main
+      
+      # ⬇⬇⬇ КОММИТ БД В РЕПОЗИТОРИЙ ⬇⬇⬇
+      - name: Commit and push database
+        if: always()
+        run: |
+          # Настраиваем git
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          
+          # Проверяем, существует ли БД
+          if [ -f "reposter.db" ]; then
+            echo "Database file exists, checking for changes..."
+            
+            # Добавляем БД в git
+            git add reposter.db
+            
+            # Проверяем есть ли изменения
+            if ! git diff --cached --quiet; then
+              echo "Database changed, committing..."
+              git commit -m "Update reposter.db [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
+              
+              # Пробуем запушить несколько раз (на случай конфликтов)
+              for i in 1 2 3; do
+                echo "Push attempt $i/3..."
+                if git push origin main; then
+                  echo "✅ Database pushed successfully!"
+                  break
+                else
+                  echo "⚠️ Push failed, pulling latest changes..."
+                  git pull origin main --rebase
+                  sleep 2
+                fi
+              done
+            else
+              echo "✅ No changes in database"
+            fi
+          else
+            echo "⚠️ Database file not found!"
+            ls -la
+          fi
