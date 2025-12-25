@@ -11,7 +11,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 15  # ⬅️ КРИТИЧНО! Максимум 15 минут
+    timeout-minutes: 15
     
     steps:
       - name: Checkout repo
@@ -27,30 +27,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # === СОЗДАНИЕ ФАЙЛА СЕССИИ ===
       - name: Create Telegram session file
         run: |
-          # Создаем price_reposter_user.session (как указано в config.py)
           echo "${{ secrets.USER_SESSION_BASE64 }}" | base64 -d > app/price_reposter_user.session
-          echo "✅ Session file created at app/price_reposter_user.session"
-          
-          # Проверяем созданный файл
-          echo "=== Проверка файла ==="
-          ls -l app/price_reposter_user.session
-          echo "Размер: $(wc -c < app/price_reposter_user.session) байт"
-          
-          # Проверяем первые байты
-          echo "Заголовок (первые 6 байт в hex):"
-          head -c 6 app/price_reposter_user.session | xxd
-          
-          # Проверяем, что файл SQLite
-          echo "Проверка формата:"
-          file app/price_reposter_user.session
-          
-          # Показываем все файлы сессий в app/
-          echo "=== Все файлы сессий в app/ ==="
-          find app/ -name "*.session" -type f | xargs ls -l
-      # ======================================
+          echo "Session file created"
 
       - name: Run bot
         env:
@@ -59,7 +39,6 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           SOURCE_CHANNELS: ${{ secrets.SOURCE_CHANNELS }}
           TARGET_CHANNEL: ${{ secrets.TARGET_CHANNEL }}
-          # Дополнительные переменные из config.py (с значениями по умолчанию)
           MIN_PRICE_TO_IGNORE: "10000.0"
           REQUEST_DELAY: "0.45"
           BACKFILL_LIMIT: "500"
