@@ -14,45 +14,40 @@ from telethon import TelegramClient, Button
 
 async def send_tradein_post():
     """
-    Отправляет пост с кнопками Trade-In в целевой канал
+    Отправляет пост с кнопками Trade-In в целевой канал через БОТА
     """
-    print("🚀 Запуск отправки Trade-In поста...")
+    print("🚀 Запуск отправки Trade-In поста через бота...")
     
-    # Используем значения из config (которые загружаются из env)
-    print(f"📊 Конфигурация:")
-    print(f"   API_ID: {config.API_ID}")
-    print(f"   TARGET_CHANNEL: {config.TARGET_CHANNEL}")
-    print(f"   SESSION: {config.USER_SESSION_NAME}")
-    
-    if not config.API_ID or not config.API_HASH:
-        print("❌ Ошибка: API_ID или API_HASH не заданы!")
-        print("   Установите секреты в GitHub Secrets:")
-        print("   - API_ID")
-        print("   - API_HASH")
-        print("   - TARGET_CHANNEL")
+    # Проверяем токен бота
+    if not config.BOT_TOKEN:
+        print("❌ Ошибка: BOT_TOKEN не задан!")
+        print("   Установите BOT_TOKEN в GitHub Secrets")
         return False
     
     if not config.TARGET_CHANNEL:
         print("❌ Ошибка: TARGET_CHANNEL не задан!")
         return False
     
-    # Инициализируем клиент
+    print(f"📊 Конфигурация:")
+    print(f"   BOT_TOKEN: {'*' * len(config.BOT_TOKEN) if config.BOT_TOKEN else 'Нет'}")
+    print(f"   TARGET_CHANNEL: {config.TARGET_CHANNEL}")
+    
+    # Инициализируем клиент БОТА
     client = TelegramClient(
-        session=config.USER_SESSION_NAME,
+        session='bot_session',  # любое имя для сессии бота
         api_id=config.API_ID,
         api_hash=config.API_HASH
-    )
+    ).start(bot_token=config.BOT_TOKEN)
     
     try:
-        await client.start()
-        print("✅ Авторизация успешна")
+        print("✅ Бот авторизован")
         
         # Текст поста
         post_text = """
-🎯 **Официальный аккаунт ✅**
+🎯 **Официальный аккаунт ✅** 
 
 Только новая и оригинальная техника из первоисточников!
-Выбери категорию ниже 👇
+👇👇👇
 """
         
         # Кнопки
@@ -117,6 +112,7 @@ async def send_tradein_post():
         
         print(f"📤 Отправка поста в {config.TARGET_CHANNEL}...")
         
+        # Отправка через бота
         await client.send_message(
             entity=config.TARGET_CHANNEL,
             message=post_text,
@@ -125,25 +121,27 @@ async def send_tradein_post():
             parse_mode='md'
         )
         
-        print("✅ Пост успешно отправлен!")
+        print("✅ Пост успешно отправлен через бота!")
         return True
         
     except Exception as e:
         print(f"❌ Ошибка при отправке: {type(e).__name__}: {e}")
+        
+        # Проверяем права бота
+        if "CHAT_WRITE_FORBIDDEN" in str(e) or "no write access" in str(e):
+            print("\n⚠️  У бота нет прав на публикацию в канале!")
+            print("   Сделайте бота администратором канала с правом:")
+            print("   - 'Post Messages' (Отправка сообщений)")
+            print("   - 'Edit Messages' (Редактирование сообщений)")
+        
         import traceback
         traceback.print_exc()
         return False
         
     finally:
-        if client.is_connected():
-            await client.disconnect()
-            print("📴 Соединение закрыто")
+        await client.disconnect()
+        print("📴 Соединение закрыто")
 
 if __name__ == "__main__":
-    # Для отладки в локальном режиме
-    if not os.getenv('GITHUB_ACTIONS'):
-        print("⚠️  Локальный запуск. Убедитесь, что переменные окружения установлены.")
-        print("   Или создайте .env файл в папке app/")
-    
     success = asyncio.run(send_tradein_post())
     sys.exit(0 if success else 1)
