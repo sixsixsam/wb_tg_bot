@@ -1,0 +1,52 @@
+name: Send Trade-In Post
+
+on:
+  workflow_dispatch:  # Только ручной запуск
+  # Можно добавить триггеры:
+  # push:
+  #   branches: [ main ]
+  #   paths: [ 'app/send_post.py' ]
+
+jobs:
+  send-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          cd app
+          pip install telethon
+      
+      - name: Run send_post.py
+        run: |
+          cd app
+          python send_post.py
+        env:
+          API_ID: ${{ secrets.API_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          TARGET_CHANNEL: ${{ secrets.TARGET_CHANNEL }}
+          USER_SESSION_NAME: "price_reposter_user"
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          # Дополнительные переменные из твоего config
+          MIN_PRICE_TO_IGNORE: "10000.0"
+          REQUEST_DELAY: "0.45"
+          BACKFILL_LIMIT: "70"
+          SOURCE_CHANNELS: ""
+          DOWNLOAD_DIR: "downloads"
+          LOG_DIR: "logs"
+      
+      - name: Upload session file (если создаётся новая сессия)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: telegram-session
+          path: app/*.session
+          retention-days: 1
