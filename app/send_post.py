@@ -37,14 +37,16 @@ async def send_tradein_post():
         session='bot_session',  # любое имя для сессии бота
         api_id=config.API_ID,
         api_hash=config.API_HASH
-    ).start(bot_token=config.BOT_TOKEN)
+    )
     
     try:
+        # Запускаем бота с токеном
+        await client.start(bot_token=config.BOT_TOKEN)
         print("✅ Бот авторизован")
         
         # Текст поста
         post_text = """
-🎯 **Официальный аккаунт ✅** 
+🎯 Официальный аккаунт ✅ 
 
 Только новая и оригинальная техника из первоисточников!
 👇👇👇
@@ -133,14 +135,20 @@ async def send_tradein_post():
             print("   Сделайте бота администратором канала с правом:")
             print("   - 'Post Messages' (Отправка сообщений)")
             print("   - 'Edit Messages' (Редактирование сообщений)")
+        elif "Could not find the input entity" in str(e):
+            print("\n⚠️  Не найден канал! Проверьте:")
+            print("   1. TARGET_CHANNEL в формате @username или -1001234567890")
+            print("   2. Бот добавлен в канал")
+            print("   3. Бот - администратор канала")
         
         import traceback
         traceback.print_exc()
         return False
         
     finally:
-        await client.disconnect()
-        print("📴 Соединение закрыто")
+        if client.is_connected():
+            await client.disconnect()
+            print("📴 Соединение закрыто")
 
 if __name__ == "__main__":
     success = asyncio.run(send_tradein_post())
