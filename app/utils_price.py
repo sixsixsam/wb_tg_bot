@@ -103,6 +103,27 @@ def replace_phones_emoji(text: str) -> str:
     """
     return text.replace("📱📱📱", "@perviykremlevskiy 📱")
 
+def filter_active_lines(text: str) -> str:
+    """
+    Удаляет строки, содержащие слова 'актив' или 'предактив'.
+    Возвращает текст без этих строк и без лишних пустых строк.
+    """
+    lines = text.splitlines()
+    filtered_lines = []
+    
+    for line in lines:
+        # Приводим к нижнему регистру для проверки
+        lower_line = line.lower()
+        # Если в строке НЕТ 'актив' и 'предактив' - оставляем её
+        if 'актив' not in lower_line and 'предактив' not in lower_line:
+            filtered_lines.append(line)
+    
+    # Склеиваем обратно, убирая возможные пустые строки, которые могли образоваться
+    result = "\n".join(filtered_lines)
+    # Убираем множественные пустые строки, оставляя максимум одну подряд
+    result = re.sub(r'\n{3,}', '\n\n', result)
+    return result.strip()
+
 # ================== CORE FUNCTION ==================
 
 def replace_prices_in_text(
@@ -120,7 +141,11 @@ def replace_prices_in_text(
     - "17 256" НЕ ТРОГАЕМ
     - Удаляет абзацы с уценкой
     - Заменяет 📱📱📱 на @perviykremlevskiy 📱
+    - Удаляет строки с 'актив' и 'предактив'
     """
+    
+    # ШАГ 0: Удаляем строки с "актив" и "предактив" (самое первое!)
+    text = filter_active_lines(text)
     
     # ШАГ 1: Заменяем эмодзи телефонов
     text = replace_phones_emoji(text)
