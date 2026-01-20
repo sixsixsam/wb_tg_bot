@@ -40,12 +40,6 @@ IGNORE_LINE_KEYWORDS = [
     "depо",
 ]
 
-# признаки PRO-моделей (ТОЛЬКО для строк с айфонами)
-PRO_LINE_RE = re.compile(
-    r"\b(pro max|pro)\b",
-    re.IGNORECASE
-)
-
 # ================== HELPERS ==================
 
 def normalize_price(raw: str) -> int:
@@ -57,9 +51,6 @@ def format_price(n: int) -> str:
 def is_price_line(line: str) -> bool:
     l = line.lower()
     return not any(k in l for k in IGNORE_LINE_KEYWORDS)
-
-def is_pro_line(line: str) -> bool:
-    return bool(PRO_LINE_RE.search(line))
 
 # ================== NEW FUNCTIONS ==================
 
@@ -171,16 +162,16 @@ def clean_text_advanced(text: str) -> str:
 
 def replace_prices_in_text(
     text: str,
-    pro_delta: int,
-    default_delta: int,
+    pro_delta: int,  # Параметр оставлен для совместимости, но не используется
+    default_delta: int,  # Параметр оставлен для совместимости, но не используется
     min_zero: int = 0,
     min_ignore: int = 0
 ):
     """
-    ЛОГИКА (ВАЖНО):
+    НОВАЯ ЛОГИКА (2025-12-27):
+    - от ВСЕХ моделей дороже 10 000 рублей отнимаем 500 рублей
+    - НЕТ разделения на PRO и обычные
     - анализ ТОЛЬКО построчно
-    - Pro / Pro Max → pro_delta
-    - обычные / Air → default_delta
     - "17 256" НЕ ТРОГАЕМ
     - Удаляет абзацы с уценкой
     - Заменяет 📱📱📱 на @perviykremlevskiy 📱
@@ -198,6 +189,10 @@ def replace_prices_in_text(
     changed = False
     lines = text.splitlines()
     new_lines = []
+    
+    # Фиксированная дельта: -500 рублей для всех товаров дороже 10 000
+    UNIFIED_DELTA = 500
+    PRICE_THRESHOLD = 10000  # Минимальная цена для применения скидки
 
     for line in lines:
         original_line = line
@@ -207,16 +202,18 @@ def replace_prices_in_text(
             new_lines.append(line)
             continue
 
-        pro_line = is_pro_line(line)
-
+        # НОВАЯ ЛОГИКА: для ВСЕХ строк применяем одинаковую дельту
         def repl(m):
             nonlocal changed
             raw_price = m.group(1)
 
             price = normalize_price(raw_price)
-
-            delta = pro_delta if pro_line else default_delta
-            new_price = price - delta
+            
+            # Если цена меньше порога - не меняем
+            if price <= PRICE_THRESHOLD:
+                return raw_price
+                
+            new_price = price - UNIFIED_DELTA
 
             if new_price <= min_ignore:
                 return raw_price
