@@ -55,66 +55,66 @@ async def send_tradein_post():
         # Кнопки
         buttons =  [
             # Первые три — по одной строке
-            [InlineKeyboardButton("Гарантийный сервис", url="https://t.me/linfortepiano")],
-            [InlineKeyboardButton("Оптовый заказ", url="https://t.me/linfortepiano")],
+            [Button.url("Гарантийный сервис", "https://t.me/linfortepiano")],
+            [Button.url("Оптовый заказ", "https://t.me/linfortepiano")],
             # Пары
             [
-                InlineKeyboardButton("Гаджеты", url="https://t.me/perviykremlevskiy/319"),
-                InlineKeyboardButton("Яндекс/JBL", url="https://t.me/perviykremlevskiy/320")
+                Button.url("Гаджеты", "https://t.me/perviykremlevskiy/319"),
+                Button.url("Яндекс/JBL", "https://t.me/perviykremlevskiy/320")
             ],
             [
-                InlineKeyboardButton("Ps5/Xbox", url="https://t.me/perviykremlevskiy/321"),
-                InlineKeyboardButton("Honor/huawei", url="https://t.me/perviykremlevskiy/322")
+                Button.url("Ps5/Xbox", "https://t.me/perviykremlevskiy/321"),
+                Button.url("Honor/huawei", "https://t.me/perviykremlevskiy/322")
             ],
             [
-                InlineKeyboardButton("Pixel/ONE PLUS", url="https://t.me/perviykremlevskiy/323"),
-                InlineKeyboardButton("SAMSUNG", url="https://t.me/perviykremlevskiy/324")
+                Button.url("Pixel/ONE PLUS", "https://t.me/perviykremlevskiy/323"),
+                Button.url("SAMSUNG", "https://t.me/perviykremlevskiy/324")
             ],
             [
-                InlineKeyboardButton("Xiaomi/Poco", url="https://t.me/perviykremlevskiy/326"),
-                InlineKeyboardButton("Dyson", url="https://t.me/perviykremlevskiy/328")
+                Button.url("Xiaomi/Poco", "https://t.me/perviykremlevskiy/326"),
+                Button.url("Dyson", "https://t.me/perviykremlevskiy/328")
             ],
             [
-                InlineKeyboardButton("DJI", url="https://t.me/perviykremlevskiy/332"),
-                InlineKeyboardButton("Apple Watch", url="https://t.me/perviykremlevskiy/333")
+                Button.url("DJI", "https://t.me/perviykremlevskiy/332"),
+                Button.url("Apple Watch", "https://t.me/perviykremlevskiy/333")
             ],
             [
-                InlineKeyboardButton("Смарт-часы", url="https://t.me/perviykremlevskiy/334"),
-                InlineKeyboardButton("AirPods", url="https://t.me/perviykremlevskiy/339")
+                Button.url("Смарт-часы", "https://t.me/perviykremlevskiy/334"),
+                Button.url("AirPods", "https://t.me/perviykremlevskiy/339")
             ],
             [
-                InlineKeyboardButton("Наушники", url="https://t.me/perviykremlevskiy/340"),
-                InlineKeyboardButton("iPad Air", url="https://t.me/perviykremlevskiy/342")
+                Button.url("Наушники", "https://t.me/perviykremlevskiy/340"),
+                Button.url("iPad Air", "https://t.me/perviykremlevskiy/342")
             ],
             [
-                InlineKeyboardButton("iPad Pro", url="https://t.me/perviykremlevskiy/344"),
-                InlineKeyboardButton("iPad/iPad mini", url="https://t.me/perviykremlevskiy/345")
+                Button.url("iPad Pro", "https://t.me/perviykremlevskiy/344"),
+                Button.url("iPad/iPad mini", "https://t.me/perviykremlevskiy/345")
             ],
             [
-                InlineKeyboardButton("iMac", url="https://t.me/perviykremlevskiy/346"),
-                InlineKeyboardButton("MacBook Air", url="https://t.me/perviykremlevskiy/348")
+                Button.url("iMac", "https://t.me/perviykremlevskiy/346"),
+                Button.url("MacBook Air", "https://t.me/perviykremlevskiy/348")
             ],
             [
-                InlineKeyboardButton("MacBook Pro", url="https://t.me/perviykremlevskiy/350"),
-                InlineKeyboardButton("SE/11/12", url="https://t.me/perviykremlevskiy/352")
+                Button.url("MacBook Pro", "https://t.me/perviykremlevskiy/350"),
+                Button.url("SE/11/12", "https://t.me/perviykremlevskiy/352")
             ],
             [
-                InlineKeyboardButton("iPhone 13", url="https://t.me/perviykremlevskiy/364"),
-                InlineKeyboardButton("iPhone 14/14 Pro", url="https://t.me/perviykremlevskiy/365")
+                Button.url("iPhone 13", "https://t.me/perviykremlevskiy/364"),
+                Button.url("iPhone 14/14 Pro", "https://t.me/perviykremlevskiy/365")
             ],
             [
-                InlineKeyboardButton("iPhone 15/15 Pro", url="https://t.me/perviykremlevskiy/355"),
-                InlineKeyboardButton("iPhone 16e/16", url="https://t.me/perviykremlevskiy/356")
+                Button.url("iPhone 15/15 Pro", "https://t.me/perviykremlevskiy/355"),
+                Button.url("iPhone 16e/16", "https://t.me/perviykremlevskiy/356")
             ],
             [
-                InlineKeyboardButton("iPhone 16e/16", url="https://t.me/perviykremlevskiy/359"),
-                InlineKeyboardButton("iPhone 16 Pro", url="https://t.me/perviykremlevskiy/360")
+                Button.url("iPhone 16e/16", "https://t.me/perviykremlevskiy/359"),
+                Button.url("iPhone 16 Pro", "https://t.me/perviykremlevskiy/360")
             ],
             [
-                InlineKeyboardButton("iPhone 17 Pro", url="https://t.me/perviykremlevskiy/367")
+                Button.url("iPhone 17 Pro", "https://t.me/perviykremlevskiy/367")
             ],
             # Последняя кнопка
-            [InlineKeyboardButton("Заказать", url="https://t.me/linfortepiano")]
+            [Button.url("Заказать", "https://t.me/linfortepiano")]
         ]
         
         print(f"📤 Отправка поста в {config.TARGET_CHANNEL}...")
