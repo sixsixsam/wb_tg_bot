@@ -1,26 +1,15 @@
-name: Create Telegram Session
+name: Create Telegram Session (SECURE)
 
 on:
-  workflow_dispatch:  # Ручной запуск из интерфейса GitHub
-    inputs:
-      phone_number:
-        description: 'Номер телефона в формате +7XXXXXXXXXX'
-        required: true
-        type: string
-      api_id:
-        description: 'API ID (число)'
-        required: true
-        type: string
-      api_hash:
-        description: 'API Hash'
-        required: true
-        type: string
+  workflow_dispatch:
+    # Никаких inputs! Все данные берем из Secrets
+    # Запускаем просто по кнопке
 
 jobs:
   create-session:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -29,57 +18,48 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install pyrogram tgcrypto
+        run: pip install pyrogram tgcrypto
 
-      - name: Create session script
+      - name: Create session securely
+        env:
+          # Берем данные ТОЛЬКО из Secrets GitHub
+          API_ID: ${{ secrets.API_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          PHONE: ${{ secrets.PHONE_NUMBER }}
         run: |
-          cat > create_session.py << 'EOF'
+          python -c "
           import asyncio
           import os
           from pyrogram import Client
-
+          
           async def main():
+              # Данные из секретов, они НЕ выводятся в логи
               async with Client(
-                  name="price_reposter_user",
-                  api_id=int(os.environ["API_ID"]),
-                  api_hash=os.environ["API_HASH"],
-                  phone_number=os.environ["PHONE_NUMBER"],
-                  workdir="."
+                  name='price_reposter_user',
+                  api_id=int(os.environ['API_ID']),
+                  api_hash=os.environ['API_HASH'],
+                  phone_number=os.environ['PHONE']
               ) as client:
-                  print("✅ Session created!")
                   me = await client.get_me()
-                  print(f"Account: {me.first_name} (@{me.username})")
-          EOF
+                  # Выводим только имя пользователя, НЕ номер и НЕ ключи
+                  print(f'Session created for: {me.first_name}')
+          
+          asyncio.run(main())
+          "
 
-      - name: Run session creation
+      - name: Encode session (hidden output)
+        run: |
+          # Кодируем, но НЕ выводим в логи
+          base64 -w 0 price_reposter_user.session > session.b64
+          echo "SESSION_B64=$(cat session.b64)" >> $GITHUB_ENV
+          
+      - name: Save to Secrets (requires GitHub API token)
         env:
-          API_ID: ${{ github.event.inputs.api_id }}
-          API_HASH: ${{ github.event.inputs.api_hash }}
-          PHONE_NUMBER: ${{ github.event.inputs.phone_number }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          python create_session.py
-
-      - name: Encode session to base64
+          # Обновляем секрет USER_SESSION_BASE64
+          echo "${{ env.SESSION_B64 }}" | gh secret set USER_SESSION_BASE64
+          
+      - name: Cleanup
         run: |
-          if [ -f "price_reposter_user.session" ]; then
-            base64 -w 0 price_reposter_user.session > session_base64.txt
-            echo "SESSION_BASE64=$(cat session_base64.txt)" >> $GITHUB_ENV
-            echo "✅ Session encoded successfully"
-          else
-            echo "❌ Session file not found!"
-            exit 1
-          fi
-
-      - name: Update GitHub Secret
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { SESSION_BASE64 } = process.env;
-            if (!SESSION_BASE64) {
-              core.setFailed('No session base64 data found');
-              return;
-            }
-            // Здесь нужно использовать GitHub API для обновления секрета
-            console.log('Session base64 length:', SESSION_BASE64.length);
-            console.log('Copy this value to USER_SESSION_BASE64 secret');
+          rm -f price_reposter_user.session session.b64
